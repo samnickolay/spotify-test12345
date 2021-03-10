@@ -28,7 +28,7 @@ class ActiveAccount(APIView):
         try:
             account = Account.objects.get(pk=id)
             account.save()
-        except account.DoesNotExist:
+        except Account.DoesNotExist:
             pass
         except Exception as _e:
             print(_e)
@@ -48,8 +48,6 @@ class GetAccount(APIView):
 
             return JsonResponse({'pk': account.pk, 'email': account.email, 'password': account.password})
 
-        except account.DoesNotExist:
-            pass
         except Exception as _e:
             print(_e)
 
