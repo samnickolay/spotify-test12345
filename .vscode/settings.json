@@ -1,0 +1,26 @@
+{
+    "python.pythonPath": "C:\\Users\\samni\\.virtualenvs\\events-backend-v1.0-3j7-s3qM\\Scripts\\python.exe",
+    "python.terminal.activateEnvironment": false,
+    "editor.formatOnSave": true,
+
+    "python.linting.enabled": true,
+    "python.linting.lintOnSave": true,
+    "python.linting.pylintEnabled": true,
+
+    "python.linting.pylintPath": "C:\\Users\\samni\\.virtualenvs\\events-backend-v1.0-3j7-s3qM\\Scripts\\pylint.exe",
+    "python.linting.pylintArgs": ["--load-plugins","pylint_django", "--max-line-length=150", "--disable=C0111","--django-settings-module=backend.settings",],
+    
+
+    // "--load-plugins",
+    // "pylint_django",
+    // "--load-plugins",
+
+
+
+    "python.linting.pycodestyleEnabled": true,
+    "python.linting.pycodestyleArgs": ["--ignore=E501"],
+    "python.formatting.autopep8Args": [
+        "--max-line-length=150"
+    ],
+    "editor.defaultFormatter": "ms-python.python"
+}
