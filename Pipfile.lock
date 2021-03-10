@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "d11f89d07a946f093c988e8a71c67f8dca87b2865823f0eecd50f87e456b473e"
+            "sha256": "16c8488c96bbecde95bb1bf2485c07ccf914148a693aae3205de4a8878fc2ec0"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -141,11 +141,11 @@
         },
         "drf-jwt": {
             "hashes": [
-                "sha256:3867bbc1752360349704a93679120f015cf5d171a222a05301a68ac824aaa1c7",
-                "sha256:70798b2ea5d4d44e3fa708f9441b072c77f1346587a11992ce8a3fb75b749338"
+                "sha256:104f62ba8d897a4c16b3dd483364629f71b3c5bd7a7377a494a696c62c465e7c",
+                "sha256:5a947232e56539a300d11ab723b552568f382a44edb188ce580ecaf10a17722e"
             ],
             "index": "pypi",
-            "version": "==1.13.4"
+            "version": "==1.17.3"
         },
         "gunicorn": {
             "hashes": [
@@ -234,6 +234,9 @@
             "version": "==2.20"
         },
         "pyjwt": {
+            "extras": [
+                "crypto"
+            ],
             "hashes": [
                 "sha256:5c6eca3c2940464d106b99ba83b00c6add741c9becaec087fb7ccdefea71350e",
                 "sha256:8d59a976fb773f3e6a39c85636357c4f0e242707394cadadd9814f5cbaa20e96"
