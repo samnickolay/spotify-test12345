@@ -44,8 +44,6 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 
 ENVIRONMENT = os.getenv('ENVIRONMENT')
 
-print(ENVIRONMENT)
-
 
 ALLOWED_HOSTS = ['*']
 
