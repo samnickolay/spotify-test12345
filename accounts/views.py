@@ -39,9 +39,9 @@ class ActiveAccount(APIView):
 class GetAccount(APIView):
     permission_classes = (HasAPIKey,)
 
-    def get(self, request, id=None):
+    def get(self, request):
         try:
-            five_h_ago = timezone.now()-timezone.timedelta(hours=5)
+            five_h_ago = timezone.now() - timezone.timedelta(hours=5)
 
             accounts = list(Account.objects.filter(modified__lt=five_h_ago))
             account = random.choice(accounts)

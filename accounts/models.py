@@ -18,5 +18,5 @@ class Account(models.Model):
         self.modified = timezone.now()
         return super(Account, self).save(*args, **kwargs)
 
-    # def __str__(self):
-    #     return str(self.public_id) + ' - ' + self.first_name + " " + self.last_name + " - " + self.email + " - " + str(self.invite_created)
+    def __str__(self):
+        return self.email
