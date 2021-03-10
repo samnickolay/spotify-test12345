@@ -42,8 +42,10 @@ class GetAccount(APIView):
     def get(self, request):
         try:
             five_h_ago = timezone.now() - timezone.timedelta(hours=5)
+            five_m_ago = timezone.now() - timezone.timedelta(minutes=5)
 
-            accounts = list(Account.objects.filter(modified__lt=five_h_ago))
+            accounts = list(Account.objects.filter(modified__lt=five_m_ago))
+            # accounts = list(Account.objects.filter(modified__lt=five_h_ago))
             account = random.choice(accounts)
 
             return JsonResponse({'pk': account.pk, 'email': account.email, 'password': account.password})
