@@ -28,6 +28,8 @@ class ActiveAccount(APIView):
         try:
             account = Account.objects.get(pk=id)
             account.save()
+            return Response()
+
         except Account.DoesNotExist:
             print('Account.DoesNotExist')
             print(id)
