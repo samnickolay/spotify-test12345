@@ -9,7 +9,6 @@ User = get_user_model()
 
 
 class Account(models.Model):
-
     email = models.EmailField(_('email address'),)
     password = models.CharField(_('password'), max_length=32, blank=True, validators=[MaxLengthValidator(32)])
     modified = models.DateTimeField()
