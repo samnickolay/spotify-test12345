@@ -1,9 +1,9 @@
 #!/bin/bash
 
-sudo apt-get update
-sudo apt-get install -y python-pip
-sudo pip install -U pip
-sudo pip install awscli
+sudo apt-get update &> /dev/null
+sudo apt-get install -y python-pip &> /dev/null
+sudo pip install -U pip &> /dev/null
+sudo pip install awscli &> /dev/null
 
 INSTANCE_ID=$(ec2metadata --instance-id)
 REGION=$(curl -s http://169.254.169.254/latest/dynamic/instance-identity/document | grep region | awk -F\" '{print $4}')
