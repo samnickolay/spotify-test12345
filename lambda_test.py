@@ -42,7 +42,8 @@ def lambda_handler(event, context):
         for instance in reservation["Instances"]:
             print(instance['InstanceId'] + ' - ' + instance['ImageId'])
             if instance['ImageId'] == IMAGE_ID:
-                ec2.stop_instances(InstanceIds=[instance['InstanceId']])
+                # ec2.stop_instances(InstanceIds=[instance['InstanceId']])
+                print(ec2.Instance(instance['InstanceId']).terminate())
 
     for email, password in accounts.items():
         TAG_SPEC = [
