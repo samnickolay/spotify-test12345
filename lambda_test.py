@@ -44,8 +44,11 @@ def lambda_handler(event, context):
             print(instance['InstanceId'] + ' - ' + instance['ImageId'])
             if instance['ImageId'] == IMAGE_ID:
                 instance_ids.append(instance['InstanceId'])
-    result = ec2.terminate_instances(InstanceIds = instance_ids)
-    print(result)
+    try:
+        result = ec2.terminate_instances(InstanceIds = instance_ids)
+        print(result)
+    except Exception as _e:
+        print(_e)
 
     for email, password in accounts.items():
         TAG_SPEC = [
