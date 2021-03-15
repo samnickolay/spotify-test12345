@@ -84,7 +84,7 @@ sudo apt-get install -y protobuf-compiler &>/dev/null
 sudo apt install -y cargo &>/dev/null 
 cargo install ncspot
 
-if cargo install ncspot ; then
+if cargo install ncspot &>/dev/null ; then
     echo "cargo install ncspot succeeded"
 else
     echo "cargo install ncspot failed"
