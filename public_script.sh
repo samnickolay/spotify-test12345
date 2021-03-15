@@ -60,8 +60,6 @@ $VPN_PASSWORD
 
 sudo sed -i 's/auth-user-pass/auth-user-pass \/home\/ubuntu\/auth.txt/' /etc/openvpn/ovpn_tcp/us2957.nordvpn.com.tcp.ovpn
 
-sudo openvpn /etc/openvpn/ovpn_tcp/us2957.nordvpn.com.tcp.ovpn
-
 nohup sudo openvpn /etc/openvpn/ovpn_tcp/us2957.nordvpn.com.tcp.ovpn &>/dev/null &
 
 ####################
