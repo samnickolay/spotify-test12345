@@ -38,12 +38,14 @@ def lambda_handler(event, context):
 
     reservations = ec2.describe_instances(Filters=[{"Name": "instance-state-name", "Values": ["running"]}]).get("Reservations")
 
+    instance_ids = []
     for reservation in reservations:
         for instance in reservation["Instances"]:
             print(instance['InstanceId'] + ' - ' + instance['ImageId'])
             if instance['ImageId'] == IMAGE_ID:
-                # ec2.stop_instances(InstanceIds=[instance['InstanceId']])
-                print(ec2.Instance(instance['InstanceId']).terminate())
+                instance_ids.append(instance['InstanceId'])
+    result = ec2.terminate_instances(InstanceIds = instance_ids)
+    print(result)
 
     for email, password in accounts.items():
         TAG_SPEC = [
