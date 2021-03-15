@@ -1,9 +1,11 @@
 
 import boto3
+import json
 
 IMAGE_ID = 'ami-0121ef35996ede438'
-InstanceType='t3.medium'
-IamInstanceProfile='ec2ReadTags'
+InstanceType = 't3.medium'
+IamInstanceProfile = 'arn:aws:iam::590100935479:role/lambdaControlEC2'
+SecurityGroupId = 'sg-02ef6b6c1b6f17c12'
 
 KEY_NAME = 'test'
 
@@ -12,74 +14,89 @@ VPN_PASSWORD = 'z3NjbYH8stYFZEi'
 PLAYLIST = 'spotify:album:4PgleR09JVnm3zY1fW3XBA'
 
 region = 'us-west-1'
-ec2 = boto3.client('ec2', region_name=region)
 
 accounts = {
-	'samnickolay@gmail.com': 'Tlbsj5116'
+    'samnickolay@gmail.com': 'Tlbsj5116'
 }
 
 
 user_data = '''#!/bin/bash -xe
 exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1
-	echo "fetching bash script"
-	wget -N https://raw.githubusercontent.com/samnickolay/spotify-test12345/main/public_script.sh
-	chmod +x ./public_script.sh
-	echo "running bash script"
-	./public_script.sh
+    echo "fetching bash script"
+    wget -N https://raw.githubusercontent.com/samnickolay/spotify-test12345/main/public_script.sh
+    chmod +x ./public_script.sh
+    echo "running bash script"
+    ./public_script.sh
 '''
 
+ec2 = boto3.client('ec2', region_name=region)
+iam = boto3.client('iam', region_name=region)
+
+
 def lambda_handler(event, context):
-	print('lambda_handler starting')
+    print('lambda_handler starting')
 
-	print(user_data)
+    reservations = ec2.describe_instances(Filters=[{"Name": "instance-state-name", "Values": ["running"]}]).get("Reservations")
 
-	for instance in ec2.instances.all():
-		print(instance.id)
-		if instance.imaged.id == IMAGE_ID:
-			ec2.stop_instances(InstanceIds=[instance.id])
+    for reservation in reservations:
+        for instance in reservation["Instances"]:
+            print(instance['InstanceId'] + ' - ' + instance['ImageId'])
+            if instance['ImageId'] == IMAGE_ID:
+                ec2.stop_instances(InstanceIds=[instance['InstanceId']])
 
+    for email, password in accounts.items():
+        TAG_SPEC = [
+            {
+                "ResourceType": "instance",
+                "Tags": [
+                    {
+                        "Key": "vpn_email",
+                        "Value": VPN_EMAIL,
+                    },
+                    {
+                        "Key": "vpn_password",
+                        "Value": VPN_PASSWORD,
+                    },
+                    {
+                        "Key": "playlist",
+                        "Value": PLAYLIST,
+                    },
+                    {
+                        "Key": "spotify_email",
+                        "Value": email,
+                    },
+                    {
+                        "Key": "spotify_password",
+                        "Value": password,
+                    }
+                ]
+            }
+        ]
 
-	for email, password in accounts:
-	    TAG_SPEC = [
-	        {
-	        "ResourceType":"instance",
-	        "Tags": [
-	                {
-	                    "Key": "vpn_email",
-	                    "Value": VPN_EMAIL,
-	                },
-	                {
-	                    "Key": "vpn_password",
-	                    "Value": VPN_PASSWORD,
-	                },
-	                {
-	                    "Key": "playlist",
-	                    "Value": PLAYLIST,
-	                },
-	                {
-	                    "Key": "spotify_email",
-	                    "Value": email,
-	                },
-	                {
-	                    "Key": "spotify_password",
-	                    "Value": password,
-	                }
-	            ]
-	    	}
-	    ]
+        print(TAG_SPEC)
 
-	    print(TAG_SPEC)
+        # instance_profile = iam.create_instance_profile (InstanceProfileName ='Test-instance-profile' )
+        # print(instance_profile)
+        # response = iam.add_role_to_instance_profile (InstanceProfileName = 'Test-instance-profile',RoleName= 'lambdaControlEC2')
+        # print(response)
 
-		launchedInstances = ec2.run_instances(
-			MaxCount=1,
-			MinCount=1,
-			ImageId=IMAGE_ID,
-	    	InstanceType=InstanceType,
-	    	IamInstanceProfile={'Name': IamInstanceProfile},
-			#LaunchTemplate=lt_specifics,  
-			TagSpecifications=TAG_SPEC,
-			KeyName=KEY_NAME)
+        launchedInstances = ec2.run_instances(
+            MaxCount=1,
+            MinCount=1,
+            ImageId=IMAGE_ID,
+            InstanceType=InstanceType,
+            IamInstanceProfile={ 'Name': 'Test-instance-profile'},
+            SecurityGroupIds=[SecurityGroupId],
+            TagSpecifications=TAG_SPEC,
+            UserData=user_data,
+            KeyName=KEY_NAME
+        )
 
-		print(launchedInstances)
+        print(launchedInstances)
 
-	print('lambda_handler finishing')
+    print('lambda_handler finishing')
+
+    return {
+        'statusCode': 200,
+        'body': json.dumps('Hello from Lambda!')
+    }

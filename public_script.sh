@@ -68,6 +68,9 @@ sudo apt install -y snapd pulseaudio pulseaudio-utils dbus-x11 &> /dev/null
 
 export $(dbus-launch)
 
+
+pulseaudio --kill
+
 dbus-launch --exit-with-session pulseaudio --daemon
 
 pactl -- set-sink-volume 0 200%
@@ -81,9 +84,50 @@ sudo apt-get install -y protobuf-compiler &>/dev/null
 sudo apt install -y cargo &>/dev/null 
 cargo install ncspot
 
+if cargo install ncspot ; then
+    echo "cargo install ncspot succeeded"
+else
+    echo "cargo install ncspot failed"
+fi
+
 ####################
 
-{ sleep 5; printf "\n"; sleep 1; printf "$SPOTIFY_EMAIL"; sleep 1; printf "\t";  printf "$SPOTIFY_PASSWORD"; sleep 1; printf "\t"; sleep 1; printf "\n"; sleep 5; printf ":focus search\n"; sleep 1; printf "$PLAYLIST"; sleep 5; printf "\n\n"; sleep 1;  printf "r\n";} | /home/ubuntu/.cargo/bin/ncspot
+# { sleep 5; printf "\n"; sleep 1; printf "$SPOTIFY_EMAIL"; sleep 1; printf "\t";  printf "$SPOTIFY_PASSWORD"; sleep 1; printf "\t"; sleep 1; printf "\n"; sleep 5; printf ":focus search\n"; sleep 1; printf "$PLAYLIST"; sleep 5; printf "\n\n"; sleep 1;  printf "r\n";} | /home/ubuntu/.cargo/bin/ncspot
+# { sleep 5; printf "\n"; sleep 1; printf "samnickolay@gmail.com"; sleep 1; printf "\t";  printf "Tlbsj5116"; sleep 1; printf "\t"; sleep 1; printf "\n"; sleep 5; printf ":focus search\n"; sleep 1; printf "spotify:album:4PgleR09JVnm3zY1fW3XBA"; sleep 5; printf "\n\n"; sleep 1;  printf "r\n";} | /home/ubuntu/.cargo/bin/ncspot
+
+# { sleep 5; printf "\n"; sleep 1; printf "samnickolay@gmail.com"; sleep 1; printf "\t";  printf "Tlbsj5116"; sleep 1; printf "\t"; sleep 1; printf "\n"; sleep 5; printf ":focus search\n"; sleep 1; printf "spotify:album:4PgleR09JVnm3zY1fW3XBA"; sleep 3; printf "\n"; sleep 1; printf "r\n";  sleep 10; printf "q"; } | /home/ubuntu/.cargo/bin/ncspot
+# { sleep 5; printf ":focus search\n"; sleep 1; printf "spotify:album:4PgleR09JVnm3zY1fW3XBA"; sleep 3; printf "\n"; sleep 1; printf "\n"; sleep 10; printf "q"; } | /home/ubuntu/.cargo/bin/ncspot
+
+sleep $(($RANDOM*28800/32767));
+echo "Running ncspot script"
+{ sleep 5; printf "\n"; sleep 1; printf "samnickolay@gmail.com"; sleep 1; printf "\t";  printf "Tlbsj5116"; sleep 1; printf "\t"; sleep 1; printf "\n"; sleep 5; printf ":focus search\n"; sleep 1; printf "spotify:album:4PgleR09JVnm3zY1fW3XBA"; sleep 3; printf "\n"; sleep 1; printf "r\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | /home/ubuntu/.cargo/bin/ncspot
+echo "sleeping"
+sleep $(($RANDOM*28800/32767));
+
+echo "Running ncspot script"
+{ sleep 5; printf ":focus search\n"; sleep 1; printf "spotify:album:4PgleR09JVnm3zY1fW3XBA"; sleep 3; printf "\n"; sleep 1; printf "\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | /home/ubuntu/.cargo/bin/ncspot
+echo "sleeping"
+sleep $(($RANDOM*28800/32767));
+
+echo "Running ncspot script"
+{ sleep 5; printf ":focus search\n"; sleep 1; printf "spotify:album:4PgleR09JVnm3zY1fW3XBA"; sleep 3; printf "\n"; sleep 1; printf "\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | /home/ubuntu/.cargo/bin/ncspot
+echo "sleeping"
+sleep $(($RANDOM*28800/32767));
+
+echo "Running ncspot script"
+{ sleep 5; printf ":focus search\n"; sleep 1; printf "spotify:album:4PgleR09JVnm3zY1fW3XBA"; sleep 3; printf "\n"; sleep 1; printf "\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | /home/ubuntu/.cargo/bin/ncspot
+echo "sleeping"
+sleep $(($RANDOM*28800/32767));
+
+echo "Running ncspot script"
+{ sleep 5; printf ":focus search\n"; sleep 1; printf "spotify:album:4PgleR09JVnm3zY1fW3XBA"; sleep 3; printf "\n"; sleep 1; printf "\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | /home/ubuntu/.cargo/bin/ncspot
+echo "sleeping"
+sleep $(($RANDOM*28800/32767));
+
+echo "Running ncspot script"
+{ sleep 5; printf ":focus search\n"; sleep 1; printf "spotify:album:4PgleR09JVnm3zY1fW3XBA"; sleep 3; printf "\n"; sleep 1; printf "\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | /home/ubuntu/.cargo/bin/ncspot
+echo "sleeping"
+sleep $(($RANDOM*28800/32767));
 
 ####################
 
