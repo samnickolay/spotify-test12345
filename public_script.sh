@@ -35,7 +35,7 @@ cd /etc/openvpn
 
 sudo wget https://downloads.nordcdn.com/configs/archives/servers/ovpn.zip &>/dev/null 
 
-sudo unzip ovpn.zip &>/dev/null 
+sudo unzip -o ovpn.zip &>/dev/null 
 sudo rm ovpn.zip &>/dev/null 
 
 sudo ip rule add from $(ip route get 1 | grep -Po '(?<=src )(\S+)') table 128
@@ -72,13 +72,13 @@ dbus-launch --exit-with-session pulseaudio --daemon
 
 pactl -- set-sink-volume 0 200%
 
-export $(dbus-launch)
-
 ####################
 
-sudo apt-get update
-sudo apt install -y  libncursesw5-dev libdbus-1-dev libpulse-dev libssl-dev libxcb1-dev libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev
-sudo apt install -y cargo
+sudo apt-get update &>/dev/null 
+sudo apt install -y libncursesw5-dev libdbus-1-dev libpulse-dev libssl-dev libxcb1-dev libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev &>/dev/null 
+sudo apt-get install -y protobuf-compiler &>/dev/null 
+
+sudo apt install -y cargo &>/dev/null 
 cargo install ncspot
 
 ####################
