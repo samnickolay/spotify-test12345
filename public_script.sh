@@ -81,7 +81,6 @@ sudo apt install -y libncursesw5-dev libdbus-1-dev libpulse-dev libssl-dev libxc
 sudo apt-get install -y protobuf-compiler &>/dev/null 
 
 sudo apt install -y cargo &>/dev/null 
-cargo install ncspot
 
 if cargo install -q ncspot ; then
     echo "cargo install ncspot succeeded"
