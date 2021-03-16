@@ -69,10 +69,10 @@ sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-c
 ####################
 
 
-sudo apt-get update 
-sudo apt-get install -y python-pip 
-sudo pip install -U pip 
-sudo pip install awscli 
+sudo apt-get update &> /dev/null 
+sudo apt-get install -y python-pip &> /dev/null 
+sudo pip install -U pip &> /dev/null 
+sudo pip install awscli &> /dev/null 
 
 INSTANCE_ID=$(ec2metadata --instance-id)
 REGION=$(curl -s http://169.254.169.254/latest/dynamic/instance-identity/document | grep region | awk -F\" '{print $4}')
@@ -98,14 +98,14 @@ sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1
 sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1
 sudo sysctl -w net.ipv6.conf.lo.disable_ipv6=1
 
-sudo apt-get install -y openvpn zip wget  
+sudo apt-get install -y openvpn zip wget &> /dev/null  
 
 cd /etc/openvpn
 
-sudo wget https://downloads.nordcdn.com/configs/archives/servers/ovpn.zip  
+sudo wget https://downloads.nordcdn.com/configs/archives/servers/ovpn.zip &> /dev/null  
 
-sudo unzip -o ovpn.zip  
-sudo rm ovpn.zip  
+sudo unzip -o ovpn.zip &> /dev/null  
+sudo rm ovpn.zip &> /dev/null  
 
 sudo ip rule add from $(ip route get 1 | grep -Po '(?<=src )(\S+)') table 128
 sudo ip route add table 128 to $(ip route get 1 | grep -Po '(?<=src )(\S+)')/32 dev $(ip -4 route ls | grep default | grep -Po '(?<=dev )(\S+)')
@@ -133,7 +133,7 @@ nohup sudo openvpn /etc/openvpn/ovpn_tcp/us2957.nordvpn.com.tcp.ovpn  &
 
 ####################
 
-sudo apt install -y snapd pulseaudio pulseaudio-utils dbus-x11 
+sudo apt install -y snapd pulseaudio pulseaudio-utils dbus-x11 &> /dev/null 
 
 export $(dbus-launch)
 
@@ -145,11 +145,11 @@ pactl -- set-sink-volume 0 200%
 
 ####################
 
-sudo apt-get update  
-sudo apt install -y libncursesw5-dev libdbus-1-dev libpulse-dev libssl-dev libxcb1-dev libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev  
-sudo apt-get install -y protobuf-compiler  
+sudo apt-get update &> /dev/null  
+sudo apt install -y libncursesw5-dev libdbus-1-dev libpulse-dev libssl-dev libxcb1-dev libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev &> /dev/null  
+sudo apt-get install -y protobuf-compiler &> /dev/null  
 
-sudo apt install -y cargo  
+sudo apt install -y cargo &> /dev/null  
 
 if cargo install -q ncspot ; then
     echo "cargo install ncspot succeeded"
