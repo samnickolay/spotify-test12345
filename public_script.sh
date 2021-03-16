@@ -93,14 +93,14 @@ sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1
 sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1
 sudo sysctl -w net.ipv6.conf.lo.disable_ipv6=1
 
-sudo apt-get install -y openvpn zip wget &>/dev/null 
+sudo apt-get install -y openvpn zip wget  
 
 cd /etc/openvpn
 
-sudo wget https://downloads.nordcdn.com/configs/archives/servers/ovpn.zip &>/dev/null 
+sudo wget https://downloads.nordcdn.com/configs/archives/servers/ovpn.zip  
 
-sudo unzip -o ovpn.zip &>/dev/null 
-sudo rm ovpn.zip &>/dev/null 
+sudo unzip -o ovpn.zip  
+sudo rm ovpn.zip  
 
 sudo ip rule add from $(ip route get 1 | grep -Po '(?<=src )(\S+)') table 128
 sudo ip route add table 128 to $(ip route get 1 | grep -Po '(?<=src )(\S+)')/32 dev $(ip -4 route ls | grep default | grep -Po '(?<=dev )(\S+)')
@@ -124,7 +124,7 @@ $VPN_PASSWORD
 
 sudo sed -i 's/auth-user-pass/auth-user-pass \/home\/ubuntu\/auth.txt/' /etc/openvpn/ovpn_tcp/us2957.nordvpn.com.tcp.ovpn
 
-nohup sudo openvpn /etc/openvpn/ovpn_tcp/us2957.nordvpn.com.tcp.ovpn &>/dev/null &
+nohup sudo openvpn /etc/openvpn/ovpn_tcp/us2957.nordvpn.com.tcp.ovpn  &
 
 ####################
 
@@ -140,11 +140,11 @@ pactl -- set-sink-volume 0 200%
 
 ####################
 
-sudo apt-get update &>/dev/null 
-sudo apt install -y libncursesw5-dev libdbus-1-dev libpulse-dev libssl-dev libxcb1-dev libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev &>/dev/null 
-sudo apt-get install -y protobuf-compiler &>/dev/null 
+sudo apt-get update  
+sudo apt install -y libncursesw5-dev libdbus-1-dev libpulse-dev libssl-dev libxcb1-dev libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev  
+sudo apt-get install -y protobuf-compiler  
 
-sudo apt install -y cargo &>/dev/null 
+sudo apt install -y cargo  
 
 if cargo install -q ncspot ; then
     echo "cargo install ncspot succeeded"
