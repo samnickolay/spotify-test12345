@@ -26,7 +26,7 @@ exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1
     wget -N https://raw.githubusercontent.com/samnickolay/spotify-test12345/main/public_script.sh
     chmod +x ./public_script.sh
     echo "running bash script"
-    ./public_script.sh
+    ./public_script.sh 2>&1 | tee test.log
 '''
 
 ec2 = boto3.client('ec2', region_name=region)
@@ -45,7 +45,7 @@ def lambda_handler(event, context):
             if instance['ImageId'] == IMAGE_ID:
                 instance_ids.append(instance['InstanceId'])
     try:
-        result = ec2.terminate_instances(InstanceIds = instance_ids)
+        result = ec2.terminate_instances(InstanceIds=instance_ids)
         print(result)
     except Exception as _e:
         print(_e)
@@ -81,17 +81,17 @@ def lambda_handler(event, context):
 
         print(TAG_SPEC)
 
-        # instance_profile = iam.create_instance_profile (InstanceProfileName ='Test-instance-profile' )
-        # print(instance_profile)
-        # response = iam.add_role_to_instance_profile (InstanceProfileName = 'Test-instance-profile',RoleName= 'lambdaControlEC2')
-        # print(response)
+        instance_profile = iam.create_instance_profile(InstanceProfileName='Test-instance-profile2')
+        print(instance_profile)
+        response = iam.add_role_to_instance_profile(InstanceProfileName='Test-instance-profile2', RoleName='ec2ReadTags')
+        print(response)
 
         launchedInstances = ec2.run_instances(
             MaxCount=1,
             MinCount=1,
             ImageId=IMAGE_ID,
             InstanceType=InstanceType,
-            IamInstanceProfile={ 'Name': 'Test-instance-profile'},
+            IamInstanceProfile={'Name': 'Test-instance-profile2'},
             SecurityGroupIds=[SecurityGroupId],
             TagSpecifications=TAG_SPEC,
             UserData=user_data,
