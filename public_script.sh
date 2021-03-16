@@ -1,10 +1,10 @@
 #!/bin/bash
-sudo apt-get update  
-sudo apt-get install -y collectd 
+sudo apt-get update &> /dev/null
+sudo apt-get install -y collectd &> /dev/null
 
-wget https://s3.amazonaws.com/amazoncloudwatch-agent/ubuntu/amd64/latest/amazon-cloudwatch-agent.deb 
+wget https://s3.amazonaws.com/amazoncloudwatch-agent/ubuntu/amd64/latest/amazon-cloudwatch-agent.deb &> /dev/null
 
-sudo dpkg -i -E ./amazon-cloudwatch-agent.deb 
+sudo dpkg -i -E ./amazon-cloudwatch-agent.deb &> /dev/null
 
 echo '''{
         "agent": {
