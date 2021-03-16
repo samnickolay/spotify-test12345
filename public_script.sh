@@ -1,5 +1,69 @@
 #!/bin/bash
 
+wget https://s3.amazonaws.com/amazoncloudwatch-agent/ubuntu/amd64/latest/amazon-cloudwatch-agent.deb &> /dev/null
+
+sudo dpkg -i -E ./amazon-cloudwatch-agent.deb &> /dev/null
+
+sudo apt install -y collectd &> /dev/null
+
+echo '''{
+        "agent": {
+                "metrics_collection_interval": 60,
+                "run_as_user": "root"
+        },
+        "logs": {
+                "logs_collected": {
+                        "files": {
+                                "collect_list": [
+                                        {
+                                                "file_path": "/home/ubuntu/test.log",
+                                                "log_group_name": "test.log",
+                                                "log_stream_name": "{instance_id}"
+                                        }
+                                ]
+                        }
+                }
+        },
+        "metrics": {
+                "append_dimensions": {
+                        "AutoScalingGroupName": "${aws:AutoScalingGroupName}",
+                        "ImageId": "${aws:ImageId}",
+                        "InstanceId": "${aws:InstanceId}",
+                        "InstanceType": "${aws:InstanceType}"
+                },
+                "metrics_collected": {
+                        "collectd": {
+                                "metrics_aggregation_interval": 60
+                        },
+                        "disk": {
+                                "measurement": [
+                                        "used_percent"
+                                ],
+                                "metrics_collection_interval": 60,
+                                "resources": [
+                                        "*"
+                                ]
+                        },
+                        "mem": {
+                                "measurement": [
+                                        "mem_used_percent"
+                                ],
+                                "metrics_collection_interval": 60
+                        },
+                        "statsd": {
+                                "metrics_aggregation_interval": 60,
+                                "metrics_collection_interval": 10,
+                                "service_address": ":8125"
+                        }
+                }
+        }
+}''' | sudo tee /opt/aws/amazon-cloudwatch-agent/bin/config.json
+
+sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file:/opt/aws/amazon-cloudwatch-agent/bin/config.json -s
+
+####################
+
+
 sudo apt-get update &> /dev/null
 sudo apt-get install -y python-pip &> /dev/null
 sudo pip install -U pip &> /dev/null
