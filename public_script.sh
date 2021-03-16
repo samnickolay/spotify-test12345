@@ -68,8 +68,7 @@ sudo apt install -y snapd pulseaudio pulseaudio-utils dbus-x11 &> /dev/null
 
 export $(dbus-launch)
 
-
-pulseaudio --kill
+# pulseaudio --kill
 
 dbus-launch --exit-with-session pulseaudio --daemon
 
@@ -84,7 +83,7 @@ sudo apt-get install -y protobuf-compiler &>/dev/null
 sudo apt install -y cargo &>/dev/null 
 cargo install ncspot
 
-if cargo install ncspot &>/dev/null ; then
+if cargo install -q ncspot ; then
     echo "cargo install ncspot succeeded"
 else
     echo "cargo install ncspot failed"
