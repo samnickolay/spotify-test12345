@@ -1,10 +1,10 @@
 #!/bin/bash
 
-wget https://s3.amazonaws.com/amazoncloudwatch-agent/ubuntu/amd64/latest/amazon-cloudwatch-agent.deb &> /dev/null
+wget https://s3.amazonaws.com/amazoncloudwatch-agent/ubuntu/amd64/latest/amazon-cloudwatch-agent.deb 
 
-sudo dpkg -i -E ./amazon-cloudwatch-agent.deb &> /dev/null
+sudo dpkg -i -E ./amazon-cloudwatch-agent.deb 
 
-sudo apt install -y collectd &> /dev/null
+sudo apt install -y collectd 
 
 echo '''{
         "agent": {
@@ -64,10 +64,10 @@ sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-c
 ####################
 
 
-sudo apt-get update &> /dev/null
-sudo apt-get install -y python-pip &> /dev/null
-sudo pip install -U pip &> /dev/null
-sudo pip install awscli &> /dev/null
+sudo apt-get update 
+sudo apt-get install -y python-pip 
+sudo pip install -U pip 
+sudo pip install awscli 
 
 INSTANCE_ID=$(ec2metadata --instance-id)
 REGION=$(curl -s http://169.254.169.254/latest/dynamic/instance-identity/document | grep region | awk -F\" '{print $4}')
@@ -128,7 +128,7 @@ nohup sudo openvpn /etc/openvpn/ovpn_tcp/us2957.nordvpn.com.tcp.ovpn &>/dev/null
 
 ####################
 
-sudo apt install -y snapd pulseaudio pulseaudio-utils dbus-x11 &> /dev/null
+sudo apt install -y snapd pulseaudio pulseaudio-utils dbus-x11 
 
 export $(dbus-launch)
 
