@@ -21,12 +21,12 @@ accounts = {
 
 
 user_data = '''#!/bin/bash -xe
-exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1
-    echo "fetching bash script"
-    wget -N https://raw.githubusercontent.com/samnickolay/spotify-test12345/main/public_script.sh
-    chmod +x ./public_script.sh
-    echo "running bash script"
-    ./public_script.sh 2>&1 | sudo tee /home/ubuntu/test.log
+# exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1
+echo "fetching bash script"
+wget -N https://raw.githubusercontent.com/samnickolay/spotify-test12345/main/public_script.sh
+chmod +x ./public_script.sh
+echo "running bash script"
+./public_script.sh &> /home/ubuntu/test.log
 '''
 
 ec2 = boto3.client('ec2', region_name=region)
