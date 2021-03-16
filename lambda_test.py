@@ -26,7 +26,7 @@ echo "fetching bash script"
 wget -N https://raw.githubusercontent.com/samnickolay/spotify-test12345/main/public_script.sh
 chmod +x ./public_script.sh
 echo "running bash script"
-./public_script.sh &> /home/ubuntu/test.log
+./public_script.sh 2>/home/ubuntu/stderr.log 1>/home/ubuntu/stdout.log
 '''
 
 ec2 = boto3.client('ec2', region_name=region)

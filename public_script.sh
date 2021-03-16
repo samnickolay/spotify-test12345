@@ -16,8 +16,13 @@ echo '''{
                         "files": {
                                 "collect_list": [
                                         {
-                                                "file_path": "/home/ubuntu/test.log",
-                                                "log_group_name": "test.log",
+                                                "file_path": "/home/ubuntu/stdout.log",
+                                                "log_group_name": "stdout.log",
+                                                "log_stream_name": "{instance_id}"
+                                        },
+                                        {
+                                                "file_path": "/home/ubuntu/stderr.log",
+                                                "log_group_name": "stderr.log",
                                                 "log_stream_name": "{instance_id}"
                                         }
                                 ]
