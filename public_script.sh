@@ -137,23 +137,29 @@ nohup sudo openvpn /etc/openvpn/ovpn_tcp/us2957.nordvpn.com.tcp.ovpn  &
 
 ####################
 
-sudo apt install -y pulseaudio pulseaudio-utils dbus-x11 &> /dev/null 
+sudo apt-get install -y pulseaudio pulseaudio-utils dbus-x11 &> /dev/null 
 export $(dbus-launch)
 # pulseaudio --kill
 dbus-launch --exit-with-session pulseaudio --daemon
 pactl -- set-sink-volume 0 200%
 
+nohup sudo pulseaudio --system  &
+
+
+
 ####################
 
 sudo apt-get update &> /dev/null  
-sudo apt install -y libncursesw5-dev libdbus-1-dev libpulse-dev libssl-dev libxcb1-dev libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev &> /dev/null  
+sudo apt-get install -y libncursesw5-dev libdbus-1-dev libpulse-dev libssl-dev libxcb1-dev libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev &> /dev/null  
 sudo apt-get install -y protobuf-compiler &> /dev/null  
 
-sudo apt install -y cargo &> /dev/null  
+sudo apt-get install -y cargo &> /dev/null  
 
 echo "Installing ncspot"
 
-su ubuntu
+sudo -H -u ubuntu bash -c "cargo install ncspot"
+
+# su ubuntu
 
 # if cargo install ncspot ; then
 #     echo "cargo install ncspot succeeded"
@@ -161,7 +167,7 @@ su ubuntu
 #     echo "cargo install ncspot failed"
 # fi
 
-cargo install ncspot
+# cargo install ncspot
 
 ####################
 
