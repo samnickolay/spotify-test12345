@@ -143,10 +143,6 @@ export $(dbus-launch)
 dbus-launch --exit-with-session pulseaudio --daemon
 pactl -- set-sink-volume 0 200%
 
-nohup sudo pulseaudio --system  &
-
-
-
 ####################
 
 sudo apt-get update &> /dev/null  
