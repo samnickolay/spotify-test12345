@@ -155,11 +155,13 @@ echo "Installing ncspot"
 
 su ubuntu
 
-if cargo install ncspot ; then
-    echo "cargo install ncspot succeeded"
-else
-    echo "cargo install ncspot failed"
-fi
+# if cargo install ncspot ; then
+#     echo "cargo install ncspot succeeded"
+# else
+#     echo "cargo install ncspot failed"
+# fi
+
+cargo install ncspot
 
 ####################
 
