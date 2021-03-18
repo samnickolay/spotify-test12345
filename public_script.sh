@@ -191,13 +191,13 @@ echo "done creating scripts!"
 
 sudo -H -u ubuntu bash -c "/home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST"
 
-sudo -H -u ubuntu bash -c "/home/ubuntu/script1.sh $PLAYLIST"
+sudo -H -u ubuntu bash -c "/home/ubuntu/script2.sh $PLAYLIST"
 
-sudo -H -u ubuntu bash -c "/home/ubuntu/script1.sh $PLAYLIST"
+sudo -H -u ubuntu bash -c "/home/ubuntu/script2.sh $PLAYLIST"
 
-sudo -H -u ubuntu bash -c "/home/ubuntu/script1.sh $PLAYLIST"
+sudo -H -u ubuntu bash -c "/home/ubuntu/script2.sh $PLAYLIST"
 
-sudo -H -u ubuntu bash -c "/home/ubuntu/script1.sh $PLAYLIST"
+sudo -H -u ubuntu bash -c "/home/ubuntu/script2.sh $PLAYLIST"
 
 ####################
 
