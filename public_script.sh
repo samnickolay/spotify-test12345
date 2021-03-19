@@ -94,6 +94,20 @@ SPOTIFY_PASSWORD=$(aws ec2 describe-tags --filters "Name=resource-id,Values=$INS
 PLAYLIST_TAG="playlist"
 PLAYLIST=$(aws ec2 describe-tags --filters "Name=resource-id,Values=$INSTANCE_ID" "Name=key,Values=$PLAYLIST_TAG" --region=$REGION --output=text | cut -f5)
 
+sudo apt-get update &> /dev/null  
+
+sudo apt-get install -y pulseaudio pulseaudio-utils dbus-x11 &> /dev/null 
+sudo apt-get install -y libncursesw5-dev libdbus-1-dev libpulse-dev libssl-dev libxcb1-dev libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev &> /dev/null  
+sudo apt-get install -y protobuf-compiler &> /dev/null  
+
+sudo apt-get install -y cargo &> /dev/null  
+
+echo "Installing ncspot"
+
+sudo -H -u ubuntu bash -c "cargo install ncspot"
+
+####################
+
 ####################
 
 sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1
@@ -137,25 +151,13 @@ nohup sudo openvpn /etc/openvpn/ovpn_tcp/us2957.nordvpn.com.tcp.ovpn  &
 
 ####################
 
-sudo apt-get install -y pulseaudio pulseaudio-utils dbus-x11 &> /dev/null 
-export $(dbus-launch)
-# pulseaudio --kill
-dbus-launch --exit-with-session pulseaudio --daemon
-pactl -- set-sink-volume 0 200%
+# export $(dbus-launch)
+# # pulseaudio --kill
+# dbus-launch --exit-with-session pulseaudio --daemon
+# pactl -- set-sink-volume 0 200%
 
 ####################
 
-sudo apt-get update &> /dev/null  
-sudo apt-get install -y libncursesw5-dev libdbus-1-dev libpulse-dev libssl-dev libxcb1-dev libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev &> /dev/null  
-sudo apt-get install -y protobuf-compiler &> /dev/null  
-
-sudo apt-get install -y cargo &> /dev/null  
-
-echo "Installing ncspot"
-
-sudo -H -u ubuntu bash -c "cargo install ncspot"
-
-####################
 
 echo "creating scripts!"
 
