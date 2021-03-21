@@ -104,7 +104,7 @@ sudo apt-get install -y cargo &> /dev/null
 
 echo "Installing ncspot"
 
-sudo -H -u ubuntu bash -c "cargo install ncspot"
+cargo install ncspot
 
 ####################
 
@@ -169,7 +169,7 @@ whoami
 dbus-launch --exit-with-session pulseaudio --daemon
 pactl -- set-sink-volume 0 200%
 echo "Running ncspot script"
-{ sleep 5; printf "\n"; sleep 1; echo "$1"; sleep 1; printf "\t"; echo "$2"; sleep 1; printf "\t"; sleep 1; printf "\n"; sleep 10; printf ":focus search\n"; sleep 1; echo "$3"; sleep 3; printf "\n"; sleep 1; printf "r\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | /home/ubuntu/.cargo/bin/ncspot
+{ sleep 5; printf "\n"; sleep 1; echo "$1"; sleep 1; printf "\t"; echo "$2"; sleep 1; printf "\t"; sleep 1; printf "\n"; sleep 10; printf ":focus search\n"; sleep 1; echo "$3"; sleep 3; printf "\n"; sleep 1; printf "r\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | /root/.cargo/bin/ncspot
 ' > /home/ubuntu/script1.sh
 
 sudo chmod a+x /home/ubuntu/script1.sh
@@ -182,7 +182,7 @@ whoami
 dbus-launch --exit-with-session pulseaudio --daemon
 pactl -- set-sink-volume 0 200%
 echo "Running ncspot script"
-{ sleep 5; printf ":focus search\n"; sleep 1; printf "$1"; sleep 3; printf "\n"; sleep 1; printf "\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | /home/ubuntu/.cargo/bin/ncspot
+{ sleep 5; printf ":focus search\n"; sleep 1; printf "$1"; sleep 3; printf "\n"; sleep 1; printf "\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | /root/.cargo/bin/ncspot
 ' > /home/ubuntu/script2.sh
 
 sudo chmod a+x /home/ubuntu/script2.sh
@@ -191,15 +191,15 @@ echo "done creating scripts!"
 
 ####################
 
-sudo -H -u ubuntu bash -c "/home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST"
+/home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST
 
-sudo -H -u ubuntu bash -c "/home/ubuntu/script2.sh $PLAYLIST"
+/home/ubuntu/script2.sh $PLAYLIST
 
-sudo -H -u ubuntu bash -c "/home/ubuntu/script2.sh $PLAYLIST"
+/home/ubuntu/script2.sh $PLAYLIST
 
-sudo -H -u ubuntu bash -c "/home/ubuntu/script2.sh $PLAYLIST"
+/home/ubuntu/script2.sh $PLAYLIST
 
-sudo -H -u ubuntu bash -c "/home/ubuntu/script2.sh $PLAYLIST"
+/home/ubuntu/script2.sh $PLAYLIST
 
 ####################
 
