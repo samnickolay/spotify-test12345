@@ -160,17 +160,17 @@ nohup sudo openvpn /etc/openvpn/ovpn_tcp/us2957.nordvpn.com.tcp.ovpn  &
 
 echo "creating scripts!"
 
-sudo echo '
-{ sleep 5; printf "\n"; sleep 3; echo "$1"; sleep 3; printf "\t"; echo "$2"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | /root/.cargo/bin/ncspot
-' > /home/ubuntu/script1.sh
+# sudo echo '
+# { sleep 5; printf "\n"; sleep 3; echo "$1"; sleep 3; printf "\t"; echo "$2"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | /root/.cargo/bin/ncspot
+# ' > /home/ubuntu/script1.sh
 
-sudo echo '
-export $(dbus-launch)
-dbus-launch --exit-with-session pulseaudio --daemon
-pactl -- set-sink-volume 0 200%
-echo "Running ncspot script"
-{ sleep 5; printf ":focus search\n"; sleep 3; printf "$1"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | /root/.cargo/bin/ncspot
-' > /home/ubuntu/script2.sh
+# sudo echo '
+# export $(dbus-launch)
+# dbus-launch --exit-with-session pulseaudio --daemon
+# pactl -- set-sink-volume 0 200%
+# echo "Running ncspot script"
+# { sleep 5; printf ":focus search\n"; sleep 3; printf "$1"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | /root/.cargo/bin/ncspot
+# ' > /home/ubuntu/script2.sh
 
 ####################
 
@@ -194,15 +194,20 @@ echo "done creating scripts!"
 
 ####################
 
-# bash /home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST
+# echo "sleeping"
+# sleep $(($RANDOM*28800/32767));
+# bash /home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD
+# bash /home/ubuntu/script2.sh $PLAYLIST
 
 # echo "sleeping"
 # sleep $(($RANDOM*28800/32767));
-
-
 # bash /home/ubuntu/script2.sh $PLAYLIST
 
+# echo "sleeping"
+# sleep $(($RANDOM*28800/32767));
+# bash /home/ubuntu/script2.sh $PLAYLIST
 
+####################
 
 # export $(dbus-launch)
 # dbus-launch --exit-with-session pulseaudio --daemon
