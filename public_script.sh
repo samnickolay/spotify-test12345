@@ -108,86 +108,50 @@ cargo install ncspot
 
 ####################
 
-# sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1
-# sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1
-# sudo sysctl -w net.ipv6.conf.lo.disable_ipv6=1
+sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1
+sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1
+sudo sysctl -w net.ipv6.conf.lo.disable_ipv6=1
 
-# sudo apt-get install -y openvpn zip wget &> /dev/null  
+sudo apt-get install -y openvpn zip wget &> /dev/null  
 
-# cd /etc/openvpn
+cd /etc/openvpn
 
-# sudo wget https://downloads.nordcdn.com/configs/archives/servers/ovpn.zip &> /dev/null  
+sudo wget https://downloads.nordcdn.com/configs/archives/servers/ovpn.zip &> /dev/null  
 
-# sudo unzip -o ovpn.zip &> /dev/null  
-# sudo rm ovpn.zip &> /dev/null  
+sudo unzip -o ovpn.zip &> /dev/null  
+sudo rm ovpn.zip &> /dev/null  
 
+sudo ip rule add from $(ip route get 1 | grep -Po '(?<=src )(\S+)') table 128
+sudo ip route add table 128 to $(ip route get 1 | grep -Po '(?<=src )(\S+)')/32 dev $(ip -4 route ls | grep default | grep -Po '(?<=dev )(\S+)')
+sudo ip route add table 128 default via $(ip -4 route ls | grep default | grep -Po '(?<=via )(\S+)')
 
-# sudo apt install resolvconf
+echo "
+nameserver 103.86.96.100
+nameserver 103.86.99.100
+" | sudo tee /etc/resolv.conf
 
+sudo systemctl restart systemd-resolved.service
 
-# sudo ip rule add from $(ip route get 1 | grep -Po '(?<=src )(\S+)') table 128
-# sudo ip route add table 128 to $(ip route get 1 | grep -Po '(?<=src )(\S+)')/32 dev $(ip -4 route ls | grep default | grep -Po '(?<=dev )(\S+)')
-# sudo ip route add table 128 default via $(ip -4 route ls | grep default | grep -Po '(?<=via )(\S+)')
+printf "$VPN_EMAIL
+$VPN_PASSWORD
+" > /root/auth.txt
 
-# echo "
-# nameserver 8.8.8.8
+sudo sed -i 's/auth-user-pass/auth-user-pass \/root\/auth.txt/' /etc/openvpn/ovpn_tcp/us2957.nordvpn.com.tcp.ovpn
 
-# [Resolve]
-# DNS=208.67.222.222 208.67.220.220
-# #FallbackDNS=
-# #Domains=
-# #LLMNR=no
-# #MulticastDNS=no
-# #DNSSEC=no
-# #Cache=yes
-# #DNSStubListener=yes" | sudo tee /etc/systemd/resolved.conf
+echo "Starting VPN"
 
-# echo "
-
-# nameserver 8.8.8.8
-# " | sudo tee /etc/systemd/resolved.conf
-
-# sudo systemctl restart systemd-resolved.service
-
-# printf "$VPN_EMAIL
-# $VPN_PASSWORD
-# " > /root/auth.txt
-
-# sudo sed -i 's/auth-user-pass/auth-user-pass \/root\/auth.txt/' /etc/openvpn/ovpn_tcp/us2957.nordvpn.com.tcp.ovpn
-
-
-# echo "    
-# script-security 2
-# up /etc/openvpn/update-resolv-conf
-# down /etc/openvpn/update-resolv-conf
-# " | sudo tee -a /etc/openvpn/ovpn_tcp/us2957.nordvpn.com.tcp.ovpn
-
-
-
-
-# echo "Starting VPN"
-
-# nohup sudo openvpn /etc/openvpn/ovpn_tcp/us2957.nordvpn.com.tcp.ovpn  &
+nohup sudo openvpn /etc/openvpn/ovpn_tcp/us2957.nordvpn.com.tcp.ovpn  &
 
 ####################
 
 echo "creating scripts!"
-
-# sudo echo '
-# export $(dbus-launch)
-# dbus-launch --exit-with-session pulseaudio --daemon
-# pactl -- set-sink-volume 0 200%
-# echo "Running ncspot script"
-# { sleep 5; printf ":focus search\n"; sleep 3; printf "$1"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | /root/.cargo/bin/ncspot
-# ' > /home/ubuntu/script2.sh
-
-####################
 
 sudo echo '
 export $(dbus-launch)
 dbus-launch --exit-with-session pulseaudio --daemon
 pactl -- set-sink-volume 0 200%
 echo "Running ncspot script"
+# { sleep 5; printf ":focus search\n"; sleep 3; printf "$1"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | /root/.cargo/bin/ncspot
 { sleep 5; printf ":focus search\n"; sleep 3; printf "$1"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 60; printf "q"; } | /root/.cargo/bin/ncspot
 ' > /home/ubuntu/script2.sh
 
@@ -199,7 +163,7 @@ echo "done creating scripts!"
 
 # echo "sleeping"
 # sleep $(($RANDOM*28800/32767));
-# { sleep 5; printf "\n"; sleep 3; echo "$SPOTIFY_EMAIL"; sleep 3; printf "\t"; echo "$SPOTIFY_PASSWORD"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep 10; printf "q"; } | sudo /root/.cargo/bin/ncspot
+# { sleep 5; printf "\n"; sleep 3; echo "$SPOTIFY_EMAIL"; sleep 3; printf "\t"; echo "$SPOTIFY_PASSWORD"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep 10; printf "r\n"; sleep 3; printf "q"; } | sudo /root/.cargo/bin/ncspot
 # bash /home/ubuntu/script2.sh $PLAYLIST
 
 # echo "sleeping"
