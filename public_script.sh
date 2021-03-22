@@ -108,8 +108,6 @@ cargo install ncspot
 
 ####################
 
-####################
-
 sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1
 sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1
 sudo sysctl -w net.ipv6.conf.lo.disable_ipv6=1
@@ -151,18 +149,7 @@ nohup sudo openvpn /etc/openvpn/ovpn_tcp/us2957.nordvpn.com.tcp.ovpn  &
 
 ####################
 
-# export $(dbus-launch)
-# # pulseaudio --kill
-# dbus-launch --exit-with-session pulseaudio --daemon
-# pactl -- set-sink-volume 0 200%
-
-####################
-
 echo "creating scripts!"
-
-# sudo echo '
-# { sleep 5; printf "\n"; sleep 3; echo "$1"; sleep 3; printf "\t"; echo "$2"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | /root/.cargo/bin/ncspot
-# ' > /home/ubuntu/script1.sh
 
 # sudo echo '
 # export $(dbus-launch)
@@ -175,10 +162,6 @@ echo "creating scripts!"
 ####################
 
 sudo echo '
-{ sleep 5; printf "\n"; sleep 3; echo "$1"; sleep 3; printf "\t"; echo "$2"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep 10; printf "q"; } | /root/.cargo/bin/ncspot
-' > /home/ubuntu/script1.sh
-
-sudo echo '
 export $(dbus-launch)
 dbus-launch --exit-with-session pulseaudio --daemon
 pactl -- set-sink-volume 0 200%
@@ -186,8 +169,6 @@ echo "Running ncspot script"
 { sleep 5; printf ":focus search\n"; sleep 3; printf "$1"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 60; printf "q"; } | /root/.cargo/bin/ncspot
 ' > /home/ubuntu/script2.sh
 
-
-sudo chmod a+x /home/ubuntu/script1.sh
 sudo chmod a+x /home/ubuntu/script2.sh
 
 echo "done creating scripts!"
@@ -196,7 +177,7 @@ echo "done creating scripts!"
 
 # echo "sleeping"
 # sleep $(($RANDOM*28800/32767));
-# bash /home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD
+{ sleep 5; printf "\n"; sleep 3; echo "$SPOTIFY_EMAIL"; sleep 3; printf "\t"; echo "$SPOTIFY_PASSWORD"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep 10; printf "q"; } | sudo /root/.cargo/bin/ncspot
 # bash /home/ubuntu/script2.sh $PLAYLIST
 
 # echo "sleeping"
@@ -207,76 +188,9 @@ echo "done creating scripts!"
 # sleep $(($RANDOM*28800/32767));
 # bash /home/ubuntu/script2.sh $PLAYLIST
 
-####################
-
-# export $(dbus-launch)
-# dbus-launch --exit-with-session pulseaudio --daemon
-# pactl -- set-sink-volume 0 200%
-
-
 # echo "sleeping"
 # sleep $(($RANDOM*28800/32767));
-# echo "playing music"
-# { sleep 5; printf "\n"; sleep 3; echo "$SPOTIFY_EMAIL"; sleep 3; printf "\t"; echo "$SPOTIFY_PASSWORD"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep 10; printf ":focus search\n"; sleep 3; echo "$PLAYLIST"; sleep 3; printf "\n"; sleep 3; printf "r\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | /root/.cargo/bin/ncspot
-# echo "sleeping"
-# sleep $(($RANDOM*28800/32767));
-# echo "playing music"
-# { sleep 5; printf ":focus search\n"; sleep 3; printf "$PLAYLIST"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | /root/.cargo/bin/ncspot
-# echo "sleeping"
-# sleep $(($RANDOM*28800/32767));
-# echo "playing music"
-# { sleep 5; printf ":focus search\n"; sleep 3; printf "$PLAYLIST"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | /root/.cargo/bin/ncspot
-
-####################
-
-# echo "sleeping"
-# sleep 10;
-# echo "playing music"
-
-# sudo -i
-# sleep 10
-# export $(dbus-launch)
-# dbus-launch --exit-with-session pulseaudio --daemon
-# pactl -- set-sink-volume 0 200%
-# { sleep 5; printf "\n"; sleep 3; echo "$SPOTIFY_EMAIL"; sleep 3; printf "\t"; echo "$SPOTIFY_PASSWORD"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep 10; printf ":focus search\n"; sleep 3; echo "$PLAYLIST"; sleep 3; printf "\n"; sleep 3; printf "r\n"; sleep 20; printf "q"; } | /root/.cargo/bin/ncspot
-# exit
-
-# echo "sleeping"
-# sleep 10;
-# echo "playing music"
-
-# sudo -i
-# sleep 10
-# export $(dbus-launch)
-# dbus-launch --exit-with-session pulseaudio --daemon
-# pactl -- set-sink-volume 0 200%
-# { sleep 5; printf ":focus search\n"; sleep 3; printf "$PLAYLIST"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 60; printf "q"; } | /root/.cargo/bin/ncspot
-# exit
-
-# echo "sleeping"
-# sleep 10;
-# echo "playing music"
-
-# sudo -i
-# sleep 10
-# export $(dbus-launch)
-# dbus-launch --exit-with-session pulseaudio --daemon
-# pactl -- set-sink-volume 0 200%
-# { sleep 5; printf ":focus search\n"; sleep 3; printf "$PLAYLIST"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 60; printf "q"; } | /root/.cargo/bin/ncspot
-# exit
-
-# echo "all done!!"
-
-
-# /home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST
-
-# /home/ubuntu/script2.sh $PLAYLIST
-
-# /home/ubuntu/script2.sh $PLAYLIST
-
-# /home/ubuntu/script2.sh $PLAYLIST
-
-# /home/ubuntu/script2.sh $PLAYLIST
+# bash /home/ubuntu/script2.sh $PLAYLIST
 
 ####################
 
