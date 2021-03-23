@@ -159,7 +159,6 @@ up /etc/openvpn/update-resolv-conf
 down /etc/openvpn/update-resolv-conf
 " | sudo tee -a /etc/openvpn/ovpn_tcp/us2957.nordvpn.com.tcp.ovpn
 
-
 sudo systemctl restart NetworkManager
 
 
