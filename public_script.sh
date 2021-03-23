@@ -132,20 +132,20 @@ sudo sed -i 's/auth-user-pass/auth-user-pass \/root\/auth.txt/' /etc/openvpn/ovp
 
 echo "Starting VPN"
 
-IP_ADDRESS=$(dig +short myip.opendns.com @resolver1.opendns.com)
-curl -X POST -H "Content-Type: application/json" -d '{"value1":"$IP_ADDRESS"}' https://maker.ifttt.com/trigger/test/with/key/b4FRBfAPX26CmPbdrLWaG8
+# IP_ADDRESS=$(dig +short myip.opendns.com @resolver1.opendns.com)
+# curl -X POST -H "Content-Type: application/json" -d '{"value1":"$IP_ADDRESS"}' https://maker.ifttt.com/trigger/test/with/key/b4FRBfAPX26CmPbdrLWaG8
 
-nohup sudo openvpn /etc/openvpn/ovpn_tcp/us2957.nordvpn.com.tcp.ovpn  &
+# nohup sudo openvpn /etc/openvpn/ovpn_tcp/us2957.nordvpn.com.tcp.ovpn  &
 
-sleep 10;
+# sleep 10;
 
-IP_ADDRESS=$(dig +short myip.opendns.com @resolver1.opendns.com)
-curl -X POST -H "Content-Type: application/json" -d '{"value1":"$IP_ADDRESS"}' https://maker.ifttt.com/trigger/test/with/key/b4FRBfAPX26CmPbdrLWaG8
+# IP_ADDRESS=$(dig +short myip.opendns.com @resolver1.opendns.com)
+# curl -X POST -H "Content-Type: application/json" -d '{"value1":"$IP_ADDRESS"}' https://maker.ifttt.com/trigger/test/with/key/b4FRBfAPX26CmPbdrLWaG8
 
-sleep 10;
+# sleep 10;
 
-IP_ADDRESS=$(dig +short myip.opendns.com @resolver1.opendns.com)
-curl -X POST -H "Content-Type: application/json" -d '{"value1":"$IP_ADDRESS"}' https://maker.ifttt.com/trigger/test/with/key/b4FRBfAPX26CmPbdrLWaG8
+# IP_ADDRESS=$(dig +short myip.opendns.com @resolver1.opendns.com)
+# curl -X POST -H "Content-Type: application/json" -d '{"value1":"$IP_ADDRESS"}' https://maker.ifttt.com/trigger/test/with/key/b4FRBfAPX26CmPbdrLWaG8
 
 
 ####################
