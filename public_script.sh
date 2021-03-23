@@ -109,7 +109,7 @@ echo "Installing ncspot"
 
 ####################
 
-sudo sed -i 's/quick splash/ipv6.disable=1/' /etc/default/grub
+sudo sed -i 's/quiet splash/ipv6.disable=1/' /etc/default/grub
 
 cat /etc/default/grub
 
@@ -132,26 +132,20 @@ sudo sed -i 's/auth-user-pass/auth-user-pass \/root\/auth.txt/' /etc/openvpn/ovp
 
 echo "Starting VPN"
 
-dig +short myip.opendns.com @resolver1.opendns.com
+IP_ADDRESS=$(dig +short myip.opendns.com @resolver1.opendns.com)
+curl -X POST -H "Content-Type: application/json" -d '{"value1":"$IP_ADDRESS"}' https://maker.ifttt.com/trigger/test/with/key/b4FRBfAPX26CmPbdrLWaG8
 
 nohup sudo openvpn /etc/openvpn/ovpn_tcp/us2957.nordvpn.com.tcp.ovpn  &
 
-sleep 5;
+sleep 10;
 
-dig +short myip.opendns.com @resolver1.opendns.com
+IP_ADDRESS=$(dig +short myip.opendns.com @resolver1.opendns.com)
+curl -X POST -H "Content-Type: application/json" -d '{"value1":"$IP_ADDRESS"}' https://maker.ifttt.com/trigger/test/with/key/b4FRBfAPX26CmPbdrLWaG8
 
-sleep 5;
+sleep 10;
 
-dig +short myip.opendns.com @resolver1.opendns.com
-
-sleep 5;
-
-dig +short myip.opendns.com @resolver1.opendns.com
-
-sleep 5;
-
-dig +short myip.opendns.com @resolver1.opendns.com
-
+IP_ADDRESS=$(dig +short myip.opendns.com @resolver1.opendns.com)
+curl -X POST -H "Content-Type: application/json" -d '{"value1":"$IP_ADDRESS"}' https://maker.ifttt.com/trigger/test/with/key/b4FRBfAPX26CmPbdrLWaG8
 
 
 ####################
@@ -174,8 +168,9 @@ echo "done creating scripts!"
 ####################
 
 # echo "sleeping"
-# sleep $(($RANDOM*28800/32767));
+# # sleep $(($RANDOM*28800/32767));
 # { sleep 5; printf "\n"; sleep 3; echo "$SPOTIFY_EMAIL"; sleep 3; printf "\t"; echo "$SPOTIFY_PASSWORD"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep 10; printf "r\n"; sleep 3; printf "q"; } | sudo /root/.cargo/bin/ncspot
+# echo "done setting up spotify"
 # bash /home/ubuntu/script2.sh $PLAYLIST
 
 # echo "sleeping"
