@@ -148,38 +148,38 @@ echo "Starting VPN"
 # # route packets with our firewall mark using our routing table
 # sudo ip rule add fwmark 4321 table 3412
 
-echo "
-nameserver 103.86.96.100
-nameserver 103.86.99.100
-" | sudo tee /etc/resolv.conf
+# echo "
+# nameserver 103.86.96.100
+# nameserver 103.86.99.100
+# " | sudo tee /etc/resolv.conf
 
-echo "    
-script-security 2
-up /etc/openvpn/update-resolv-conf
-down /etc/openvpn/update-resolv-conf
-" | sudo tee -a /etc/openvpn/ovpn_tcp/us2957.nordvpn.com.tcp.ovpn
+# echo "    
+# script-security 2
+# up /etc/openvpn/update-resolv-conf
+# down /etc/openvpn/update-resolv-conf
+# " | sudo tee -a /etc/openvpn/ovpn_tcp/us2957.nordvpn.com.tcp.ovpn
 
-sudo systemctl restart NetworkManager
+# sudo systemctl restart NetworkManager
 
 
-dig +short myip.opendns.com @resolver1.opendns.com
-sleep 5;
+# dig +short myip.opendns.com @resolver1.opendns.com
+# sleep 5;
 
-nohup sudo openvpn /etc/openvpn/ovpn_tcp/us2957.nordvpn.com.tcp.ovpn  &
+# nohup sudo openvpn /etc/openvpn/ovpn_tcp/us2957.nordvpn.com.tcp.ovpn  &
 
-dig +short myip.opendns.com @resolver1.opendns.com
-sleep 5;
+# dig +short myip.opendns.com @resolver1.opendns.com
+# sleep 5;
 
-dig +short myip.opendns.com @resolver1.opendns.com
-sleep 5;
+# dig +short myip.opendns.com @resolver1.opendns.com
+# sleep 5;
 
-dig +short myip.opendns.com @resolver1.opendns.com
-sleep 5;
+# dig +short myip.opendns.com @resolver1.opendns.com
+# sleep 5;
 
-dig +short myip.opendns.com @resolver1.opendns.com
-sleep 5;
+# dig +short myip.opendns.com @resolver1.opendns.com
+# sleep 5;
 
-sudo reboot
+# sudo reboot
 
 # IP_ADDRESS=$(dig +short myip.opendns.com @resolver1.opendns.com)
 # curl -X POST -H "Content-Type: application/json" -d '{"value1":"$IP_ADDRESS"}' https://maker.ifttt.com/trigger/test/with/key/b4FRBfAPX26CmPbdrLWaG8
