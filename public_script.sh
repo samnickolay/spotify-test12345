@@ -109,57 +109,50 @@ echo "Installing ncspot"
 
 ####################
 
-# sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1
-# sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1
-# sudo sysctl -w net.ipv6.conf.lo.disable_ipv6=1
+sudo sed -i 's/quick splash/ipv6.disable=1/' /etc/default/grub
 
-# sudo systemctl restart systemd-resolved.service
+cat /etc/default/grub
 
-# sudo apt-get install -y openvpn zip wget &> /dev/null  
+sudo update-grub
 
-# cd /etc/openvpn
+sudo apt-get install -y openvpn zip wget &> /dev/null  
 
-# sudo wget https://downloads.nordcdn.com/configs/archives/servers/ovpn.zip &> /dev/null  
+cd /etc/openvpn
 
-# sudo unzip -o ovpn.zip &> /dev/null  
-# sudo rm ovpn.zip &> /dev/null  
+sudo wget https://downloads.nordcdn.com/configs/archives/servers/ovpn.zip &> /dev/null  
 
-# sudo ip rule add from $(ip route get 1 | grep -Po '(?<=src )(\S+)') table 128
-# sudo ip route add table 128 to $(ip route get 1 | grep -Po '(?<=src )(\S+)')/32 dev $(ip -4 route ls | grep default | grep -Po '(?<=dev )(\S+)')
-# sudo ip route add table 128 default via $(ip -4 route ls | grep default | grep -Po '(?<=via )(\S+)')
+sudo unzip -o ovpn.zip &> /dev/null  
+sudo rm ovpn.zip &> /dev/null  
 
-# echo "
-# nameserver 103.86.96.100
-# nameserver 103.86.99.100
-# " | sudo tee /etc/resolv.conf
+printf "$VPN_EMAIL
+$VPN_PASSWORD
+" > /root/auth.txt
 
-# # sudo systemctl restart systemd-resolved.service
+sudo sed -i 's/auth-user-pass/auth-user-pass \/root\/auth.txt/' /etc/openvpn/ovpn_tcp/us2957.nordvpn.com.tcp.ovpn
 
+echo "Starting VPN"
 
-# echo "
-# " | sudo tee /etc/resolv.conf
+dig +short myip.opendns.com @resolver1.opendns.com
 
+nohup sudo openvpn /etc/openvpn/ovpn_tcp/us2957.nordvpn.com.tcp.ovpn  &
 
-# printf "$VPN_EMAIL
-# $VPN_PASSWORD
-# " > /root/auth.txt
+sleep 5;
 
-# sudo sed -i 's/auth-user-pass/auth-user-pass \/root\/auth.txt/' /etc/openvpn/ovpn_tcp/us2957.nordvpn.com.tcp.ovpn
+dig +short myip.opendns.com @resolver1.opendns.com
 
+sleep 5;
 
-# echo "    
-# script-security 2
-# up /etc/openvpn/update-resolv-conf
-# down /etc/openvpn/update-resolv-conf
-# " | sudo tee -a /etc/openvpn/ovpn_tcp/us2957.nordvpn.com.tcp.ovpn
+dig +short myip.opendns.com @resolver1.opendns.com
 
-# # sudo systemctl restart systemd-resolved.service
+sleep 5;
+
+dig +short myip.opendns.com @resolver1.opendns.com
+
+sleep 5;
+
+dig +short myip.opendns.com @resolver1.opendns.com
 
 
-
-# echo "Starting VPN"
-
-# nohup sudo openvpn /etc/openvpn/ovpn_tcp/us2957.nordvpn.com.tcp.ovpn  &
 
 ####################
 
