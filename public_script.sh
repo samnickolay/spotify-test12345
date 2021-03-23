@@ -132,6 +132,41 @@ sudo sed -i 's/auth-user-pass/auth-user-pass \/root\/auth.txt/' /etc/openvpn/ovp
 
 echo "Starting VPN"
 
+# sudo ip rule add sport 22 table 128
+# sudo ip route add table 128 to $(ip route get 1 | grep -Po '(?<=src )(\S+)')/32 dev $(ip -4 route ls | grep default | grep -Po '(?<=dev )(\S+)')
+# sudo ip route add table 128 default via $(ip -4 route ls | grep default | grep -Po '(?<=via )(\S+)')
+
+# # set "connection" mark of connection from ens5 when first packet of connection arrives
+# sudo iptables -t mangle -A PREROUTING -i ens5 -m conntrack --ctstate NEW -j CONNMARK --set-mark 1234
+
+# # set "firewall" mark for response packets in connection with our connection mark
+# sudo iptables -t mangle -A OUTPUT -m connmark --mark 1234 -j MARK --set-mark 4321
+
+# # our routing table with ens5 as gateway interface
+# sudo ip route add default dev ens5 table 3412
+
+# # route packets with our firewall mark using our routing table
+# sudo ip rule add fwmark 4321 table 3412
+
+dig +short myip.opendns.com @resolver1.opendns.com
+sleep 5;
+
+nohup sudo openvpn /etc/openvpn/ovpn_tcp/us2957.nordvpn.com.tcp.ovpn  &
+
+dig +short myip.opendns.com @resolver1.opendns.com
+sleep 5;
+
+dig +short myip.opendns.com @resolver1.opendns.com
+sleep 5;
+
+dig +short myip.opendns.com @resolver1.opendns.com
+sleep 5;
+
+dig +short myip.opendns.com @resolver1.opendns.com
+sleep 5;
+
+sudo reboot
+
 # IP_ADDRESS=$(dig +short myip.opendns.com @resolver1.opendns.com)
 # curl -X POST -H "Content-Type: application/json" -d '{"value1":"$IP_ADDRESS"}' https://maker.ifttt.com/trigger/test/with/key/b4FRBfAPX26CmPbdrLWaG8
 
