@@ -72,7 +72,10 @@ sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-c
 
 
 sudo apt-get update &> /dev/null 
+
 sudo apt-get install -y python-pip &> /dev/null 
+sudo apt-get install -y awscli &> /dev/null 
+
 sudo pip install -U pip &> /dev/null 
 sudo pip install awscli &> /dev/null 
 
@@ -94,8 +97,6 @@ SPOTIFY_PASSWORD=$(aws ec2 describe-tags --filters "Name=resource-id,Values=$INS
 PLAYLIST_TAG="playlist"
 PLAYLIST=$(aws ec2 describe-tags --filters "Name=resource-id,Values=$INSTANCE_ID" "Name=key,Values=$PLAYLIST_TAG" --region=$REGION --output=text | cut -f5)
 
-sudo apt-get update &> /dev/null  
-
 sudo apt-get install -y pulseaudio pulseaudio-utils dbus-x11 &> /dev/null 
 sudo apt-get install -y libncursesw5-dev libdbus-1-dev libpulse-dev libssl-dev libxcb1-dev libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev &> /dev/null  
 sudo apt-get install -y protobuf-compiler &> /dev/null  
@@ -104,43 +105,61 @@ sudo apt-get install -y cargo &> /dev/null
 
 echo "Installing ncspot"
 
-cargo install ncspot
+# cargo install ncspot
 
 ####################
 
-sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1
-sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1
-sudo sysctl -w net.ipv6.conf.lo.disable_ipv6=1
+# sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1
+# sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1
+# sudo sysctl -w net.ipv6.conf.lo.disable_ipv6=1
 
-sudo apt-get install -y openvpn zip wget &> /dev/null  
+# sudo systemctl restart systemd-resolved.service
 
-cd /etc/openvpn
+# sudo apt-get install -y openvpn zip wget &> /dev/null  
 
-sudo wget https://downloads.nordcdn.com/configs/archives/servers/ovpn.zip &> /dev/null  
+# cd /etc/openvpn
 
-sudo unzip -o ovpn.zip &> /dev/null  
-sudo rm ovpn.zip &> /dev/null  
+# sudo wget https://downloads.nordcdn.com/configs/archives/servers/ovpn.zip &> /dev/null  
 
-sudo ip rule add from $(ip route get 1 | grep -Po '(?<=src )(\S+)') table 128
-sudo ip route add table 128 to $(ip route get 1 | grep -Po '(?<=src )(\S+)')/32 dev $(ip -4 route ls | grep default | grep -Po '(?<=dev )(\S+)')
-sudo ip route add table 128 default via $(ip -4 route ls | grep default | grep -Po '(?<=via )(\S+)')
+# sudo unzip -o ovpn.zip &> /dev/null  
+# sudo rm ovpn.zip &> /dev/null  
 
-echo "
-nameserver 103.86.96.100
-nameserver 103.86.99.100
-" | sudo tee /etc/resolv.conf
+# sudo ip rule add from $(ip route get 1 | grep -Po '(?<=src )(\S+)') table 128
+# sudo ip route add table 128 to $(ip route get 1 | grep -Po '(?<=src )(\S+)')/32 dev $(ip -4 route ls | grep default | grep -Po '(?<=dev )(\S+)')
+# sudo ip route add table 128 default via $(ip -4 route ls | grep default | grep -Po '(?<=via )(\S+)')
 
-sudo systemctl restart systemd-resolved.service
+# echo "
+# nameserver 103.86.96.100
+# nameserver 103.86.99.100
+# " | sudo tee /etc/resolv.conf
 
-printf "$VPN_EMAIL
-$VPN_PASSWORD
-" > /root/auth.txt
+# # sudo systemctl restart systemd-resolved.service
 
-sudo sed -i 's/auth-user-pass/auth-user-pass \/root\/auth.txt/' /etc/openvpn/ovpn_tcp/us2957.nordvpn.com.tcp.ovpn
 
-echo "Starting VPN"
+# echo "
+# " | sudo tee /etc/resolv.conf
 
-nohup sudo openvpn /etc/openvpn/ovpn_tcp/us2957.nordvpn.com.tcp.ovpn  &
+
+# printf "$VPN_EMAIL
+# $VPN_PASSWORD
+# " > /root/auth.txt
+
+# sudo sed -i 's/auth-user-pass/auth-user-pass \/root\/auth.txt/' /etc/openvpn/ovpn_tcp/us2957.nordvpn.com.tcp.ovpn
+
+
+# echo "    
+# script-security 2
+# up /etc/openvpn/update-resolv-conf
+# down /etc/openvpn/update-resolv-conf
+# " | sudo tee -a /etc/openvpn/ovpn_tcp/us2957.nordvpn.com.tcp.ovpn
+
+# # sudo systemctl restart systemd-resolved.service
+
+
+
+# echo "Starting VPN"
+
+# nohup sudo openvpn /etc/openvpn/ovpn_tcp/us2957.nordvpn.com.tcp.ovpn  &
 
 ####################
 
