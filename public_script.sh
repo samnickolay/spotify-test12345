@@ -112,12 +112,34 @@ sudo echo '
 export $(dbus-launch)
 dbus-launch --exit-with-session pulseaudio --daemon
 pactl -- set-sink-volume 0 200%
+echo "Running ncspot setup script"
+{ sleep 10; printf "\n"; sleep 3; echo "$1"; sleep 3; printf "\t"; echo "$2"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep 10; printf "r"; sleep 5; printf "q"; } | /root/.cargo/bin/ncspot
+echo "Done running ncspot setup script"
+'> /home/ubuntu/script1.sh
+
+
+sudo echo '
+export $(dbus-launch)
+dbus-launch --exit-with-session pulseaudio --daemon
+pactl -- set-sink-volume 0 200%
 echo "Running ncspot script"
 # { sleep 5; printf ":focus search\n"; sleep 3; printf "$1"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | /root/.cargo/bin/ncspot
 { sleep 5; printf ":focus search\n"; sleep 3; printf "$1"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 60; printf "q"; } | /root/.cargo/bin/ncspot
-' > /home/ubuntu/script.sh
+'> /home/ubuntu/script2.sh
 
-sudo chmod a+x /home/ubuntu/script.sh
+
+
+# sudo echo '
+# export $(dbus-launch)
+# dbus-launch --exit-with-session pulseaudio --daemon
+# pactl -- set-sink-volume 0 200%
+# echo "Running ncspot script"
+# # { sleep 5; printf ":focus search\n"; sleep 3; printf "$1"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | /root/.cargo/bin/ncspot
+# { sleep 5; printf ":focus search\n"; sleep 3; printf "$1"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 60; printf "q"; } | /root/.cargo/bin/ncspot
+# ' > /home/ubuntu/script.sh
+
+sudo chmod a+x /home/ubuntu/script1.sh
+sudo chmod a+x /home/ubuntu/script2.sh
 
 ####################
 
@@ -143,17 +165,9 @@ sleep 5;
 echo "sleeping"
 # sleep $(($RANDOM*28800/32767));
 
-export $(dbus-launch)
-dbus-launch --exit-with-session pulseaudio --daemon
-pactl -- set-sink-volume 0 200%
+# bash /home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD
 
-echo $PLAYLIST
-
-{ sleep 10; printf "\n"; sleep 3; echo "$SPOTIFY_EMAIL"; sleep 3; printf "\t"; echo "$SPOTIFY_PASSWORD"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep 10; printf "r"; sleep 5; printf "q"; } | sudo /root/.cargo/bin/ncspot
-# { sleep 10; printf "r"; sleep 5; printf "q"; } | sudo /root/.cargo/bin/ncspot
-
-echo "done setting up spotify"
-bash /home/ubuntu/script.sh $PLAYLIST
+# bash /home/ubuntu/script2.sh $PLAYLIST
 
 # echo "sleeping"
 # sleep $(($RANDOM*28800/32767));
