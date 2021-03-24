@@ -121,6 +121,8 @@ sudo chmod a+x /home/ubuntu/script.sh
 
 ####################
 
+sudo apt-get install -y expect
+
 sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
 
 expect -c "
