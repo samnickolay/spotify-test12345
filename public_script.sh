@@ -104,7 +104,7 @@ sudo apt-get install -y cargo &> /dev/null
 
 echo "Installing ncspot"
 
-# cargo install ncspot
+cargo install ncspot
 
 ####################
 
@@ -139,21 +139,12 @@ echo "VPN Connected!"
 dig +short myip.opendns.com @resolver1.opendns.com
 sleep 5;
 
-dig +short myip.opendns.com @resolver1.opendns.com
-sleep 5;
 
-dig +short myip.opendns.com @resolver1.opendns.com
-sleep 5;
-
-dig +short myip.opendns.com @resolver1.opendns.com
-sleep 5;
-
-
-# echo "sleeping"
-# # sleep $(($RANDOM*28800/32767));
-# { sleep 5; printf "\n"; sleep 3; echo "$SPOTIFY_EMAIL"; sleep 3; printf "\t"; echo "$SPOTIFY_PASSWORD"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep 10; printf "r\n"; sleep 3; printf "q"; } | sudo /root/.cargo/bin/ncspot
-# echo "done setting up spotify"
-# bash /home/ubuntu/script.sh $PLAYLIST
+echo "sleeping"
+# sleep $(($RANDOM*28800/32767));
+{ sleep 5; printf "\n"; sleep 3; echo "$SPOTIFY_EMAIL"; sleep 3; printf "\t"; echo "$SPOTIFY_PASSWORD"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep 10; printf "r\n"; sleep 3; printf "q"; } | sudo /root/.cargo/bin/ncspot
+echo "done setting up spotify"
+bash /home/ubuntu/script.sh $PLAYLIST
 
 # echo "sleeping"
 # sleep $(($RANDOM*28800/32767));
