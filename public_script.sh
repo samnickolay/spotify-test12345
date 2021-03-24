@@ -142,7 +142,9 @@ sleep 5;
 
 echo "sleeping"
 # sleep $(($RANDOM*28800/32767));
-{ sleep 5; printf "\n"; sleep 3; echo "$SPOTIFY_EMAIL"; sleep 3; printf "\t"; echo "$SPOTIFY_PASSWORD"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep 10; printf "r\n"; sleep 3; printf "q"; } | sudo /root/.cargo/bin/ncspot
+{ sleep 10; printf "\n"; sleep 3; echo "$SPOTIFY_EMAIL"; sleep 3; printf "\t"; echo "$SPOTIFY_PASSWORD"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep 20; printf "q"; } | sudo /root/.cargo/bin/ncspot
+{ sleep 10; printf "r\n"; sleep 5; printf "q"; } | sudo /root/.cargo/bin/ncspot
+
 echo "done setting up spotify"
 bash /home/ubuntu/script.sh $PLAYLIST
 
