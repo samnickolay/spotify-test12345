@@ -70,7 +70,6 @@ sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-c
 
 ####################
 
-
 sudo apt-get update &> /dev/null 
 
 sudo apt-get install -y python-pip &> /dev/null 
@@ -109,98 +108,6 @@ echo "Installing ncspot"
 
 ####################
 
-sudo sed -i 's/quiet splash/ipv6.disable=1/' /etc/default/grub
-
-cat /etc/default/grub
-
-sudo update-grub
-
-sudo apt-get install -y openvpn zip wget &> /dev/null  
-
-cd /etc/openvpn
-
-sudo wget https://downloads.nordcdn.com/configs/archives/servers/ovpn.zip &> /dev/null  
-
-sudo unzip -o ovpn.zip &> /dev/null  
-sudo rm ovpn.zip &> /dev/null  
-
-printf "$VPN_EMAIL
-$VPN_PASSWORD
-" > /root/auth.txt
-
-sudo sed -i 's/auth-user-pass/auth-user-pass \/root\/auth.txt/' /etc/openvpn/ovpn_tcp/us2957.nordvpn.com.tcp.ovpn
-
-echo "Starting VPN"
-
-# sudo ip rule add sport 22 table 128
-# sudo ip route add table 128 to $(ip route get 1 | grep -Po '(?<=src )(\S+)')/32 dev $(ip -4 route ls | grep default | grep -Po '(?<=dev )(\S+)')
-# sudo ip route add table 128 default via $(ip -4 route ls | grep default | grep -Po '(?<=via )(\S+)')
-
-# # set "connection" mark of connection from ens5 when first packet of connection arrives
-# sudo iptables -t mangle -A PREROUTING -i ens5 -m conntrack --ctstate NEW -j CONNMARK --set-mark 1234
-
-# # set "firewall" mark for response packets in connection with our connection mark
-# sudo iptables -t mangle -A OUTPUT -m connmark --mark 1234 -j MARK --set-mark 4321
-
-# # our routing table with ens5 as gateway interface
-# sudo ip route add default dev ens5 table 3412
-
-# # route packets with our firewall mark using our routing table
-# sudo ip rule add fwmark 4321 table 3412
-
-# echo "
-# nameserver 103.86.96.100
-# nameserver 103.86.99.100
-# " | sudo tee /etc/resolv.conf
-
-# echo "    
-# script-security 2
-# up /etc/openvpn/update-resolv-conf
-# down /etc/openvpn/update-resolv-conf
-# " | sudo tee -a /etc/openvpn/ovpn_tcp/us2957.nordvpn.com.tcp.ovpn
-
-# sudo systemctl restart NetworkManager
-
-
-# dig +short myip.opendns.com @resolver1.opendns.com
-# sleep 5;
-
-# nohup sudo openvpn /etc/openvpn/ovpn_tcp/us2957.nordvpn.com.tcp.ovpn  &
-
-# dig +short myip.opendns.com @resolver1.opendns.com
-# sleep 5;
-
-# dig +short myip.opendns.com @resolver1.opendns.com
-# sleep 5;
-
-# dig +short myip.opendns.com @resolver1.opendns.com
-# sleep 5;
-
-# dig +short myip.opendns.com @resolver1.opendns.com
-# sleep 5;
-
-# sudo reboot
-
-# IP_ADDRESS=$(dig +short myip.opendns.com @resolver1.opendns.com)
-# curl -X POST -H "Content-Type: application/json" -d '{"value1":"$IP_ADDRESS"}' https://maker.ifttt.com/trigger/test/with/key/b4FRBfAPX26CmPbdrLWaG8
-
-# nohup sudo openvpn /etc/openvpn/ovpn_tcp/us2957.nordvpn.com.tcp.ovpn  &
-
-# sleep 10;
-
-# IP_ADDRESS=$(dig +short myip.opendns.com @resolver1.opendns.com)
-# curl -X POST -H "Content-Type: application/json" -d '{"value1":"$IP_ADDRESS"}' https://maker.ifttt.com/trigger/test/with/key/b4FRBfAPX26CmPbdrLWaG8
-
-# sleep 10;
-
-# IP_ADDRESS=$(dig +short myip.opendns.com @resolver1.opendns.com)
-# curl -X POST -H "Content-Type: application/json" -d '{"value1":"$IP_ADDRESS"}' https://maker.ifttt.com/trigger/test/with/key/b4FRBfAPX26CmPbdrLWaG8
-
-
-####################
-
-echo "creating scripts!"
-
 sudo echo '
 export $(dbus-launch)
 dbus-launch --exit-with-session pulseaudio --daemon
@@ -208,31 +115,53 @@ pactl -- set-sink-volume 0 200%
 echo "Running ncspot script"
 # { sleep 5; printf ":focus search\n"; sleep 3; printf "$1"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | /root/.cargo/bin/ncspot
 { sleep 5; printf ":focus search\n"; sleep 3; printf "$1"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 60; printf "q"; } | /root/.cargo/bin/ncspot
-' > /home/ubuntu/script2.sh
+' > /home/ubuntu/script.sh
 
-sudo chmod a+x /home/ubuntu/script2.sh
-
-echo "done creating scripts!"
+sudo chmod a+x /home/ubuntu/script.sh
 
 ####################
+
+sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
+
+expect -c "
+    spawn sudo nordvpn login
+    expect -exact \"Username: \"
+    send -- \"$VPN_EMAIL\r\"
+    expect -exact \"Password: \"
+    send -- \"$VPN_PASSWORD\r\"
+    expect eof
+"
+
+nordvpn connect The_Americas
+echo "VPN Connected!"
+dig +short myip.opendns.com @resolver1.opendns.com
+sleep 5;
+
+dig +short myip.opendns.com @resolver1.opendns.com
+sleep 5;
+
+dig +short myip.opendns.com @resolver1.opendns.com
+sleep 5;
+
+dig +short myip.opendns.com @resolver1.opendns.com
+sleep 5;
+
 
 # echo "sleeping"
 # # sleep $(($RANDOM*28800/32767));
 # { sleep 5; printf "\n"; sleep 3; echo "$SPOTIFY_EMAIL"; sleep 3; printf "\t"; echo "$SPOTIFY_PASSWORD"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep 10; printf "r\n"; sleep 3; printf "q"; } | sudo /root/.cargo/bin/ncspot
 # echo "done setting up spotify"
-# bash /home/ubuntu/script2.sh $PLAYLIST
+# bash /home/ubuntu/script.sh $PLAYLIST
 
 # echo "sleeping"
 # sleep $(($RANDOM*28800/32767));
-# bash /home/ubuntu/script2.sh $PLAYLIST
+# bash /home/ubuntu/script.sh $PLAYLIST
 
 # echo "sleeping"
 # sleep $(($RANDOM*28800/32767));
-# bash /home/ubuntu/script2.sh $PLAYLIST
+# bash /home/ubuntu/script.sh $PLAYLIST
 
-# echo "sleeping"
-# sleep $(($RANDOM*28800/32767));
-# bash /home/ubuntu/script2.sh $PLAYLIST
+echo "Disconnecting VPN"
+nordvpn disconnect
 
-####################
 
