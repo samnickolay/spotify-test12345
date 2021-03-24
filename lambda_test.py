@@ -2,7 +2,7 @@
 import boto3
 import json
 
-IMAGE_ID = 'ami-031b673f443c2172c'
+IMAGE_ID = 'ami-0121ef35996ede438'
 InstanceType = 't3.medium'
 IamInstanceProfile = 'arn:aws:iam::590100935479:role/lambdaControlEC2'
 SecurityGroupId = 'sg-02ef6b6c1b6f17c12'
