@@ -125,18 +125,8 @@ pactl -- set-sink-volume 0 200%
 echo "Running ncspot script"
 # { sleep 5; printf ":focus search\n"; sleep 3; printf "$1"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | /root/.cargo/bin/ncspot
 { sleep 5; printf ":focus search\n"; sleep 3; printf "$1"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 60; printf "q"; } | /root/.cargo/bin/ncspot
+echo "Done running ncspot script"
 '> /home/ubuntu/script2.sh
-
-
-
-# sudo echo '
-# export $(dbus-launch)
-# dbus-launch --exit-with-session pulseaudio --daemon
-# pactl -- set-sink-volume 0 200%
-# echo "Running ncspot script"
-# # { sleep 5; printf ":focus search\n"; sleep 3; printf "$1"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | /root/.cargo/bin/ncspot
-# { sleep 5; printf ":focus search\n"; sleep 3; printf "$1"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 60; printf "q"; } | /root/.cargo/bin/ncspot
-# ' > /home/ubuntu/script.sh
 
 sudo chmod a+x /home/ubuntu/script1.sh
 sudo chmod a+x /home/ubuntu/script2.sh
@@ -165,9 +155,15 @@ sleep 5;
 echo "sleeping"
 # sleep $(($RANDOM*28800/32767));
 
-# bash /home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD
+bash /home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD
 
-# bash /home/ubuntu/script2.sh $PLAYLIST
+bash /home/ubuntu/script2.sh $PLAYLIST
+
+sleep 60
+
+bash /home/ubuntu/script2.sh $PLAYLIST
+
+
 
 # echo "sleeping"
 # sleep $(($RANDOM*28800/32767));
