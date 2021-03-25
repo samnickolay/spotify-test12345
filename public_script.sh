@@ -146,7 +146,7 @@ expect -c "
     expect eof
 "
 
-nordvpn connect The_Americas
+# nordvpn connect The_Americas
 echo "VPN Connected!"
 dig +short myip.opendns.com @resolver1.opendns.com
 sleep 5;
@@ -174,6 +174,6 @@ bash /home/ubuntu/script2.sh $PLAYLIST
 # bash /home/ubuntu/script.sh $PLAYLIST
 
 echo "Disconnecting VPN"
-nordvpn disconnect
+# nordvpn disconnect
 
 
