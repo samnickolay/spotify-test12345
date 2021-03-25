@@ -112,33 +112,46 @@ echo "Done installing ncspot"
 ####################
 
 sudo echo '
-export $(dbus-launch)
-dbus-launch --exit-with-session pulseaudio --daemon
-# pactl -- set-sink-volume 0 200%
+#!/bin/sh
+
+echo "$1"
+echo "$2"
+echo "$3"
+
+dbus-launch
+pulseaudio --start
+pactl -- set-sink-volume 0 200%
+
+echo "sleeping"
+sleep 10
+# sleep $(($RANDOM*28800/32767));
+
 echo "Running ncspot setup script"
 { sleep 10; printf "\n"; sleep 3; echo "$1"; sleep 3; printf "\t"; echo "$2"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep 10; printf "r"; sleep 5; printf "q"; } | sudo /root/.cargo/bin/ncspot
 echo "Done running ncspot setup script"
+sleep 5
+# { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | sudo /root/.cargo/bin/ncspot
+{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 60; printf "q"; } | sudo /root/.cargo/bin/ncspot
+
+echo "sleeping"
+sleep 10
+# sleep $(($RANDOM*28800/32767));
+
+echo "Running ncspot script"
+# { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | sudo /root/.cargo/bin/ncspot
+{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 60; printf "q"; } | sudo /root/.cargo/bin/ncspot
+echo "Done running ncspot script"
+
 '> /home/ubuntu/script1.sh
 
 
-sudo echo '
-export $(dbus-launch)
-dbus-launch --exit-with-session pulseaudio --daemon
-# pactl -- set-sink-volume 0 200%
-echo "Running ncspot script"
-# { sleep 5; printf ":focus search\n"; sleep 3; printf "$1"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | sudo /root/.cargo/bin/ncspot
-{ sleep 5; printf ":focus search\n"; sleep 3; printf "$1"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 60; printf "q"; } | sudo /root/.cargo/bin/ncspot
-echo "Done running ncspot script"
-'> /home/ubuntu/script2.sh
-
 sudo chmod a+x /home/ubuntu/script1.sh
-sudo chmod a+x /home/ubuntu/script2.sh
 
 ####################
 
 echo "install nordvpn"
 
-sudo apt-get install -y expect  &> /dev/null  
+sudo apt-get install -y expect xvfb &> /dev/null  
 
 sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
 
@@ -157,8 +170,12 @@ dig +short myip.opendns.com @resolver1.opendns.com
 sleep 5;
 
 
-# echo "sleeping"
-# sleep $(($RANDOM*28800/32767));
+xinit /home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST -- /usr/bin/Xvfb :1 -screen 0 1x1x8
+
+
+
+# # echo "sleeping"
+# # sleep $(($RANDOM*28800/32767));
 
 # if test -z "$DBUS_SESSION_BUS_ADDRESS" ; then
 # eval `dbus-launch --sh-syntax`
@@ -190,7 +207,7 @@ sleep 5;
 # echo 'all done playing music!" | at now + 5 minutes
 
 
-# bash /home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD
+# bash /home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST
 
 # bash /home/ubuntu/script2.sh $PLAYLIST
 
