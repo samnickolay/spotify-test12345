@@ -114,11 +114,7 @@ echo "Done installing ncspot"
 sudo echo '
 #!/bin/sh
 
-echo "$1"
-echo "$2"
-echo "$3"
-
-dbus-launch
+export $(dbus-launch)
 pulseaudio --start
 pactl -- set-sink-volume 0 200%
 
@@ -127,31 +123,38 @@ sleep 10
 # sleep $(($RANDOM*28800/32767));
 
 echo "Running ncspot setup script"
-{ sleep 10; printf "\n"; sleep 3; echo "$1"; sleep 3; printf "\t"; echo "$2"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep 10; printf "r"; sleep 5; printf "q"; } | sudo /root/.cargo/bin/ncspot
+{ sleep 10; printf "\n"; sleep 3; echo "$1"; sleep 3; printf "\t"; echo "$2"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep 10; printf "r"; sleep 5; printf "q"; } | /root/.cargo/bin/ncspot
 echo "Done running ncspot setup script"
-sleep 5
-# { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | sudo /root/.cargo/bin/ncspot
-{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 60; printf "q"; } | sudo /root/.cargo/bin/ncspot
+'> /home/ubuntu/script1.sh
+
+
+sudo echo '
+#!/bin/sh
+
+export $(dbus-launch)
+pulseaudio --start
+pactl -- set-sink-volume 0 200%
+
+echo "Running ncspot script"
+# { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | /root/.cargo/bin/ncspot
+{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 60; printf "q"; } | /root/.cargo/bin/ncspot
+echo "Done running ncspot script"
 
 echo "sleeping"
 sleep 10
 # sleep $(($RANDOM*28800/32767));
 
-echo "Running ncspot script"
-# { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | sudo /root/.cargo/bin/ncspot
-{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 60; printf "q"; } | sudo /root/.cargo/bin/ncspot
-echo "Done running ncspot script"
-
-'> /home/ubuntu/script1.sh
-
+'> /home/ubuntu/script2.sh
 
 sudo chmod a+x /home/ubuntu/script1.sh
+sudo chmod a+x /home/ubuntu/script2.sh
+
 
 ####################
 
 echo "install nordvpn"
 
-sudo apt-get install -y expect xvfb &> /dev/null  
+sudo apt-get install -y expect xvfb xinit &> /dev/null  
 
 sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
 
@@ -171,6 +174,10 @@ sleep 5;
 
 
 xinit /home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST -- /usr/bin/Xvfb :1 -screen 0 1x1x8
+
+xinit /home/ubuntu/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST -- /usr/bin/Xvfb :1 -screen 0 1x1x8
+
+xinit /home/ubuntu/script3.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST -- /usr/bin/Xvfb :1 -screen 0 1x1x8
 
 
 
