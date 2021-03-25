@@ -104,7 +104,10 @@ sudo apt-get install -y cargo &> /dev/null
 
 echo "Installing ncspot"
 
-cargo install ncspot
+cargo install ncspot  &> /dev/null 
+
+echo "Done installing ncspot"
+
 
 ####################
 
@@ -133,7 +136,9 @@ sudo chmod a+x /home/ubuntu/script2.sh
 
 ####################
 
-sudo apt-get install -y expect
+echo "install nordvpn"
+
+sudo apt-get install -y expect  &> /dev/null  
 
 sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
 
@@ -152,16 +157,28 @@ dig +short myip.opendns.com @resolver1.opendns.com
 sleep 5;
 
 
-echo "sleeping"
+# echo "sleeping"
 # sleep $(($RANDOM*28800/32767));
 
-bash /home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD
 
-bash /home/ubuntu/script2.sh $PLAYLIST
+echo "sudo bash /home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD
+sleep 30
+sudo bash /home/ubuntu/script2.sh $PLAYLIST
 
 sleep 60
 
-bash /home/ubuntu/script2.sh $PLAYLIST
+sudo bash /home/ubuntu/script2.sh $PLAYLIST
+
+echo 'all done playing music!" | at now + 5 minutes
+
+
+# bash /home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD
+
+# bash /home/ubuntu/script2.sh $PLAYLIST
+
+# sleep 60
+
+# bash /home/ubuntu/script2.sh $PLAYLIST
 
 
 
