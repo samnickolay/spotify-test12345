@@ -112,10 +112,9 @@ echo "Done installing ncspot"
 ####################
 
 sudo echo '
-whoami
 export $(dbus-launch)
-sudo dbus-launch --exit-with-session pulseaudio --daemon
-sudo pactl -- set-sink-volume 0 200%
+dbus-launch --exit-with-session pulseaudio --daemon
+# pactl -- set-sink-volume 0 200%
 echo "Running ncspot setup script"
 { sleep 10; printf "\n"; sleep 3; echo "$1"; sleep 3; printf "\t"; echo "$2"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep 10; printf "r"; sleep 5; printf "q"; } | sudo /root/.cargo/bin/ncspot
 echo "Done running ncspot setup script"
@@ -123,10 +122,9 @@ echo "Done running ncspot setup script"
 
 
 sudo echo '
-whoami
 export $(dbus-launch)
-sudo dbus-launch --exit-with-session pulseaudio --daemon
-sudo pactl -- set-sink-volume 0 200%
+dbus-launch --exit-with-session pulseaudio --daemon
+# pactl -- set-sink-volume 0 200%
 echo "Running ncspot script"
 # { sleep 5; printf ":focus search\n"; sleep 3; printf "$1"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | sudo /root/.cargo/bin/ncspot
 { sleep 5; printf ":focus search\n"; sleep 3; printf "$1"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 60; printf "q"; } | sudo /root/.cargo/bin/ncspot
@@ -162,15 +160,22 @@ sleep 5;
 # echo "sleeping"
 # sleep $(($RANDOM*28800/32767));
 
+# if test -z "$DBUS_SESSION_BUS_ADDRESS" ; then
+# eval `dbus-launch --sh-syntax`
+# echo "D-Bus per-session daemon address is:"
+# echo "$DBUS_SESSION_BUS_ADDRESS"
+# fi
 
-sudo -u ubuntu bash /home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD
-sleep 30
 
-sudo -u ubuntu bash /home/ubuntu/script2.sh $PLAYLIST
 
-sleep 60
+# sudo bash /home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD
+# sleep 30
 
-sudo -u ubuntu bash /home/ubuntu/script2.sh $PLAYLIST
+# sudo bash /home/ubuntu/script2.sh $PLAYLIST
+
+# sleep 60
+
+# sudo bash /home/ubuntu/script2.sh $PLAYLIST
 
 
 
