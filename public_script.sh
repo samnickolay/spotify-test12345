@@ -112,22 +112,24 @@ echo "Done installing ncspot"
 ####################
 
 sudo echo '
+whoami
 export $(dbus-launch)
-dbus-launch --exit-with-session pulseaudio --daemon
-pactl -- set-sink-volume 0 200%
+sudo dbus-launch --exit-with-session pulseaudio --daemon
+sudo pactl -- set-sink-volume 0 200%
 echo "Running ncspot setup script"
-{ sleep 10; printf "\n"; sleep 3; echo "$1"; sleep 3; printf "\t"; echo "$2"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep 10; printf "r"; sleep 5; printf "q"; } | /root/.cargo/bin/ncspot
+{ sleep 10; printf "\n"; sleep 3; echo "$1"; sleep 3; printf "\t"; echo "$2"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep 10; printf "r"; sleep 5; printf "q"; } | sudo /root/.cargo/bin/ncspot
 echo "Done running ncspot setup script"
 '> /home/ubuntu/script1.sh
 
 
 sudo echo '
+whoami
 export $(dbus-launch)
-dbus-launch --exit-with-session pulseaudio --daemon
-pactl -- set-sink-volume 0 200%
+sudo dbus-launch --exit-with-session pulseaudio --daemon
+sudo pactl -- set-sink-volume 0 200%
 echo "Running ncspot script"
-# { sleep 5; printf ":focus search\n"; sleep 3; printf "$1"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | /root/.cargo/bin/ncspot
-{ sleep 5; printf ":focus search\n"; sleep 3; printf "$1"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 60; printf "q"; } | /root/.cargo/bin/ncspot
+# { sleep 5; printf ":focus search\n"; sleep 3; printf "$1"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | sudo /root/.cargo/bin/ncspot
+{ sleep 5; printf ":focus search\n"; sleep 3; printf "$1"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 60; printf "q"; } | sudo /root/.cargo/bin/ncspot
 echo "Done running ncspot script"
 '> /home/ubuntu/script2.sh
 
@@ -161,15 +163,26 @@ sleep 5;
 # sleep $(($RANDOM*28800/32767));
 
 
-echo "sudo bash /home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD
+sudo -u ubuntu bash /home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD
 sleep 30
-sudo bash /home/ubuntu/script2.sh $PLAYLIST
+
+sudo -u ubuntu bash /home/ubuntu/script2.sh $PLAYLIST
 
 sleep 60
 
-sudo bash /home/ubuntu/script2.sh $PLAYLIST
+sudo -u ubuntu bash /home/ubuntu/script2.sh $PLAYLIST
 
-echo 'all done playing music!" | at now + 5 minutes
+
+
+# echo "sudo bash /home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD
+# sleep 30
+# sudo bash /home/ubuntu/script2.sh $PLAYLIST
+
+# sleep 60
+
+# sudo bash /home/ubuntu/script2.sh $PLAYLIST
+
+# echo 'all done playing music!" | at now + 5 minutes
 
 
 # bash /home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD
