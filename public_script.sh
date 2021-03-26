@@ -172,12 +172,12 @@ echo "VPN Connected!"
 dig +short myip.opendns.com @resolver1.opendns.com
 sleep 5;
 
-echo "starting setup script!"
-xinit /home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST -- /usr/bin/Xvfb :1 -screen 0 800x600x16
+# echo "starting setup script!"
+# xinit /home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST -- /usr/bin/Xvfb :1 -screen 0 800x600x16
 
-xinit /home/ubuntu/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST -- /usr/bin/Xvfb :1 -screen 0 800x600x16
+# xinit /home/ubuntu/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST -- /usr/bin/Xvfb :1 -screen 0 800x600x16
 
-xinit /home/ubuntu/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST -- /usr/bin/Xvfb :1 -screen 0 800x600x16
+# xinit /home/ubuntu/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST -- /usr/bin/Xvfb :1 -screen 0 800x600x16
 
 
 # xinit /home/ubuntu/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST 2>/home/ubuntu/stderr.log 1>/home/ubuntu/stdout.log -- /usr/bin/Xvfb :1 -screen 0 1x1x8
