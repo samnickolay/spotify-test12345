@@ -96,34 +96,35 @@ SPOTIFY_PASSWORD=$(aws ec2 describe-tags --filters "Name=resource-id,Values=$INS
 PLAYLIST_TAG="playlist"
 PLAYLIST=$(aws ec2 describe-tags --filters "Name=resource-id,Values=$INSTANCE_ID" "Name=key,Values=$PLAYLIST_TAG" --region=$REGION --output=text | cut -f5)
 
-sudo apt-get install -y pulseaudio pulseaudio-utils dbus-x11 &> /dev/null 
-sudo apt-get install -y libncursesw5-dev libdbus-1-dev libpulse-dev libssl-dev libxcb1-dev libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev &> /dev/null  
-sudo apt-get install -y protobuf-compiler &> /dev/null  
+# sudo apt-get install -y pulseaudio pulseaudio-utils dbus-x11 &> /dev/null 
+# sudo apt-get install -y libncursesw5-dev libdbus-1-dev libpulse-dev libssl-dev libxcb1-dev libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev &> /dev/null  
+# sudo apt-get install -y protobuf-compiler &> /dev/null  
 
-sudo apt-get install -y cargo &> /dev/null  
+# sudo apt-get install -y cargo &> /dev/null  
 
-echo "Installing ncspot"
+# echo "Installing ncspot"
 
-cargo install ncspot  &> /dev/null 
+# cargo install ncspot  &> /dev/null 
 
-echo "Done installing ncspot"
+# echo "Done installing ncspot"
 
+sudo snap install ncspot
 
 ####################
 
 sudo echo '
 #!/bin/sh
 
-export $(dbus-launch)
-pulseaudio --start
-pactl -- set-sink-volume 0 200%
+# export $(dbus-launch)
+# pulseaudio --start
+# pactl -- set-sink-volume 0 200%
 
 echo "sleeping"
 sleep 10
 # sleep $(($RANDOM*28800/32767));
 
 echo "Running ncspot setup script"
-{ sleep 10; printf "\n"; sleep 3; echo "$1"; sleep 3; printf "\t"; echo "$2"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep 10; printf "r"; sleep 5; printf "q"; } | /root/.cargo/bin/ncspot
+{ sleep 10; printf "\n"; sleep 3; echo "$1"; sleep 3; printf "\t"; echo "$2"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep 10; printf "r"; sleep 5; printf "q"; } | sudo -u ubuntu ncspot
 echo "Done running ncspot setup script"
 '> /home/ubuntu/script1.sh
 
@@ -131,13 +132,13 @@ echo "Done running ncspot setup script"
 sudo echo '
 #!/bin/sh
 
-export $(dbus-launch)
-pulseaudio --start
-pactl -- set-sink-volume 0 200%
+# export $(dbus-launch)
+# pulseaudio --start
+# pactl -- set-sink-volume 0 200%
 
 echo "Running ncspot script"
-# { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | /root/.cargo/bin/ncspot
-{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 60; printf "q"; } | /root/.cargo/bin/ncspot
+# { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | sudo -u ubuntu ncspot
+{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 60; printf "q"; } | sudo -u ubuntu ncspot
 echo "Done running ncspot script"
 
 echo "sleeping"
@@ -171,6 +172,16 @@ expect -c "
 echo "VPN Connected!"
 dig +short myip.opendns.com @resolver1.opendns.com
 sleep 5;
+
+export $(dbus-launch)
+
+
+/home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST
+
+/home/ubuntu/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST
+
+/home/ubuntu/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST 
+
 
 # echo "starting setup script!"
 # xinit /home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST -- /usr/bin/Xvfb :1 -screen 0 800x600x16
