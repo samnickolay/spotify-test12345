@@ -123,6 +123,8 @@ export $(dbus-launch)
 pulseaudio --start
 pactl -- set-sink-volume 0 200%
 
+echo "$1 $2 $3"
+
 echo "sleeping"
 sleep 10
 # sleep $(($RANDOM*28800/32767));
@@ -156,8 +158,6 @@ sudo echo '
 export $(dbus-launch)
 pulseaudio --start
 pactl -- set-sink-volume 0 200%
-
-echo "$1 $2 $3"
 
 echo "Running ncspot script"
 # { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | ncspot
