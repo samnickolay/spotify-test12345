@@ -208,7 +208,9 @@ echo "
 Description=My custom startup script
 
 [Service]
-ExecStart=/home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST 2>&1 | tee /home/ubuntu/stdout.log
+ExecStart=/home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST
+StandardOutput=/home/ubuntu/stdout1.log
+StandardError=/home/ubuntu/stderr1.log
 
 [Install]
 WantedBy=multi-user.target
