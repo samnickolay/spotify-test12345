@@ -209,8 +209,8 @@ Description=My custom startup script
 
 [Service]
 ExecStart=/home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST
-StandardOutput=/home/ubuntu/stdout1.log
-StandardError=/home/ubuntu/stderr1.log
+StandardOutput=append:/root/stdout.log
+StandardError=append:/root/stderr.log
 
 [Install]
 WantedBy=multi-user.target
