@@ -96,7 +96,7 @@ SPOTIFY_PASSWORD=$(aws ec2 describe-tags --filters "Name=resource-id,Values=$INS
 PLAYLIST_TAG="playlist"
 PLAYLIST=$(aws ec2 describe-tags --filters "Name=resource-id,Values=$INSTANCE_ID" "Name=key,Values=$PLAYLIST_TAG" --region=$REGION --output=text | cut -f5)
 
-# sudo apt-get install -y pulseaudio pulseaudio-utils dbus-x11 &> /dev/null 
+sudo apt-get install -y pulseaudio pulseaudio-utils dbus-x11 &> /dev/null 
 # sudo apt-get install -y libncursesw5-dev libdbus-1-dev libpulse-dev libssl-dev libxcb1-dev libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev &> /dev/null  
 # sudo apt-get install -y protobuf-compiler &> /dev/null  
 
@@ -173,14 +173,42 @@ echo "VPN Connected!"
 dig +short myip.opendns.com @resolver1.opendns.com
 sleep 5;
 
+
+Xvfb :1 -screen 0 1x1x8 &
+
+sleep 10;
+
+DISPLAY=:1 dbus-launch
+DISPLAY=:1 pulseaudio --start
+
 export $(dbus-launch)
 
+echo "sleeping"
+sleep 10
 
-/home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST
+echo "Running ncspot setup script"
+{ sleep 10; printf "\n"; sleep 3; echo "$SPOTIFY_EMAIL"; sleep 3; printf "\t"; echo "$SPOTIFY_PASSWORD"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep 10; printf "r"; sleep 5; printf "q"; } | sudo -u ubuntu ncspot
+echo "Done running ncspot setup script"
 
-/home/ubuntu/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST
+echo "sleeping"
+sleep 10;
 
-/home/ubuntu/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST 
+echo "Running ncspot script"
+{ sleep 5; printf ":focus search\n"; sleep 3; printf "$PLAYLIST"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 60; printf "q"; } | sudo -u ubuntu ncspot
+echo "Done running ncspot script"
+
+echo "sleeping"
+sleep 10;
+
+echo "Running ncspot script"
+{ sleep 5; printf ":focus search\n"; sleep 3; printf "$PLAYLIST"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 60; printf "q"; } | sudo -u ubuntu ncspot
+echo "Done running ncspot script"
+
+# /home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST
+
+# /home/ubuntu/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST
+
+# /home/ubuntu/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST 
 
 
 # echo "starting setup script!"
