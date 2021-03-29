@@ -119,6 +119,8 @@ echo "Done installing ncspot"
 sudo echo '
 #!/bin/sh
 
+echo "running my service!!!"
+
 export $(dbus-launch)
 pulseaudio --start
 pactl -- set-sink-volume 0 200%
@@ -159,6 +161,10 @@ export $(dbus-launch)
 pulseaudio --start
 pactl -- set-sink-volume 0 200%
 
+echo "$1 $2 $3"
+
+sleep 10;
+
 echo "Running ncspot script"
 # { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | ncspot
 date
@@ -197,8 +203,29 @@ echo "VPN Connected!"
 dig +short myip.opendns.com @resolver1.opendns.com
 sleep 5;
 
+echo "
+[Unit]
+Description=My custom startup script
 
-xvfb-run -a -e /home/ubuntu/err.log --server-args='-screen 0, 1024x768x16' /home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST
+[Service]
+ExecStart=/home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST 2>&1 | tee /home/ubuntu/stdout.log
+
+[Install]
+WantedBy=multi-user.target
+" > /etc/systemd/system/my-service.service
+
+# echo 'starting service'
+# systemctl start my-service
+
+echo 'setting service to run on startup'
+systemctl enable my-service
+
+echo 'rebooting system'
+
+sudo reboot
+# xvfb-run -a -e /home/ubuntu/err.log --server-args='-screen 0, 1024x768x16' /home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST
+
+# xvfb-run -a -e /home/ubuntu/err.log --server-args='-screen 0, 1024x768x16' /home/ubuntu/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST
 
 # sleep 10;
 
