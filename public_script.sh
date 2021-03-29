@@ -132,6 +132,21 @@ date
 { sleep 10; printf "\n"; sleep 3; echo "$1"; sleep 3; printf "\t"; echo "$2"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep 10; printf "r"; sleep 5; printf "q"; } | ncspot
 date
 echo "Done running ncspot setup script"
+
+sleep 10;
+
+echo "Running ncspot script"
+# { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | ncspot
+date
+{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20; printf "q"; } | ncspot
+date
+echo "Done running ncspot script"
+
+echo "sleeping"
+sleep 10
+# sleep $(($RANDOM*28800/32767));
+
+
 '> /home/ubuntu/script1.sh
 
 
@@ -141,6 +156,8 @@ sudo echo '
 export $(dbus-launch)
 pulseaudio --start
 pactl -- set-sink-volume 0 200%
+
+echo "$1 $2 $3"
 
 echo "Running ncspot script"
 # { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | ncspot
@@ -181,13 +198,13 @@ dig +short myip.opendns.com @resolver1.opendns.com
 sleep 5;
 
 
-xvfb-run -a -e /home/ubuntu/err.log --server-args='-screen 0, 1024x768x16' /home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST &> /home/ubuntu/out.log
+xvfb-run -a -e /home/ubuntu/err.log --server-args='-screen 0, 1024x768x16' /home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST
 
-sleep 10;
+# sleep 10;
 
-xvfb-run -a -e /home/ubuntu/err.log --server-args='-screen 0, 1024x768x16' /home/ubuntu/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST &> /home/ubuntu/out.log
+# xvfb-run -a -e /home/ubuntu/err.log --server-args='-screen 0, 1024x768x16' /home/ubuntu/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST
 
-xvfb-run -a -e /home/ubuntu/err.log --server-args='-screen 0, 1024x768x16' /home/ubuntu/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST &> /home/ubuntu/out.log
+# xvfb-run -a -e /home/ubuntu/err.log --server-args='-screen 0, 1024x768x16' /home/ubuntu/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST
 
 # /home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST
 
