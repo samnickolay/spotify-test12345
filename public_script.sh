@@ -214,13 +214,12 @@ StandardError=append:/root/stderr.log
 
 [Install]
 WantedBy=multi-user.target
-" > /etc/systemd/system/my-service.service
+" > /etc/systemd/system/test1.service
 
 # echo 'starting service'
 # systemctl start test1
 
-
-chmod u+x /home/ubuntu/script1.sh 
+sudo chmod a+x /etc/systemd/system/test1.service
 sudo systemctl start test1.service
 sudo systemctl stop test1.service
 sudo systemctl enable test1.service
