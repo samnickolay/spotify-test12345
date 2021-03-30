@@ -204,12 +204,11 @@ dig +short myip.opendns.com @resolver1.opendns.com
 sleep 5;
 
 echo "
-
 [Unit]
 After=network.service
 
 [Service]
-ExecStart=/root/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST
+ExecStart=/usr/local/bin/disk-space-check.sh
 
 [Install]
 WantedBy=default.target
@@ -218,10 +217,20 @@ WantedBy=default.target
 # echo 'starting service'
 # systemctl start test1
 
-sudo chmod a+x /etc/systemd/system/test1.service
+# sudo chmod a+x /etc/systemd/system/test1.service
 # sudo systemctl start test1.service
 # sudo systemctl stop test1.service
 # sudo systemctl enable test1.service
+
+
+echo '
+#!/bin/bash
+
+date > /root/disk_space_report.txt
+du -sh /home/ >> /root/disk_space_report.txt' > /usr/local/bin/disk-space-check.sh
+
+sudo chmod 744 /usr/local/bin/disk-space-check.sh
+sudo chmod 664 /etc/systemd/system/test1.service
 
 # echo 'setting service to run on startup'
 # systemctl enable my-service
