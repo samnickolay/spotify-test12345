@@ -202,9 +202,7 @@ expect -c "
 "
 
 
-
-# /root/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST &> /root/out.log
-
+/root/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST &> /root/out.log
 
 
 #write out current crontab
@@ -216,10 +214,8 @@ crontab mycron
 rm mycron
 
 
-
 # sudo reboot
 # echo "rebooting!"
-
 
 
 echo "Disconnecting VPN"
