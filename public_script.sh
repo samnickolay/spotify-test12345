@@ -119,16 +119,16 @@ echo "Done installing ncspot"
 sudo echo '
 #!/bin/sh
 
-echo "running test!!!" 
+# echo "running test!!!" 
 
-export $(dbus-launch)
-pulseaudio --start
-pactl -- set-sink-volume 0 200%
+# export $(dbus-launch)
+# pulseaudio --start
+# pactl -- set-sink-volume 0 200%
 
 echo "$1 $2 $3"
 
-echo "sleeping"
-sleep 10
+# echo "sleeping"
+# sleep 10
 
 echo "Running ncspot setup script"
 date
@@ -136,16 +136,16 @@ date
 date
 echo "Done running ncspot setup script"
 
-sleep 10;
+# sleep 10;
 
-echo "Running ncspot script"
-date
-{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20; printf "q"; } | ncspot
-date
-echo "Done running ncspot script" 
+# echo "Running ncspot script"
+# date
+# { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20; printf "q"; } | ncspot
+# date
+# echo "Done running ncspot script" 
 
-echo "sleeping"
-sleep 10
+# echo "sleeping"
+# sleep 10
 
 '> /root/script1.sh
 
@@ -154,6 +154,10 @@ sudo echo '
 #!/bin/sh
 
 echo "running test!!!" 
+
+set | grep TERM
+
+export TERM=xterm
 
 export $(dbus-launch)
 pulseaudio --start
@@ -206,7 +210,7 @@ expect -c "
 #write out current crontab
 crontab -l > mycron
 #echo new cron into cron file
-echo "@reboot sleep 60 && /root/script2.sh 'samnickolay@gmail.com' 'Tlbsj5116' 'spotify:album:4PgleR09JVnm3zY1fW3XBA' >> /root/out1.log 2>&1" >> mycron
+echo "@reboot sleep 60 && /root/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST >> /root/out1.log 2>&1" >> mycron
 #install new cron file
 crontab mycron
 rm mycron
