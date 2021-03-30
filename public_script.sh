@@ -166,7 +166,7 @@ sleep 10
 
 echo "Running ncspot script"
 date
-{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20;  printf "r"; sleep 5; printf "q"; } | snap run ncspot
+{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20;  printf "r"; sleep 5; printf "q"; } | /bin/bash -c "snap run ncspot"
 date
 echo "Done running ncspot script" 
 
@@ -203,13 +203,13 @@ expect -c "
 
 
 
-# #write out current crontab
-# crontab -l > mycron
-# #echo new cron into cron file
-# echo "@reboot sleep 60 && /root/script2.sh 'samnickolay@gmail.com' 'Tlbsj5116' 'spotify:album:4PgleR09JVnm3zY1fW3XBA' >> /root/out1.log 2>&1" >> mycron
-# #install new cron file
-# crontab mycron
-# rm mycron
+#write out current crontab
+crontab -l > mycron
+#echo new cron into cron file
+echo "@reboot sleep 60 && /root/script2.sh 'samnickolay@gmail.com' 'Tlbsj5116' 'spotify:album:4PgleR09JVnm3zY1fW3XBA' >> /root/out1.log 2>&1" >> mycron
+#install new cron file
+crontab mycron
+rm mycron
 
 
 
