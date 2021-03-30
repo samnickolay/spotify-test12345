@@ -97,19 +97,8 @@ PLAYLIST_TAG="playlist"
 PLAYLIST=$(aws ec2 describe-tags --filters "Name=resource-id,Values=$INSTANCE_ID" "Name=key,Values=$PLAYLIST_TAG" --region=$REGION --output=text | cut -f5)
 
 sudo apt-get install -y pulseaudio pulseaudio-utils dbus-x11 &> /dev/null 
-# sudo apt-get install -y libncursesw5-dev libdbus-1-dev libpulse-dev libssl-dev libxcb1-dev libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev &> /dev/null  
-# sudo apt-get install -y protobuf-compiler &> /dev/null  
-
-# sudo apt-get install -y cargo &> /dev/null  
-
-# echo "Installing ncspot"
-
-# cargo install ncspot  &> /dev/null 
-
-# echo "Done installing ncspot"
 
 sudo snap install pulseaudio &> /dev/null 
-
 sudo snap install ncspot &> /dev/null 
 
 echo "Done installing ncspot"
@@ -118,34 +107,13 @@ echo "Done installing ncspot"
 
 sudo echo '
 #!/bin/sh
-
-# echo "running test!!!" 
-
-# export $(dbus-launch)
-# pulseaudio --start
-# pactl -- set-sink-volume 0 200%
-
-echo "$1 $2 $3"
-
-# echo "sleeping"
-# sleep 10
+sleep 10
 
 echo "Running ncspot setup script"
 date
 { sleep 10; printf "\n"; sleep 3; echo "$1"; sleep 3; printf "\t"; echo "$2"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep 10; printf "r"; sleep 5; printf "q"; } | ncspot
 date
 echo "Done running ncspot setup script"
-
-# sleep 10;
-
-# echo "Running ncspot script"
-# date
-# { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20; printf "q"; } | ncspot
-# date
-# echo "Done running ncspot script" 
-
-# echo "sleeping"
-# sleep 10
 
 '> /root/script1.sh
 
@@ -155,8 +123,6 @@ sudo echo '
 
 echo "running test!!!" 
 
-set | grep TERM
-
 export TERM=xterm
 
 export $(dbus-launch)
@@ -165,8 +131,10 @@ pactl -- set-sink-volume 0 200%
 
 echo "$1 $2 $3"
 
-echo "sleeping"
-sleep 10
+# nordvpn connect The_Americas
+echo "VPN Connected!"
+dig +short myip.opendns.com @resolver1.opendns.com
+sleep 5;
 
 echo "Running ncspot script"
 date
@@ -178,6 +146,9 @@ echo "DONE!!"
 
 # echo "sleeping"
 # sleep 10
+
+echo "Disconnecting VPN"
+# nordvpn disconnect
 
 '> /root/script2.sh
 
@@ -201,7 +172,6 @@ expect -c "
     expect eof
 "
 
-
 /root/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST &> /root/out.log
 
 
@@ -214,11 +184,9 @@ crontab mycron
 rm mycron
 
 
-# sudo reboot
-# echo "rebooting!"
+sudo reboot
+echo "rebooting!"
 
 
-echo "Disconnecting VPN"
-# nordvpn disconnect
 
 
