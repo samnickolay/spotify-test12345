@@ -119,34 +119,34 @@ echo "Done installing ncspot"
 sudo echo '
 #!/bin/sh
 
-echo "running my service!!!"
+echo "running my service!!!" &>> /home/ubuntu/out1.log
 
 export $(dbus-launch)
 pulseaudio --start
 pactl -- set-sink-volume 0 200%
 
-echo "$1 $2 $3"
+echo "$1 $2 $3" &>> /home/ubuntu/out1.log
 
-echo "sleeping"
+echo "sleeping" &>> /home/ubuntu/out1.log
 sleep 10
 # sleep $(($RANDOM*28800/32767));
 
-echo "Running ncspot setup script"
-date
-{ sleep 10; printf "\n"; sleep 3; echo "$1"; sleep 3; printf "\t"; echo "$2"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep 10; printf "r"; sleep 5; printf "q"; } | ncspot
-date
-echo "Done running ncspot setup script"
+echo "Running ncspot setup script" &>> /home/ubuntu/out1.log
+date &>> /home/ubuntu/out1.log
+{ sleep 10; printf "\n"; sleep 3; echo "$1"; sleep 3; printf "\t"; echo "$2"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep 10; printf "r"; sleep 5; printf "q"; } | ncspot &>> /home/ubuntu/out1.log
+date &>> /home/ubuntu/out1.log
+echo "Done running ncspot setup script" &>> /home/ubuntu/out1.log
 
 sleep 10;
 
-echo "Running ncspot script"
+echo "Running ncspot script" &>> /home/ubuntu/out1.log
 # { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | ncspot
-date
-{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20; printf "q"; } | ncspot
-date
-echo "Done running ncspot script"
+date &>> /home/ubuntu/out1.log
+{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20; printf "q"; } | ncspot &>> /home/ubuntu/out1.log
+date &>> /home/ubuntu/out1.log
+echo "Done running ncspot script" &>> /home/ubuntu/out1.log
 
-echo "sleeping"
+echo "sleeping" &>> /home/ubuntu/out1.log
 sleep 10
 # sleep $(($RANDOM*28800/32767));
 
@@ -161,18 +161,18 @@ export $(dbus-launch)
 pulseaudio --start
 pactl -- set-sink-volume 0 200%
 
-echo "$1 $2 $3"
+echo "$1 $2 $3" &>> /home/ubuntu/out1.log
 
 sleep 10;
 
-echo "Running ncspot script"
+echo "Running ncspot script" &>> /home/ubuntu/out1.log
 # { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | ncspot
-date
-{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20; printf "q"; } | ncspot
-date
-echo "Done running ncspot script"
+date &>> /home/ubuntu/out1.log
+{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20; printf "q"; } | ncspot 
+date &>> /home/ubuntu/out1.log
+echo "Done running ncspot script" &>> /home/ubuntu/out1.log
 
-echo "sleeping"
+echo "sleeping" &>> /home/ubuntu/out1.log
 sleep 10
 # sleep $(($RANDOM*28800/32767));
 
@@ -204,32 +204,31 @@ dig +short myip.opendns.com @resolver1.opendns.com
 sleep 5;
 
 echo "
+
 [Unit]
-Description=My custom startup script
+After=network.service
 
 [Service]
 ExecStart=/home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST
-StandardOutput=append:/root/stdout.log
-StandardError=append:/root/stderr.log
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target
 " > /etc/systemd/system/test1.service
 
 # echo 'starting service'
 # systemctl start test1
 
 sudo chmod a+x /etc/systemd/system/test1.service
-sudo systemctl start test1.service
-sudo systemctl stop test1.service
-sudo systemctl enable test1.service
+# sudo systemctl start test1.service
+# sudo systemctl stop test1.service
+# sudo systemctl enable test1.service
 
 # echo 'setting service to run on startup'
 # systemctl enable my-service
 
-echo 'rebooting system'
+# echo 'rebooting system'
 
-sudo reboot
+# sudo reboot
 # xvfb-run -a -e /home/ubuntu/err.log --server-args='-screen 0, 1024x768x16' /home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST
 
 # xvfb-run -a -e /home/ubuntu/err.log --server-args='-screen 0, 1024x768x16' /home/ubuntu/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST
