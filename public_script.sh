@@ -217,10 +217,16 @@ WantedBy=multi-user.target
 " > /etc/systemd/system/my-service.service
 
 # echo 'starting service'
-# systemctl start my-service
+# systemctl start test1
 
-echo 'setting service to run on startup'
-systemctl enable my-service
+
+chmod u+x /home/ubuntu/script1.sh 
+sudo systemctl start test1.service
+sudo systemctl stop test1.service
+sudo systemctl enable test1.service
+
+# echo 'setting service to run on startup'
+# systemctl enable my-service
 
 echo 'rebooting system'
 
