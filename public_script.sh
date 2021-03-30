@@ -119,37 +119,33 @@ echo "Done installing ncspot"
 sudo echo '
 #!/bin/sh
 
-echo "running my service!!!" &>> /root/out1.log
+echo "running test!!!" 
 
 export $(dbus-launch)
 pulseaudio --start
 pactl -- set-sink-volume 0 200%
 
-echo "$1 $2 $3" &>> /root/out1.log
+echo "$1 $2 $3"
 
-echo "sleeping" &>> /root/out1.log
+echo "sleeping"
 sleep 10
-# sleep $(($RANDOM*28800/32767));
 
-echo "Running ncspot setup script" &>> /root/out1.log
-date &>> /root/out1.log
-{ sleep 10; printf "\n"; sleep 3; echo "$1"; sleep 3; printf "\t"; echo "$2"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep 10; printf "r"; sleep 5; printf "q"; } | ncspot &>> /root/out1.log
-date &>> /root/out1.log
-echo "Done running ncspot setup script" &>> /root/out1.log
+echo "Running ncspot setup script"
+date
+{ sleep 10; printf "\n"; sleep 3; echo "$1"; sleep 3; printf "\t"; echo "$2"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep 10; printf "r"; sleep 5; printf "q"; } | ncspot
+date
+echo "Done running ncspot setup script"
 
 sleep 10;
 
-echo "Running ncspot script" &>> /root/out1.log
-# { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | ncspot
-date &>> /root/out1.log
-{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20; printf "q"; } | ncspot &>> /root/out1.log
-date &>> /root/out1.log
-echo "Done running ncspot script" &>> /root/out1.log
+echo "Running ncspot script"
+date
+{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20; printf "q"; } | ncspot
+date
+echo "Done running ncspot script" 
 
-echo "sleeping" &>> /root/out1.log
+echo "sleeping"
 sleep 10
-# sleep $(($RANDOM*28800/32767));
-
 
 '> /root/script1.sh
 
@@ -157,24 +153,27 @@ sleep 10
 sudo echo '
 #!/bin/sh
 
+echo "running test!!!" 
+
 export $(dbus-launch)
 pulseaudio --start
 pactl -- set-sink-volume 0 200%
 
-echo "$1 $2 $3" &>> /root/out1.log
+echo "$1 $2 $3"
 
-sleep 10;
-
-echo "Running ncspot script" &>> /root/out1.log
-# { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | ncspot
-date &>> /root/out1.log
-{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20; printf "q"; } | ncspot 
-date &>> /root/out1.log
-echo "Done running ncspot script" &>> /root/out1.log
-
-echo "sleeping" &>> /root/out1.log
+echo "sleeping"
 sleep 10
-# sleep $(($RANDOM*28800/32767));
+
+echo "Running ncspot script"
+date
+{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20;  printf "r"; sleep 5; printf "q"; } | snap run ncspot
+date
+echo "Done running ncspot script" 
+
+echo "DONE!!"
+
+# echo "sleeping"
+# sleep 10
 
 '> /root/script2.sh
 
@@ -198,125 +197,26 @@ expect -c "
     expect eof
 "
 
-# nordvpn connect The_Americas
-echo "VPN Connected!"
-dig +short myip.opendns.com @resolver1.opendns.com
-sleep 5;
-
-echo "
-[Unit]
-After=network.service
-
-[Service]
-ExecStart=/usr/local/bin/disk-space-check.sh
-
-[Install]
-WantedBy=default.target
-" > /etc/systemd/system/test1.service
-
-# echo 'starting service'
-# systemctl start test1
-
-# sudo chmod a+x /etc/systemd/system/test1.service
-# sudo systemctl start test1.service
-# sudo systemctl stop test1.service
-# sudo systemctl enable test1.service
 
 
-echo '
-#!/bin/bash
+# /root/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST &> /root/out.log
 
-date > /root/disk_space_report.txt
-du -sh /home/ >> /root/disk_space_report.txt' > /usr/local/bin/disk-space-check.sh
 
-sudo chmod 744 /usr/local/bin/disk-space-check.sh
-sudo chmod 664 /etc/systemd/system/test1.service
 
-# echo 'setting service to run on startup'
-# systemctl enable my-service
+# #write out current crontab
+# crontab -l > mycron
+# #echo new cron into cron file
+# echo "@reboot sleep 60 && /root/script2.sh 'samnickolay@gmail.com' 'Tlbsj5116' 'spotify:album:4PgleR09JVnm3zY1fW3XBA' >> /root/out1.log 2>&1" >> mycron
+# #install new cron file
+# crontab mycron
+# rm mycron
 
-# echo 'rebooting system'
+
 
 # sudo reboot
-# xvfb-run -a -e /home/ubuntu/err.log --server-args='-screen 0, 1024x768x16' /root/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST
-
-# xvfb-run -a -e /home/ubuntu/err.log --server-args='-screen 0, 1024x768x16' /root/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST
-
-# sleep 10;
-
-# xvfb-run -a -e /home/ubuntu/err.log --server-args='-screen 0, 1024x768x16' /root/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST
-
-# xvfb-run -a -e /home/ubuntu/err.log --server-args='-screen 0, 1024x768x16' /root/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST
-
-# /root/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST
-
-# /root/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST
-
-# /root/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST 
+# echo "rebooting!"
 
 
-# echo "starting setup script!"
-# xinit /root/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST -- /usr/bin/Xvfb :1 -screen 0 800x600x16
-
-# xinit /root/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST -- /usr/bin/Xvfb :1 -screen 0 800x600x16
-
-# xinit /root/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST -- /usr/bin/Xvfb :1 -screen 0 800x600x16
-
-
-# xinit /root/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST 2>/home/ubuntu/stderr.log 1>/home/ubuntu/stdout.log -- /usr/bin/Xvfb :1 -screen 0 1x1x8
-
-
-
-# # echo "sleeping"
-# # sleep $(($RANDOM*28800/32767));
-
-# if test -z "$DBUS_SESSION_BUS_ADDRESS" ; then
-# eval `dbus-launch --sh-syntax`
-# echo "D-Bus per-session daemon address is:"
-# echo "$DBUS_SESSION_BUS_ADDRESS"
-# fi
-
-
-
-# sudo bash /root/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD
-# sleep 30
-
-# sudo bash /root/script2.sh $PLAYLIST
-
-# sleep 60
-
-# sudo bash /root/script2.sh $PLAYLIST
-
-
-
-# echo "sudo bash /root/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD
-# sleep 30
-# sudo bash /root/script2.sh $PLAYLIST
-
-# sleep 60
-
-# sudo bash /root/script2.sh $PLAYLIST
-
-# echo 'all done playing music!" | at now + 5 minutes
-
-
-# bash /root/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST
-
-# bash /root/script2.sh $PLAYLIST
-
-# sleep 60
-
-# bash /root/script2.sh $PLAYLIST
-
-
-
-# echo "sleeping"
-# sleep $(($RANDOM*28800/32767));
-# bash /root/script.sh $PLAYLIST
-
-# echo "sleeping"
-# sleep $(($RANDOM*28800/32767));
-# bash /root/script.sh $PLAYLIST
 
 echo "Disconnecting VPN"
 # nordvpn disconnect
