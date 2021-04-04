@@ -136,11 +136,20 @@ echo "VPN Connected!"
 dig +short myip.opendns.com @resolver1.opendns.com
 sleep 5;
 
-echo "Running ncspot script"
+
+
+echo "Running ncspot setup script"
 date
-{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20;  printf "r"; sleep 5; printf "q"; } | /bin/bash -c "snap run ncspot"
+{ sleep 10; printf "\n"; sleep 3; echo "$1"; sleep 3; printf "\t"; echo "$2"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep 10; printf "r"; sleep 5; printf "q"; } | /bin/bash -c "snap run ncspot"
 date
-echo "Done running ncspot script" 
+echo "Done running ncspot setup script"
+
+
+# echo "Running ncspot script"
+# date
+# { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20;  printf "r"; sleep 5; printf "q"; } | /bin/bash -c "snap run ncspot"
+# date
+# echo "Done running ncspot script" 
 
 echo "DONE!!"
 
@@ -172,7 +181,7 @@ expect -c "
     expect eof
 "
 
-/root/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST &> /root/out.log
+# /root/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST &> /root/out.log
 
 
 #write out current crontab
@@ -184,8 +193,8 @@ crontab mycron
 rm mycron
 
 
-# sudo reboot
-# echo "rebooting!"
+sudo reboot
+echo "rebooting!"
 
 
 
