@@ -131,7 +131,7 @@ pactl -- set-sink-volume 0 200%
 
 echo "$1 $2 $3"
 
-# nordvpn connect The_Americas
+nordvpn connect The_Americas
 echo "VPN Connected!"
 dig +short myip.opendns.com @resolver1.opendns.com
 sleep 5;
@@ -148,7 +148,7 @@ echo "DONE!!"
 # sleep 10
 
 echo "Disconnecting VPN"
-# nordvpn disconnect
+nordvpn disconnect
 
 '> /root/script2.sh
 
@@ -184,8 +184,8 @@ crontab mycron
 rm mycron
 
 
-sudo reboot
-echo "rebooting!"
+# sudo reboot
+# echo "rebooting!"
 
 
 
