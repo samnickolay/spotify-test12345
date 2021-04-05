@@ -106,7 +106,7 @@ echo "Done installing ncspot"
 ####################
 
 sudo echo '
-#!/bin/sh
+#!/bin/bash
 sleep 10
 
 echo "Running ncspot setup script"
@@ -119,7 +119,7 @@ echo "Done running ncspot setup script"
 
 
 sudo echo '
-#!/bin/sh
+#!/bin/bash
 
 echo "running test!!!" 
 
@@ -146,7 +146,7 @@ sleep 10;
 
 echo "Running ncspot setup script"
 date
-{ sleep 10; printf "\n"; sleep 3; echo "$1"; sleep 3; printf "\t"; echo "$2"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep 10; printf "r"; sleep 5; printf "q"; } | /bin/bash -c "snap run ncspot"
+{ sleep 10; printf "\n"; sleep 3; echo "$1"; sleep 3; printf "\t"; echo "$2"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep 10; printf "r"; sleep 5; printf "q"; } | snap run ncspot
 date
 echo "Done running ncspot setup script"
 
@@ -156,8 +156,8 @@ sleep 10;
 echo "Running ncspot script"
 date
 RANDOM_SECONDS=$(($RANDOM*28800/32767));
-{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $RANDOM_SECONDS; printf "q"; } | /bin/bash -c "snap run ncspot"
-# { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20;  printf "r"; sleep 5; printf "q"; } | /bin/bash -c "snap run ncspot"
+{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $RANDOM_SECONDS; printf "q"; } | snap run ncspot
+# { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20;  printf "r"; sleep 5; printf "q"; } | snap run ncspot
 date
 echo "Done running ncspot script" 
 
@@ -172,8 +172,8 @@ echo "done sleeping"
 echo "Running ncspot script"
 date
 RANDOM_SECONDS=$(($RANDOM*28800/32767));
-{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $RANDOM_SECONDS; printf "q"; } | /bin/bash -c "snap run ncspot"
-# { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20;  printf "r"; sleep 5; printf "q"; } | /bin/bash -c "snap run ncspot"
+{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $RANDOM_SECONDS; printf "q"; } | snap run ncspot
+# { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20;  printf "r"; sleep 5; printf "q"; } | snap run ncspot
 date
 echo "Done running ncspot script" 
 
