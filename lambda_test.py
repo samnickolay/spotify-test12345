@@ -18,6 +18,8 @@ PLAYLISTS = ['spotify:playlist:5PkrnGrf4RN2UtHCad45Yu', 'spotify:playlist:5PkrnG
              'spotify:playlist:37i9dQZF1DXcBWIGoYBM5M']
 PLAYLIST = random.choice(PLAYLISTS)
 
+print(PLAYLIST)
+
 region = 'us-west-1'
 
 accounts = {
