@@ -134,7 +134,8 @@ echo "$1 $2 $3"
 echo "sleeping"
 date
 sleep 10
-sleep $(($RANDOM*14400/32767));
+RANDOM_SECONDS=$(($RANDOM*14400/32767));
+sleep $RANDOM_SECONDS;
 date
 echo "done sleeping"
 
@@ -151,9 +152,11 @@ echo "Done running ncspot setup script"
 
 sleep 10;
 
+
 echo "Running ncspot script"
 date
-{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | /bin/bash -c "snap run ncspot"
+RANDOM_SECONDS=$(($RANDOM*28800/32767));
+{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $RANDOM_SECONDS; printf "q"; } | /bin/bash -c "snap run ncspot"
 # { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20;  printf "r"; sleep 5; printf "q"; } | /bin/bash -c "snap run ncspot"
 date
 echo "Done running ncspot script" 
@@ -161,13 +164,15 @@ echo "Done running ncspot script"
 echo "sleeping"
 date
 sleep 10
-sleep $(($RANDOM*14400/32767));
+RANDOM_SECONDS=$(($RANDOM*14400/32767));
+sleep $RANDOM_SECONDS;
 date
 echo "done sleeping"
 
 echo "Running ncspot script"
 date
-{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(($RANDOM*28800/32767)); printf "q"; } | /bin/bash -c "snap run ncspot"
+RANDOM_SECONDS=$(($RANDOM*28800/32767));
+{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $RANDOM_SECONDS; printf "q"; } | /bin/bash -c "snap run ncspot"
 # { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20;  printf "r"; sleep 5; printf "q"; } | /bin/bash -c "snap run ncspot"
 date
 echo "Done running ncspot script" 
@@ -175,7 +180,8 @@ echo "Done running ncspot script"
 echo "sleeping"
 date
 sleep 10
-sleep $(($RANDOM*14400/32767));
+RANDOM_SECONDS=$(($RANDOM*14400/32767));
+sleep $RANDOM_SECONDS;
 date
 echo "done sleeping"
 
