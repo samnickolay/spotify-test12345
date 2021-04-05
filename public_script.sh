@@ -134,8 +134,8 @@ echo "$1 $2 $3"
 echo "sleeping"
 date
 sleep 10
-RANDOM_SECONDS=$(($(tr -dc 0-9 < /dev/urandom | head -c6)*14400/999999))
-sleep $RANDOM_SECONDS;
+# RANDOM_SECONDS=$(($(tr -dc 0-9 < /dev/urandom | head -c6)*14400/999999))
+# sleep $RANDOM_SECONDS;
 date
 echo "done sleeping"
 
