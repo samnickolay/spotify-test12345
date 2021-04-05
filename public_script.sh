@@ -139,7 +139,7 @@ sleep 10
 date
 echo "done sleeping"
 
-nordvpn connect The_Americas
+# nordvpn connect The_Americas
 echo "VPN Connected!"
 dig +short myip.opendns.com @resolver1.opendns.com
 sleep 10;
