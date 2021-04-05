@@ -1,6 +1,7 @@
 
 import boto3
 import json
+import random
 
 IMAGE_ID = 'ami-0121ef35996ede438'
 InstanceType = 't3.medium'
@@ -11,7 +12,11 @@ KEY_NAME = 'test'
 
 VPN_EMAIL = 'samnickolay@gmail.com'
 VPN_PASSWORD = 'z3NjbYH8stYFZEi'
-PLAYLIST = 'spotify:album:4PgleR09JVnm3zY1fW3XBA'
+
+PLAYLISTS = ['spotify:playlist:5PkrnGrf4RN2UtHCad45Yu', 'spotify:playlist:5PkrnGrf4RN2UtHCad45Yu',
+             'spotify:playlist:2N5MFM7E8OXrj5JEiRDRL3', 'spotify:playlist:2N5MFM7E8OXrj5JEiRDRL3',
+             'spotify:playlist:37i9dQZF1DXcBWIGoYBM5M']
+PLAYLIST = random.choice(PLAYLISTS)
 
 region = 'us-west-1'
 
