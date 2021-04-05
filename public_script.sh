@@ -156,32 +156,42 @@ sleep 10;
 echo "Running ncspot script"
 date
 RANDOM_SECONDS=$(($(tr -dc 0-9 < /dev/urandom | head -c6)*28800/999999))
-{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $RANDOM_SECONDS; printf "q"; } | /bin/bash -c "snap run ncspot"
+# { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $RANDOM_SECONDS; printf "q"; } | /bin/bash -c "snap run ncspot"
+{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20; printf "q"; } | /bin/bash -c "snap run ncspot"
 date
 echo "Done running ncspot script" 
 
 echo "sleeping"
 date
 sleep 10
-RANDOM_SECONDS=$(($(tr -dc 0-9 < /dev/urandom | head -c6)*14400/999999))
-sleep $RANDOM_SECONDS;
+# RANDOM_SECONDS=$(($(tr -dc 0-9 < /dev/urandom | head -c6)*14400/999999))
+# sleep $RANDOM_SECONDS;
 date
 echo "done sleeping"
 
 echo "Running ncspot script"
 date
 RANDOM_SECONDS=$(($(tr -dc 0-9 < /dev/urandom | head -c6)*28800/999999))
-{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $RANDOM_SECONDS; printf "q"; } | /bin/bash -c "snap run ncspot"
+# { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $RANDOM_SECONDS; printf "q"; } | /bin/bash -c "snap run ncspot"
+{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20; printf "q"; } | /bin/bash -c "snap run ncspot"
 date
 echo "Done running ncspot script" 
 
 echo "sleeping"
 date
 sleep 10
-RANDOM_SECONDS=$(($(tr -dc 0-9 < /dev/urandom | head -c6)*14400/999999))
-sleep $RANDOM_SECONDS;
+# RANDOM_SECONDS=$(($(tr -dc 0-9 < /dev/urandom | head -c6)*14400/999999))
+# sleep $RANDOM_SECONDS;
 date
 echo "done sleeping"
+
+echo "Running ncspot script"
+date
+RANDOM_SECONDS=$(($(tr -dc 0-9 < /dev/urandom | head -c6)*28800/999999))
+# { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $RANDOM_SECONDS; printf "q"; } | /bin/bash -c "snap run ncspot"
+{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20; printf "q"; } | /bin/bash -c "snap run ncspot"
+date
+echo "Done running ncspot script" 
 
 echo "Disconnecting VPN"
 nordvpn disconnect
