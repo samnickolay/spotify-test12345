@@ -26,6 +26,11 @@ echo '''{
                                                 "file_path": "/home/ubuntu/stderr.log",
                                                 "log_group_name": "stderr.log",
                                                 "log_stream_name": "{instance_id}"
+                                        },
+                                        {
+                                                "file_path": "/root/stdout1.log",
+                                                "log_group_name": "stdout1.log",
+                                                "log_stream_name": "{instance_id}"
                                         }
                                 ]
                         }
@@ -230,7 +235,7 @@ expect -c "
 #write out current crontab
 crontab -l > mycron
 #echo new cron into cron file
-echo "@reboot sleep 60 && /root/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST $VPN_NAME >> /home/ubuntu/stdout.log 2>&1" >> mycron
+echo "@reboot sleep 60 && /root/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST $VPN_NAME >> /root/stdout1.log 2>&1" >> mycron
 #install new cron file
 crontab mycron
 rm mycron
