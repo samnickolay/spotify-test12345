@@ -387,7 +387,7 @@ def lambda_handler(event, context):
                     {
                         "Key": "vpn_name",
                         "Value": vpn_name,
-                    }
+                    },
                     {
                         "Key": "playlist",
                         "Value": PLAYLIST,
