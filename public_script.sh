@@ -8,7 +8,7 @@ wget https://s3.amazonaws.com/amazoncloudwatch-agent/ubuntu/amd64/latest/amazon-
 
 sudo dpkg -i -E ./amazon-cloudwatch-agent.deb &> /dev/null
 
-touch /home/ubuntu/ncspot.log
+# touch /home/ubuntu/ncspot.log
 
 echo '''{
         "agent": {
