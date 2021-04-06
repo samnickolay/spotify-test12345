@@ -167,7 +167,7 @@ echo "
 
 echo "VPN Connected! $4"
 nordvpn connect $4
-sleep 10;
+sleep 20;
 dig +short myip.opendns.com @resolver1.opendns.com
 
 echo "
