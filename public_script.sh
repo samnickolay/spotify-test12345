@@ -87,6 +87,9 @@ VPN_EMAIL=$(aws ec2 describe-tags --filters "Name=resource-id,Values=$INSTANCE_I
 VPN_PASSWORD_TAG="vpn_password"
 VPN_PASSWORD=$(aws ec2 describe-tags --filters "Name=resource-id,Values=$INSTANCE_ID" "Name=key,Values=$VPN_PASSWORD_TAG" --region=$REGION --output=text | cut -f5)
 
+VPN_NAME_TAG="vpn_name"
+VPN_NAME=$(aws ec2 describe-tags --filters "Name=resource-id,Values=$INSTANCE_ID" "Name=key,Values=$VPN_NAME_TAG" --region=$REGION --output=text | cut -f5)
+
 SPOTIFY_EMAIL_TAG="spotify_email"
 SPOTIFY_EMAIL=$(aws ec2 describe-tags --filters "Name=resource-id,Values=$INSTANCE_ID" "Name=key,Values=$SPOTIFY_EMAIL_TAG" --region=$REGION --output=text | cut -f5)
 
@@ -129,7 +132,7 @@ export $(dbus-launch)
 pulseaudio --start
 pactl -- set-sink-volume 0 200%
 
-echo "$1 $2 $3"
+echo "$1 $2 $3 $4"
 
 big_random () {
   echo $(($(tr -dc 0-9 < /dev/urandom | head -c6 | sed "s/^0*//")*28800/999999))
@@ -148,10 +151,10 @@ sleep 10
 date
 echo "done sleeping"
 
-nordvpn connect The_Americas
-echo "VPN Connected!"
-dig +short myip.opendns.com @resolver1.opendns.com
+echo "VPN Connected! $4"
+nordvpn connect $4
 sleep 10;
+dig +short myip.opendns.com @resolver1.opendns.com
 
 echo "Running ncspot setup script"
 date
@@ -229,7 +232,7 @@ expect -c "
 #write out current crontab
 crontab -l > mycron
 #echo new cron into cron file
-echo "@reboot sleep 60 && /root/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST >> /home/ubuntu/stdout.log 2>&1" >> mycron
+echo "@reboot sleep 60 && /root/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST $VPN_NAME >> /home/ubuntu/stdout.log 2>&1" >> mycron
 #install new cron file
 crontab mycron
 rm mycron
