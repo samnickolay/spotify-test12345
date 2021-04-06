@@ -137,28 +137,36 @@ echo "$1 $2 $3 $4"
 big_random () {
   echo $(($(tr -dc 0-9 < /dev/urandom | head -c6 | sed "s/^0*//")*28800/999999))
 }
-echo $(big_random)
+# echo $(big_random)
 
 small_random () {
   echo $(($(tr -dc 0-9 < /dev/urandom | head -c6 | sed "s/^0*//")*14400/999999))
 }
-echo $(small_random)
+# echo $(small_random)
 
 echo "sleeping"
 date
 sleep 10
-# sleep $(small_random);
+sleep $(small_random);
 date
 echo "done sleeping"
 
-echo '\n\n----------\n'
+dig +short myip.opendns.com @resolver1.opendns.com
+
+echo '
+
+----------
+'
 
 echo "VPN Connected! $4"
 nordvpn connect $4
 sleep 10;
 dig +short myip.opendns.com @resolver1.opendns.com
 
-echo '\n----------\n\n'
+echo '
+----------
+
+'
 
 echo "Running ncspot setup script"
 date
@@ -170,36 +178,22 @@ sleep 10;
 
 echo "Running ncspot script"
 date
-# { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(big_random); printf "q"; } | /bin/bash -c "snap run ncspot"
-{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20; printf "q"; } | /bin/bash -c "snap run ncspot"
+{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(big_random); printf "q"; } | /bin/bash -c "snap run ncspot"
+# { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20; printf "q"; } | /bin/bash -c "snap run ncspot"
 date
 echo "Done running ncspot script" 
 
 echo "sleeping"
 date
 sleep 10
-# sleep $(small_random);
+sleep $(small_random);
 date
 echo "done sleeping"
 
 echo "Running ncspot script"
 date
-# { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(big_random); printf "q"; } | /bin/bash -c "snap run ncspot"
-{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20; printf "q"; } | /bin/bash -c "snap run ncspot"
-date
-echo "Done running ncspot script" 
-
-echo "sleeping"
-date
-sleep 10
-# sleep $(small_random);
-date
-echo "done sleeping"
-
-echo "Running ncspot script"
-date
-# { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(big_random); printf "q"; } | /bin/bash -c "snap run ncspot"
-{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20; printf "q"; } | /bin/bash -c "snap run ncspot"
+{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(big_random); printf "q"; } | /bin/bash -c "snap run ncspot"
+# { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20; printf "q"; } | /bin/bash -c "snap run ncspot"
 date
 echo "Done running ncspot script" 
 
