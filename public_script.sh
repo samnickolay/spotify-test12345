@@ -160,20 +160,20 @@ echo "done sleeping"
 
 dig +short myip.opendns.com @resolver1.opendns.com
 
-echo '
+echo "
 
 ----------
-'
+"
 
 echo "VPN Connected! $4"
 nordvpn connect $4
 sleep 10;
 dig +short myip.opendns.com @resolver1.opendns.com
 
-echo '
+echo "
 ----------
 
-'
+"
 
 echo "Running ncspot setup script"
 date

@@ -16,9 +16,7 @@ VPN_PASSWORD = 'z3NjbYH8stYFZEi'
 PLAYLISTS = ['spotify:playlist:5PkrnGrf4RN2UtHCad45Yu', 'spotify:playlist:5PkrnGrf4RN2UtHCad45Yu',
              'spotify:playlist:2N5MFM7E8OXrj5JEiRDRL3', 'spotify:playlist:2N5MFM7E8OXrj5JEiRDRL3',
              'spotify:playlist:37i9dQZF1DXcBWIGoYBM5M']
-PLAYLIST = random.choice(PLAYLISTS)
 
-print(PLAYLIST)
 
 region = 'us-west-1'
 
@@ -376,6 +374,11 @@ def lambda_handler(event, context):
         print(_e)
 
     for email, password in accounts.items():
+
+        PLAYLIST = random.choice(PLAYLISTS)
+
+        print(PLAYLIST)
+
         vpn_name = 'us' + vpns.pop()
         TAG_SPEC = [
             {
@@ -434,5 +437,5 @@ def lambda_handler(event, context):
 
     return {
         'statusCode': 200,
-        'body': json.dumps(PLAYLIST)
+        'body': json.dumps("Done!")
     }
