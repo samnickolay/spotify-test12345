@@ -8,6 +8,8 @@ wget https://s3.amazonaws.com/amazoncloudwatch-agent/ubuntu/amd64/latest/amazon-
 
 sudo dpkg -i -E ./amazon-cloudwatch-agent.deb &> /dev/null
 
+touch /home/ubuntu/ncspot.log
+
 echo '''{
         "agent": {
                 "metrics_collection_interval": 60,
@@ -28,8 +30,8 @@ echo '''{
                                                 "log_stream_name": "{instance_id}"
                                         },
                                         {
-                                                "file_path": "/root/stdout1.log",
-                                                "log_group_name": "stdout1.log",
+                                                "file_path": "/home/ubuntu/ncspot.log",
+                                                "log_group_name": "ncspot.log",
                                                 "log_stream_name": "{instance_id}"
                                         }
                                 ]
@@ -152,7 +154,7 @@ small_random () {
 echo "sleeping"
 date
 sleep 10
-sleep $(small_random);
+# sleep $(small_random);
 date
 echo "done sleeping"
 
@@ -183,22 +185,22 @@ sleep 10;
 
 echo "Running ncspot script"
 date
-{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(big_random); printf "q"; } | /bin/bash -c "snap run ncspot"
-# { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20; printf "q"; } | /bin/bash -c "snap run ncspot"
+# { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(big_random); printf "q"; } | /bin/bash -c "snap run ncspot"
+{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20; printf "q"; } | /bin/bash -c "snap run ncspot"
 date
 echo "Done running ncspot script" 
 
 echo "sleeping"
 date
 sleep 10
-sleep $(small_random);
+# sleep $(small_random);
 date
 echo "done sleeping"
 
 echo "Running ncspot script"
 date
-{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(big_random); printf "q"; } | /bin/bash -c "snap run ncspot"
-# { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20; printf "q"; } | /bin/bash -c "snap run ncspot"
+# { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(big_random); printf "q"; } | /bin/bash -c "snap run ncspot"
+{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20; printf "q"; } | /bin/bash -c "snap run ncspot"
 date
 echo "Done running ncspot script" 
 
@@ -235,7 +237,7 @@ expect -c "
 #write out current crontab
 crontab -l > mycron
 #echo new cron into cron file
-echo "@reboot sleep 60 && /root/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST $VPN_NAME >> /root/stdout1.log 2>&1" >> mycron
+echo "@reboot sleep 60 && /root/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST $VPN_NAME >> /home/ubuntu/ncspot.log 2>&1" >> mycron
 #install new cron file
 crontab mycron
 rm mycron
