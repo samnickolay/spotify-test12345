@@ -148,7 +148,7 @@ sleep 10
 date
 echo "done sleeping"
 
-# nordvpn connect The_Americas
+nordvpn connect The_Americas
 echo "VPN Connected!"
 dig +short myip.opendns.com @resolver1.opendns.com
 sleep 10;
@@ -160,7 +160,6 @@ date
 echo "Done running ncspot setup script"
 
 sleep 10;
-
 
 echo "Running ncspot script"
 date
@@ -230,7 +229,7 @@ expect -c "
 #write out current crontab
 crontab -l > mycron
 #echo new cron into cron file
-echo "@reboot sleep 60 && /root/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST >> /root/out1.log 2>&1" >> mycron
+echo "@reboot sleep 60 && /root/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST >> /home/ubuntu/stdout.log 2>&1" >> mycron
 #install new cron file
 crontab mycron
 rm mycron
