@@ -14,7 +14,7 @@ KEY_NAME = 'test'
 # VPN_PASSWORD = 'z3NjbYH8stYFZEi'
 
 vpn_accounts = {
-    'samnickolay@gmail.com': 'z3NjbYH8stYFZEi',
+    # 'samnickolay@gmail.com': 'z3NjbYH8stYFZEi',
     'nordvpn1@vizy.io': '3cPDMityEM85xhq',
     'nordvpn2@vizy.io': '3cPDMityEM85xhq'
 }
