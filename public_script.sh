@@ -106,6 +106,8 @@ SPOTIFY_PASSWORD=$(aws ec2 describe-tags --filters "Name=resource-id,Values=$INS
 PLAYLIST_TAG="playlist"
 PLAYLIST=$(aws ec2 describe-tags --filters "Name=resource-id,Values=$INSTANCE_ID" "Name=key,Values=$PLAYLIST_TAG" --region=$REGION --output=text | cut -f5)
 
+echo "$VPN_EMAIL $VPN_PASSWORD $VPN_NAME"
+
 sudo apt-get install -y pulseaudio pulseaudio-utils dbus-x11 &> /dev/null 
 
 sudo snap install pulseaudio &> /dev/null 

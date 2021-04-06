@@ -10,8 +10,14 @@ SecurityGroupId = 'sg-02ef6b6c1b6f17c12'
 
 KEY_NAME = 'test'
 
-VPN_EMAIL = 'samnickolay@gmail.com'
-VPN_PASSWORD = 'z3NjbYH8stYFZEi'
+# VPN_EMAIL = 'samnickolay@gmail.com'
+# VPN_PASSWORD = 'z3NjbYH8stYFZEi'
+
+vpn_accounts = {
+    'samnickolay@gmail.com': 'z3NjbYH8stYFZEi',
+    'nordvpn1@vizy.io': '3cPDMityEM85xhq',
+    'nordvpn2@vizy.io': '3cPDMityEM85xhq'
+}
 
 PLAYLISTS = ['spotify:playlist:5PkrnGrf4RN2UtHCad45Yu', 'spotify:playlist:5PkrnGrf4RN2UtHCad45Yu',
              'spotify:playlist:2N5MFM7E8OXrj5JEiRDRL3', 'spotify:playlist:2N5MFM7E8OXrj5JEiRDRL3',
@@ -373,7 +379,15 @@ def lambda_handler(event, context):
     except Exception as _e:
         print(_e)
 
+    idx = -1
+    vpn_accounts_list = accounts.items()
+
     for email, password in accounts.items():
+        idx += 1
+        tmp = (idx - (idx % 6)) / 6
+
+        VPN_EMAIL = vpn_accounts_list[tmp][0]
+        VPN_PASSWORD = vpn_accounts_list[tmp][1]
 
         PLAYLIST = random.choice(PLAYLISTS)
 
