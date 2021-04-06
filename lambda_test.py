@@ -23,13 +23,18 @@ print(PLAYLIST)
 region = 'us-west-1'
 
 accounts = {
-    'samnickolay@gmail.com': 'Tlbsj5116',
     'harperyoung@vizy.io': '9RSA769PNb56!?',
     'genetaylor@vizy.io': '5kXcFXPLxWJL!?',
     'phoenixgriffiths@vizy.io': 'wGcbApcfFyKs!?',
     'danniwood@vizy.io': 'ZNDL6FbqVfKV!?',
     'alexreid@vizy.io': 'T2x98cGUC3A8!?',
     'chrischaney@vizy.io': 'mzhAHDkEG2He!?',
+    'riverburton@vizy.io': 'zWQEqNEad8uh!?',
+    'carmenmoran@vizy.io': 'x4S9ZxMR8qqj!?',
+    'erinboone@vizy.io': 'DncBCZbMzvpF!?',
+    'brynnratliff@vizy.io': 'vtVPXG4WVzKt!?',
+    'skylercooke@vizy.io': 'mSM7ba9D7zuS!?',
+    'judefletcher@vizy.io': 'RgvBZz6pWTvb!?',
 }
 
 all_accounts = {'harperyoung@vizy.io': '9RSA769PNb56!?',
