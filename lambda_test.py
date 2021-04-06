@@ -380,11 +380,12 @@ def lambda_handler(event, context):
         print(_e)
 
     idx = -1
-    vpn_accounts_list = accounts.items()
+    vpn_accounts_list = [(k, v) for k, v in vpn_accounts.items()]
+    spotify_accounts_list = [(k, v) for k, v in accounts.items()]
 
-    for email, password in accounts.items():
+    for (email, password) in spotify_accounts_list:
         idx += 1
-        tmp = (idx - (idx % 6)) / 6
+        tmp = int((idx - (idx % 6)) / 6)
 
         VPN_EMAIL = vpn_accounts_list[tmp][0]
         VPN_PASSWORD = vpn_accounts_list[tmp][1]
