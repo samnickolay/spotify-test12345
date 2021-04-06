@@ -23,7 +23,7 @@ print(PLAYLIST)
 region = 'us-west-1'
 
 accounts = {
-    # 'samnickolay@gmail.com': 'Tlbsj5116'
+    'samnickolay@gmail.com': 'Tlbsj5116',
     'harperyoung@vizy.io': '9RSA769PNb56!?',
     'genetaylor@vizy.io': '5kXcFXPLxWJL!?',
     'phoenixgriffiths@vizy.io': 'wGcbApcfFyKs!?',
