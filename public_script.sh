@@ -118,14 +118,43 @@ echo "Done installing ncspot"
 ####################
 
 sudo echo '
-#!/bin/sh
-sleep 10
+dig +short myip.opendns.com @resolver1.opendns.com
+
+echo "
+
+----------
+"
+
+echo "VPN Connected! $4"
+nordvpn connect $4
+sleep 20;
+dig +short myip.opendns.com @resolver1.opendns.com
+
+echo "
+----------
+
+"
+
+export $(dbus-launch)
+pulseaudio --start
+pactl -- set-sink-volume 0 200%
+
 
 echo "Running ncspot setup script"
 date
-{ sleep 10; printf "\n"; sleep 3; echo "$1"; sleep 3; printf "\t"; echo "$2"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep 10; printf "r"; sleep 5; printf "q"; } | ncspot
+{ sleep 10; printf "\n"; sleep 3; echo "$1"; sleep 3; printf "\t"; echo "$2"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep 10; printf "z"; sleep 5; printf "r"; sleep 5; printf "q"; } | /bin/bash -c "snap run ncspot"
 date
 echo "Done running ncspot setup script"
+
+
+#write out current crontab
+crontab -l > mycron
+#echo new cron into cron file
+echo "@reboot sleep 60 && /root/script2.sh $1 $2 $3 $4 $5 $6 >> /home/ubuntu/ncspot.log 2>&1" > mycron
+#install new cron file
+crontab mycron
+rm mycron
+
 
 '> /root/script1.sh
 
@@ -177,13 +206,13 @@ echo "
 
 "
 
-echo "Running ncspot setup script"
-date
-{ sleep 10; printf "\n"; sleep 3; echo "$1"; sleep 3; printf "\t"; echo "$2"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep 10; printf "z"; sleep 5; printf "r"; sleep 5; printf "q"; } | /bin/bash -c "snap run ncspot"
-date
-echo "Done running ncspot setup script"
+# echo "Running ncspot setup script"
+# date
+# { sleep 10; printf "\n"; sleep 3; echo "$1"; sleep 3; printf "\t"; echo "$2"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep 10; printf "z"; sleep 5; printf "r"; sleep 5; printf "q"; } | /bin/bash -c "snap run ncspot"
+# date
+# echo "Done running ncspot setup script"
 
-sleep 10;
+# sleep 10;
 
 echo "Running ncspot script"
 date
@@ -239,10 +268,13 @@ expect -c "
 #write out current crontab
 crontab -l > mycron
 #echo new cron into cron file
-echo "@reboot sleep 60 && /root/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST $VPN_NAME $VPN_EMAIL $VPN_PASSWORD >> /home/ubuntu/ncspot.log 2>&1" >> mycron
+echo "@reboot sleep 60 && /root/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST $VPN_NAME $VPN_EMAIL $VPN_PASSWORD >> /home/ubuntu/ncspot1.log 2>&1" >> mycron
+# echo "@reboot sleep 60 && /root/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST $VPN_NAME $VPN_EMAIL $VPN_PASSWORD >> /home/ubuntu/ncspot.log 2>&1" >> mycron
 #install new cron file
 crontab mycron
 rm mycron
+
+####################
 
 
 sudo reboot
