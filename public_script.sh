@@ -118,6 +118,18 @@ echo "Done installing ncspot"
 ####################
 
 sudo echo '
+
+echo "running setup!!!" 
+
+export TERM=xterm
+
+export $(dbus-launch)
+pulseaudio --start
+pactl -- set-sink-volume 0 200%
+
+echo "$1 $2 $3 $4 $5 $6"
+
+
 dig +short myip.opendns.com @resolver1.opendns.com
 
 echo "
@@ -134,11 +146,6 @@ echo "
 ----------
 
 "
-
-export $(dbus-launch)
-pulseaudio --start
-pactl -- set-sink-volume 0 200%
-
 
 echo "Running ncspot setup script"
 date
