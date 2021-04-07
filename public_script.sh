@@ -156,6 +156,10 @@ crontab mycron
 rm mycron
 
 
+echo "Disconnecting VPN"
+nordvpn disconnect
+
+
 '> /root/script1.sh
 
 
