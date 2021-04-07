@@ -118,6 +118,9 @@ sudo snap install ncspot &> /dev/null
 
 echo "Done installing ncspot"
 
+mkdir /run/user/0/
+mkdir /run/user/0/snap.ncspot/
+
 ####################
 
 sudo echo '
@@ -230,7 +233,7 @@ echo "
 
 # echo "Running ncspot setup script"
 # date
-# { sleep 10; printf "\n"; sleep 3; echo "$1"; sleep 3; printf "\t"; echo "$2"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep 10; printf "z"; sleep 5; printf "r"; sleep 5; printf "q"; } | /bin/bash -c "snap run ncspot"
+# { sleep 10; printf "\n"; sleep 3; echo "$1"; sleep 3; printf "\t"; echo "$2"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep 10; printf "z"; sleep 5; printf "r"; sleep 5; printf "q"; } | /bin/bash -c "snap run ncspot" > /dev/null 
 # date
 # echo "Done running ncspot setup script"
 
@@ -238,7 +241,7 @@ echo "
 
 echo "Running ncspot script"
 date
-{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(big_random); printf "q"; } | /bin/bash -c "snap run ncspot"
+{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(big_random); printf "q"; } | /bin/bash -c "snap run ncspot" > /dev/null 
 # { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20; printf "q"; } | /bin/bash -c "snap run ncspot"
 date
 echo "Done running ncspot script" 
@@ -253,7 +256,7 @@ echo "done sleeping"
 
 echo "Running ncspot script"
 date
-{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(big_random); printf "q"; } | /bin/bash -c "snap run ncspot"
+{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(big_random); printf "q"; } | /bin/bash -c "snap run ncspot" > /dev/null 
 # { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20; printf "q"; } | /bin/bash -c "snap run ncspot"
 date
 echo "Done running ncspot script" 
@@ -268,7 +271,7 @@ echo "done sleeping"
 
 echo "Running ncspot script"
 date
-{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(big_random); printf "q"; } | /bin/bash -c "snap run ncspot"
+{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(big_random); printf "q"; } | /bin/bash -c "snap run ncspot" > /dev/null 
 # { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20; printf "q"; } | /bin/bash -c "snap run ncspot"
 date
 echo "Done running ncspot script" 
