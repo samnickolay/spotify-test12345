@@ -8,8 +8,6 @@ wget https://s3.amazonaws.com/amazoncloudwatch-agent/ubuntu/amd64/latest/amazon-
 
 sudo dpkg -i -E ./amazon-cloudwatch-agent.deb &> /dev/null
 
-# touch /home/ubuntu/ncspot.log
-
 echo '''{
         "agent": {
                 "metrics_collection_interval": 60,
@@ -31,6 +29,11 @@ echo '''{
                                         },
                                         {
                                                 "file_path": "/home/ubuntu/ncspot.log",
+                                                "log_group_name": "ncspot.log",
+                                                "log_stream_name": "{instance_id}"
+                                        },
+                                        {
+                                                "file_path": "/home/ubuntu/ncspot1.log",
                                                 "log_group_name": "ncspot.log",
                                                 "log_stream_name": "{instance_id}"
                                         }
