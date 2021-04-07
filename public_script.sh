@@ -235,7 +235,7 @@ echo "Done running ncspot script"
 echo "sleeping"
 date
 sleep 10
-sleep $(small_random);
+# sleep $(small_random);
 date
 echo "done sleeping"
 
