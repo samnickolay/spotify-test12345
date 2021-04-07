@@ -33,8 +33,8 @@ echo '''{
                                                 "log_stream_name": "{instance_id}"
                                         },
                                         {
-                                                "file_path": "/home/ubuntu/ncspot1.log",
-                                                "log_group_name": "ncspot.log",
+                                                "file_path": "/home/ubuntu/setup.log",
+                                                "log_group_name": "setup.log",
                                                 "log_stream_name": "{instance_id}"
                                         }
                                 ]
@@ -124,6 +124,8 @@ sudo echo '
 
 echo "running setup!!!" 
 
+sleep 600 && echo "rebooting after timeout! (600)" && sudo reboot &
+
 export TERM=xterm
 
 export $(dbus-launch)
@@ -169,6 +171,8 @@ rm mycron
 echo "Disconnecting VPN"
 nordvpn disconnect
 
+sudo reboot
+echo "rebooting!"
 
 '> /root/script1.sh
 
@@ -177,6 +181,9 @@ sudo echo '
 #!/bin/sh
 
 echo "running test!!!" 
+
+REBOOT_TIMER=$(($(($(tr -dc 0-9 < /dev/urandom | head -c6 | sed "s/^0*//")*57600/999999))+57600))
+sleep $REBOOT_TIMER && echo "rebooting after timeout! ($REBOOT_TIMER)" && sudo reboot &
 
 export TERM=xterm
 
@@ -282,7 +289,7 @@ expect -c "
 #write out current crontab
 crontab -l > mycron
 #echo new cron into cron file
-echo "@reboot sleep 60 && /root/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST $VPN_NAME $VPN_EMAIL $VPN_PASSWORD >> /home/ubuntu/ncspot1.log 2>&1" >> mycron
+echo "@reboot sleep 60 && /root/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST $VPN_NAME $VPN_EMAIL $VPN_PASSWORD >> /home/ubuntu/setup.log 2>&1" >> mycron
 # echo "@reboot sleep 60 && /root/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST $VPN_NAME $VPN_EMAIL $VPN_PASSWORD >> /home/ubuntu/ncspot.log 2>&1" >> mycron
 #install new cron file
 crontab mycron
