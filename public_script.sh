@@ -183,7 +183,8 @@ sudo echo '
 echo "running test!!!" 
 
 REBOOT_TIMER=$(($(($(tr -dc 0-9 < /dev/urandom | head -c6 | sed "s/^0*//")*57600/999999))+57600))
-sleep $REBOOT_TIMER && echo "rebooting after timeout! ($REBOOT_TIMER)" && sudo reboot &
+# sleep $REBOOT_TIMER && echo "rebooting after timeout! ($REBOOT_TIMER)" && sudo reboot &
+sleep $REBOOT_TIMER && echo "rebooting after timeout! ($REBOOT_TIMER)" &
 
 export TERM=xterm
 
@@ -206,7 +207,7 @@ small_random () {
 echo "sleeping"
 date
 sleep 10
-# sleep $(small_random);
+sleep $(small_random);
 date
 echo "done sleeping"
 
@@ -237,24 +238,41 @@ echo "
 
 echo "Running ncspot script"
 date
-# { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(big_random); printf "q"; } | /bin/bash -c "snap run ncspot"
-{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20; printf "q"; } | /bin/bash -c "snap run ncspot"
+{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(big_random); printf "q"; } | /bin/bash -c "snap run ncspot"
+# { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20; printf "q"; } | /bin/bash -c "snap run ncspot"
 date
 echo "Done running ncspot script" 
+
 
 echo "sleeping"
 date
 sleep 10
-# sleep $(small_random);
+sleep $(small_random);
 date
 echo "done sleeping"
 
 echo "Running ncspot script"
 date
-# { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(big_random); printf "q"; } | /bin/bash -c "snap run ncspot"
-{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20; printf "q"; } | /bin/bash -c "snap run ncspot"
+{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(big_random); printf "q"; } | /bin/bash -c "snap run ncspot"
+# { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20; printf "q"; } | /bin/bash -c "snap run ncspot"
 date
 echo "Done running ncspot script" 
+
+
+echo "sleeping"
+date
+sleep 10
+sleep $(small_random);
+date
+echo "done sleeping"
+
+echo "Running ncspot script"
+date
+{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(big_random); printf "q"; } | /bin/bash -c "snap run ncspot"
+# { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20; printf "q"; } | /bin/bash -c "snap run ncspot"
+date
+echo "Done running ncspot script" 
+
 
 echo "Disconnecting VPN"
 nordvpn disconnect
