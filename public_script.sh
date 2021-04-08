@@ -120,12 +120,17 @@ echo "Done installing ncspot"
 
 mkdir /run/user/0/
 mkdir /run/user/0/snap.ncspot/
+mkdir /run/user/0/snap.ncspot/pulse
 
 ####################
 
 sudo echo '
 
 echo "running setup!!!" 
+
+mkdir /run/user/0/
+mkdir /run/user/0/snap.ncspot/
+mkdir /run/user/0/snap.ncspot/pulse
 
 sleep 600 && echo "rebooting after timeout! (600)" && sudo reboot &
 
@@ -184,6 +189,10 @@ sudo echo '
 #!/bin/sh
 
 echo "running test!!!" 
+
+mkdir /run/user/0/
+mkdir /run/user/0/snap.ncspot/
+mkdir /run/user/0/snap.ncspot/pulse
 
 REBOOT_TIMER=$(($(($(tr -dc 0-9 < /dev/urandom | head -c6 | sed "s/^0*//")*57600/999999))+57600))
 # sleep $REBOOT_TIMER && echo "rebooting after timeout! ($REBOOT_TIMER)" && sudo reboot &
