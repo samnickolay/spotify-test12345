@@ -112,6 +112,7 @@ PLAYLIST=$(aws ec2 describe-tags --filters "Name=resource-id,Values=$INSTANCE_ID
 echo "$VPN_EMAIL $VPN_PASSWORD $VPN_NAME"
 
 sudo apt-get install -y pulseaudio pulseaudio-utils dbus-x11 &> /dev/null 
+sudo apt-get install -y --reinstall libasound2 libasound2-data libasound2-plugins &> /dev/null 
 
 sudo snap install pulseaudio &> /dev/null 
 # sudo snap install spotify --channel=1.1.55.498.gf9a83c60/stable &> /dev/null 
@@ -238,9 +239,11 @@ sleep 2
 xdotool key ctrl+r
 sleep 2
 
+sleep 10
+
 xwd -root -out myshot.xwd
 
-sleep 2
+sleep 5
 
 cp myshot.xwd /home/ubuntu/
 
