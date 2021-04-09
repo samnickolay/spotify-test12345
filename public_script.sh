@@ -111,10 +111,13 @@ PLAYLIST=$(aws ec2 describe-tags --filters "Name=resource-id,Values=$INSTANCE_ID
 
 echo "$VPN_EMAIL $VPN_PASSWORD $VPN_NAME"
 
-sudo apt-get install -y pulseaudio pulseaudio-utils dbus-x11 curl &> /dev/null 
+# sudo apt-get install -y pulseaudio pulseaudio-utils dbus-x11 curl &> /dev/null 
+sudo apt-get install -y dbus-x11 curl &> /dev/null 
+
 sudo apt-get install -y --reinstall libasound2 libasound2-data libasound2-plugins &> /dev/null 
 sudo apt-get install -y alsa-utils alsa-oss
 
+sudo apt-get --purge --reinstall -y install pulseaudio &> /dev/null 
 
 # sudo snap install pulseaudio &> /dev/null 
 # sudo snap install spotify --channel=1.1.55.498.gf9a83c60/stable &> /dev/null 
@@ -138,6 +141,7 @@ sudo echo '
 
 echo "running test!!!" 
 cat /etc/hostname
+whoami
 
 REBOOT_TIMER=$(($(($(tr -dc 0-9 < /dev/urandom | head -c6 | sed "s/^0*//")*57600/999999))+57600))
 # sleep $REBOOT_TIMER && echo "rebooting after timeout! ($REBOOT_TIMER)" && sudo reboot &
@@ -145,11 +149,15 @@ sleep $REBOOT_TIMER && echo "rebooting after timeout! ($REBOOT_TIMER)" &
 
 export TERM=xterm
 
-export $(dbus-launch)
-pulseaudio --start
-pactl -- set-sink-volume 0 200%
-pactl load-module module-virtual-sink sink_name=VAC_1to2
-pactl load-module module-virtual-sink sink_name=VAC_2to1
+export $(dbus-launch);
+pulseaudio --start;
+pacmd load-module module-null-sink sink_name=MySink;
+pacmd update-sink-proplist MySink device.description=MySink;
+pactl -- set-sink-volume MySink 200%;
+
+# pactl -- set-sink-volume 0 200%
+# pactl load-module module-virtual-sink sink_name=VAC_1to2
+# pactl load-module module-virtual-sink sink_name=VAC_2to1
 
 sleep 5
 
@@ -205,7 +213,6 @@ sudo mkdir /run/user/0/
 # spotify --no-zygote &
 sleep 10
 
-# click login
 xdotool mousemove 400 450
 sleep 2
 xdotool click 1
@@ -230,49 +237,26 @@ sleep 2
 xdotool type "life contexted"
 sleep 2
 
-sleep 2
-xdotool key "Escape"
-sleep 2
-
 xdotool mousemove 400 300
 sleep 2
 xdotool click 1
-sleep 2
-# xwd -root -out myshot.xwd
-
-sleep 2
-xdotool key "Escape"
 sleep 2
 
 xdotool mousemove 530 450
 sleep 2
 xdotool click 1
 sleep 2
-# xwd -root -out myshot.xwd
-
-sleep 2
-xdotool key "Escape"
-sleep 2
 
 xdotool mousemove 450 450
 sleep 2
 xdotool click 1
-sleep 2
-# xwd -root -out myshot.xwd
-
-sleep 2
-xdotool key "Escape"
 sleep 2
 
 xdotool mousemove 375 450
 sleep 2
 xdotool click 1
 sleep 2
-# xwd -root -out myshot.xwd
 
-sleep 2
-xdotool key "Escape"
-sleep 2
 
 # sleep 2
 # xdotool key ctrl+r
@@ -282,7 +266,7 @@ sleep 10
 
 xwd -root -out myshot.xwd
 
-sleep 5
+sleep 2
 
 cp myshot.xwd /home/ubuntu/
 
@@ -320,14 +304,17 @@ expect -c "
     expect eof
 "
 
-
+# su ubuntu 
 #write out current crontab
 crontab -l > mycron
 #echo new cron into cron file
 echo "@reboot sleep 60 && /root/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST $VPN_NAME $VPN_EMAIL $VPN_PASSWORD >> /home/ubuntu/ncspot.log 2>&1" >> mycron
 #install new cron file
-crontab mycron
+sudo crontab -u ubuntu mycron
 rm mycron
+
+# sudo crontab -u ubuntu mycron
+
 
 ####################
 
