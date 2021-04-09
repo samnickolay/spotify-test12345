@@ -197,7 +197,9 @@ sleep 2
 
 sudo mkdir /run/user/0/
 
-/bin/bash -c "spotify --no-zygote &"
+# /bin/bash -c "spotify --no-zygote &"
+/bin/bash -c "snap run spotify --no-zygote &"
+
 # spotify --no-zygote &
 sleep 10
 
