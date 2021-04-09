@@ -281,11 +281,11 @@ echo "\nDONE!!\n"
 sleep 7800
 sudo reboot
 
-'> /root/script2.sh
+'> /home/ubuntu/script2.sh
 
 # ps auxww | grep "Xvfb $DISPLAY" | awk '{print $2}' | xargs kill  
 
-sudo chmod a+x /root/script2.sh
+sudo chmod a+x /home/ubuntu/script2.sh
 
 ####################
 
@@ -308,7 +308,7 @@ expect -c "
 #write out current crontab
 crontab -l > mycron
 #echo new cron into cron file
-echo "@reboot sleep 60 && /root/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST $VPN_NAME $VPN_EMAIL $VPN_PASSWORD >> /home/ubuntu/ncspot.log 2>&1" >> mycron
+echo "@reboot sleep 60 && /home/ubuntu/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST $VPN_NAME $VPN_EMAIL $VPN_PASSWORD >> /home/ubuntu/ncspot.log 2>&1" >> mycron
 #install new cron file
 sudo crontab -u ubuntu mycron
 rm mycron
