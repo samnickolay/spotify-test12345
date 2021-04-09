@@ -199,7 +199,7 @@ xdotool type "$1"
 sleep 2
 xdotool key Tab
 sleep 2
-xdotool type "$"
+xdotool type "$2"
 sleep 2
 xdotool key Return
 sleep 10
