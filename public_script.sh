@@ -232,8 +232,8 @@ sleep 2
 
 xwd -root -out myshot.xwd
 
-sleep $(big_random);
-
+# sleep $(big_random);
+sleep 20
 
 echo "Disconnecting VPN"
 nordvpn disconnect
