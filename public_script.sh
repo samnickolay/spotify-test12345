@@ -113,18 +113,20 @@ echo "$VPN_EMAIL $VPN_PASSWORD $VPN_NAME"
 
 sudo apt-get install -y pulseaudio pulseaudio-utils dbus-x11 curl &> /dev/null 
 sudo apt-get install -y --reinstall libasound2 libasound2-data libasound2-plugins &> /dev/null 
+sudo apt-get install -y alsa-utils alsa-oss
+
 
 # sudo snap install pulseaudio &> /dev/null 
 # sudo snap install spotify --channel=1.1.55.498.gf9a83c60/stable &> /dev/null 
-# sudo snap install spotify &> /dev/null 
+sudo snap install spotify &> /dev/null 
 
-curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add -
+# curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add -
 
-echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+# echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
 
-sudo apt update
+# sudo apt update
 
-sudo apt install -y spotify-client &> /dev/null 
+# sudo apt install -y spotify-client &> /dev/null 
 
 
 echo "Done installing ncspot"
