@@ -121,7 +121,7 @@ sudo apt-get --purge --reinstall -y install pulseaudio &> /dev/null
 
 # sudo snap install pulseaudio &> /dev/null 
 # sudo snap install spotify --channel=1.1.55.498.gf9a83c60/stable &> /dev/null 
-sudo snap install spotify &> /dev/null 
+sudo snap install spotify --devmode &> /dev/null 
 
 # curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add -
 
@@ -206,7 +206,7 @@ Xvfb $DISPLAY -screen 0 800x800x24 &
 sleep 2
 
 sudo mkdir /run/user/1000/
-# sudo chmod a+rwx /run/user/1000/
+# sudo chmod a+rw /run/user/1000/
 
 # /bin/bash -c "spotify --no-zygote &"
 /bin/bash -c "snap run spotify --no-zygote &"
