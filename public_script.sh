@@ -136,6 +136,11 @@ export $(dbus-launch)
 pulseaudio --start
 pactl -- set-sink-volume 0 200%
 
+su ubuntu
+
+sleep 5
+whoami
+
 export NO_AT_BRIDGE=1
 
 echo "$1 $2 $3 $4 $5 $6"
@@ -180,7 +185,6 @@ export DISPLAY=:44
 Xvfb $DISPLAY -screen 0 800x800x24 &   
 sleep 2
 
-su ubuntu
 
 /bin/bash -c "snap run spotify --no-zygote &"
 # spotify --no-zygote &
