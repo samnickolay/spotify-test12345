@@ -148,6 +148,8 @@ export TERM=xterm
 export $(dbus-launch)
 pulseaudio --start
 pactl -- set-sink-volume 0 200%
+pactl load-module module-virtual-sink sink_name=VAC_1to2
+pactl load-module module-virtual-sink sink_name=VAC_2to1
 
 sleep 5
 
@@ -219,9 +221,17 @@ xdotool key Return
 sleep 10
 
 sleep 2
+xdotool key "Escape"
+sleep 2
+
+sleep 2
 xdotool key ctrl+l
 sleep 2
 xdotool type "life contexted"
+sleep 2
+
+sleep 2
+xdotool key "Escape"
 sleep 2
 
 xdotool mousemove 400 300
@@ -230,11 +240,19 @@ xdotool click 1
 sleep 2
 # xwd -root -out myshot.xwd
 
+sleep 2
+xdotool key "Escape"
+sleep 2
+
 xdotool mousemove 530 450
 sleep 2
 xdotool click 1
 sleep 2
 # xwd -root -out myshot.xwd
+
+sleep 2
+xdotool key "Escape"
+sleep 2
 
 xdotool mousemove 450 450
 sleep 2
@@ -242,11 +260,19 @@ xdotool click 1
 sleep 2
 # xwd -root -out myshot.xwd
 
+sleep 2
+xdotool key "Escape"
+sleep 2
+
 xdotool mousemove 375 450
 sleep 2
 xdotool click 1
 sleep 2
 # xwd -root -out myshot.xwd
+
+sleep 2
+xdotool key "Escape"
+sleep 2
 
 # sleep 2
 # xdotool key ctrl+r
