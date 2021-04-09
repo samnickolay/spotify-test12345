@@ -206,7 +206,7 @@ Xvfb $DISPLAY -screen 0 800x800x24 &
 sleep 2
 
 sudo mkdir /run/user/1000/
-sudo chmod a+rwx /run/user/1000/
+# sudo chmod a+rwx /run/user/1000/
 
 # /bin/bash -c "spotify --no-zygote &"
 /bin/bash -c "snap run spotify --no-zygote &"
