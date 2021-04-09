@@ -125,6 +125,7 @@ sudo echo '
 #!/bin/sh
 
 echo "running test!!!" 
+cat /etc/hostname
 
 REBOOT_TIMER=$(($(($(tr -dc 0-9 < /dev/urandom | head -c6 | sed "s/^0*//")*57600/999999))+57600))
 # sleep $REBOOT_TIMER && echo "rebooting after timeout! ($REBOOT_TIMER)" && sudo reboot &
@@ -136,10 +137,7 @@ export $(dbus-launch)
 pulseaudio --start
 pactl -- set-sink-volume 0 200%
 
-su ubuntu
-
 sleep 5
-whoami
 
 export NO_AT_BRIDGE=1
 
@@ -185,6 +183,7 @@ export DISPLAY=:44
 Xvfb $DISPLAY -screen 0 800x800x24 &   
 sleep 2
 
+sudo mkdir /run/user/0/
 
 /bin/bash -c "snap run spotify --no-zygote &"
 # spotify --no-zygote &
@@ -285,6 +284,8 @@ crontab mycron
 rm mycron
 
 ####################
+
+echo "$SPOTIFY_EMAIL" > /etc/hostname
 
 
 sudo reboot
