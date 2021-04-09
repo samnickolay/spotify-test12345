@@ -114,85 +114,16 @@ echo "$VPN_EMAIL $VPN_PASSWORD $VPN_NAME"
 sudo apt-get install -y pulseaudio pulseaudio-utils dbus-x11 &> /dev/null 
 
 sudo snap install pulseaudio &> /dev/null 
-sudo snap install ncspot &> /dev/null 
+sudo snap install spotify --channel=1.1.55.498.gf9a83c60/stable&> /dev/null 
 
 echo "Done installing ncspot"
 
-mkdir /run/user/0/
-mkdir /run/user/0/snap.ncspot/
-mkdir /run/user/0/snap.ncspot/pulse
-
 ####################
-
-sudo echo '
-
-echo "running setup!!!" 
-
-mkdir /run/user/0/
-mkdir /run/user/0/snap.ncspot/
-mkdir /run/user/0/snap.ncspot/pulse
-
-sleep 600 && echo "rebooting after timeout! (600)" && sudo reboot &
-
-export TERM=xterm
-
-export $(dbus-launch)
-pulseaudio --start
-pactl -- set-sink-volume 0 200%
-
-echo "$1 $2 $3 $4 $5 $6"
-
-
-dig +short myip.opendns.com @resolver1.opendns.com
-
-echo "
-
-----------
-"
-
-echo "VPN Connected! $4"
-nordvpn connect $4
-sleep 20;
-dig +short myip.opendns.com @resolver1.opendns.com
-
-echo "
-----------
-
-"
-
-echo "Running ncspot setup script"
-date
-{ sleep 10; printf "\n"; sleep 3; echo "$1"; sleep 3; printf "\t"; echo "$2"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep 10; printf "z"; sleep 5; printf "r"; sleep 5; printf "q"; } | /bin/bash -c "snap run ncspot"
-date
-echo "Done running ncspot setup script"
-
-
-#write out current crontab
-crontab -l > mycron
-#echo new cron into cron file
-echo "@reboot sleep 60 && /root/script2.sh $1 $2 $3 $4 $5 $6 >> /home/ubuntu/ncspot.log 2>&1" > mycron
-#install new cron file
-crontab mycron
-rm mycron
-
-
-echo "Disconnecting VPN"
-nordvpn disconnect
-
-sudo reboot
-echo "rebooting!"
-
-'> /root/script1.sh
-
 
 sudo echo '
 #!/bin/sh
 
 echo "running test!!!" 
-
-mkdir /run/user/0/
-mkdir /run/user/0/snap.ncspot/
-mkdir /run/user/0/snap.ncspot/pulse
 
 REBOOT_TIMER=$(($(($(tr -dc 0-9 < /dev/urandom | head -c6 | sed "s/^0*//")*57600/999999))+57600))
 # sleep $REBOOT_TIMER && echo "rebooting after timeout! ($REBOOT_TIMER)" && sudo reboot &
@@ -203,6 +134,8 @@ export TERM=xterm
 export $(dbus-launch)
 pulseaudio --start
 pactl -- set-sink-volume 0 200%
+
+export NO_AT_BRIDGE=1
 
 echo "$1 $2 $3 $4 $5 $6"
 
@@ -219,7 +152,7 @@ small_random () {
 echo "sleeping"
 date
 sleep 10
-sleep $(small_random);
+# sleep $(small_random);
 date
 echo "done sleeping"
 
@@ -240,60 +173,80 @@ echo "
 
 "
 
-# echo "Running ncspot setup script"
-# date
-# { sleep 10; printf "\n"; sleep 3; echo "$1"; sleep 3; printf "\t"; echo "$2"; sleep 3; printf "\t"; sleep 3; printf "\n"; sleep 10; printf "z"; sleep 5; printf "r"; sleep 5; printf "q"; } | /bin/bash -c "snap run ncspot" > /dev/null 
-# date
-# echo "Done running ncspot setup script"
-
-# sleep 10;
-
-echo "Running ncspot script"
-date
-{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(big_random); printf "q"; } | /bin/bash -c "snap run ncspot" > /dev/null 
-# { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20; printf "q"; } | /bin/bash -c "snap run ncspot"
-date
-echo "Done running ncspot script" 
-
-
-echo "sleeping"
-date
+echo "running spotify"
+save="$DISPLAY"                          
+export DISPLAY=:44                    
+Xvfb $DISPLAY -screen 0 800x800x24 &   
+sleep 2
+spotify --no-zygote &
 sleep 10
-sleep $(small_random);
-date
-echo "done sleeping"
 
-echo "Running ncspot script"
-date
-{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(big_random); printf "q"; } | /bin/bash -c "snap run ncspot" > /dev/null 
-# { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20; printf "q"; } | /bin/bash -c "snap run ncspot"
-date
-echo "Done running ncspot script" 
+# click login
+xdotool mousemove 400 450
+sleep 2
+xdotool click 1
 
-
-echo "sleeping"
-date
+sleep 2
+xdotool type "$1"
+sleep 2
+xdotool key Tab
+sleep 2
+xdotool type "$"
+sleep 2
+xdotool key Return
 sleep 10
-sleep $(small_random);
-date
-echo "done sleeping"
 
-echo "Running ncspot script"
-date
-{ sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep $(big_random); printf "q"; } | /bin/bash -c "snap run ncspot" > /dev/null 
-# { sleep 5; printf ":focus search\n"; sleep 3; printf "$3"; sleep 3; printf "\n"; sleep 3; printf "\n"; sleep 20; printf "q"; } | /bin/bash -c "snap run ncspot"
-date
-echo "Done running ncspot script" 
+sleep 2
+xdotool key ctrl+l
+sleep 2
+xdotool type "life contexted"
+sleep 2
+
+xdotool mousemove 400 300
+sleep 2
+xdotool click 1
+sleep 2
+# xwd -root -out myshot.xwd
+
+xdotool mousemove 530 450
+sleep 2
+xdotool click 1
+sleep 2
+# xwd -root -out myshot.xwd
+
+xdotool mousemove 450 450
+sleep 2
+xdotool click 1
+sleep 2
+# xwd -root -out myshot.xwd
+
+xdotool mousemove 375 450
+sleep 2
+xdotool click 1
+sleep 2
+# xwd -root -out myshot.xwd
+
+sleep 2
+xdotool key ctrl+r
+sleep 2
+
+xwd -root -out myshot.xwd
+
+sleep $(big_random);
 
 
 echo "Disconnecting VPN"
 nordvpn disconnect
 
+
 echo "\nDONE!!\n"
+
+#sudo reboot
 
 '> /root/script2.sh
 
-sudo chmod a+x /root/script1.sh
+# ps auxww | grep "Xvfb $DISPLAY" | awk '{print $2}' | xargs kill  
+
 sudo chmod a+x /root/script2.sh
 
 ####################
@@ -313,14 +266,11 @@ expect -c "
     expect eof
 "
 
-# /root/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST &> /root/out.log
-
 
 #write out current crontab
 crontab -l > mycron
 #echo new cron into cron file
-echo "@reboot sleep 60 && /root/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST $VPN_NAME $VPN_EMAIL $VPN_PASSWORD >> /home/ubuntu/setup.log 2>&1" >> mycron
-# echo "@reboot sleep 60 && /root/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST $VPN_NAME $VPN_EMAIL $VPN_PASSWORD >> /home/ubuntu/ncspot.log 2>&1" >> mycron
+echo "@reboot sleep 60 && /root/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST $VPN_NAME $VPN_EMAIL $VPN_PASSWORD >> /home/ubuntu/ncspot.log 2>&1" >> mycron
 #install new cron file
 crontab mycron
 rm mycron
