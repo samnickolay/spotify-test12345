@@ -111,12 +111,21 @@ PLAYLIST=$(aws ec2 describe-tags --filters "Name=resource-id,Values=$INSTANCE_ID
 
 echo "$VPN_EMAIL $VPN_PASSWORD $VPN_NAME"
 
-sudo apt-get install -y pulseaudio pulseaudio-utils dbus-x11 &> /dev/null 
+sudo apt-get install -y pulseaudio pulseaudio-utils dbus-x11 curl &> /dev/null 
 sudo apt-get install -y --reinstall libasound2 libasound2-data libasound2-plugins &> /dev/null 
 
-sudo snap install pulseaudio &> /dev/null 
+# sudo snap install pulseaudio &> /dev/null 
 # sudo snap install spotify --channel=1.1.55.498.gf9a83c60/stable &> /dev/null 
-sudo snap install spotify &> /dev/null 
+# sudo snap install spotify &> /dev/null 
+
+curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add -
+
+echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+
+sudo apt update
+
+sudo apt install -y spotify-client &> /dev/null 
+
 
 echo "Done installing ncspot"
 
@@ -186,7 +195,7 @@ sleep 2
 
 sudo mkdir /run/user/0/
 
-/bin/bash -c "snap run spotify --no-zygote &"
+/bin/bash -c "spotify --no-zygote &"
 # spotify --no-zygote &
 sleep 10
 
@@ -235,9 +244,9 @@ xdotool click 1
 sleep 2
 # xwd -root -out myshot.xwd
 
-sleep 2
-xdotool key ctrl+r
-sleep 2
+# sleep 2
+# xdotool key ctrl+r
+# sleep 2
 
 sleep 10
 
@@ -255,7 +264,8 @@ nordvpn disconnect
 
 echo "\nDONE!!\n"
 
-#sudo reboot
+sleep 7800
+sudo reboot
 
 '> /root/script2.sh
 
