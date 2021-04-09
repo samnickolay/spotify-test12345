@@ -240,8 +240,11 @@ sleep 2
 
 xwd -root -out myshot.xwd
 
+sleep 2
+
+cp myshot.xwd /home/ubuntu/
+
 # sleep $(big_random);
-sleep 20
 
 echo "Disconnecting VPN"
 nordvpn disconnect
