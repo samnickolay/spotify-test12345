@@ -149,11 +149,11 @@ sleep $REBOOT_TIMER && echo "rebooting after timeout! ($REBOOT_TIMER)" &
 
 export TERM=xterm
 
-export $(dbus-launch);
-pulseaudio --start;
-pacmd load-module module-null-sink sink_name=MySink;
-pacmd update-sink-proplist MySink device.description=MySink;
-pactl -- set-sink-volume MySink 200%;
+# export $(dbus-launch);
+# pulseaudio --start;
+# pacmd load-module module-null-sink sink_name=MySink;
+# pacmd update-sink-proplist MySink device.description=MySink;
+# pactl -- set-sink-volume MySink 200%;
 
 # pactl -- set-sink-volume 0 200%
 # pactl load-module module-virtual-sink sink_name=VAC_1to2
@@ -209,7 +209,13 @@ sudo mkdir /run/user/1000/
 # sudo chmod a+rw /run/user/1000/
 
 # /bin/bash -c "spotify --no-zygote &"
-/bin/bash -c "sudo snap run spotify --no-zygote &"
+/bin/bash -c "
+export $(dbus-launch);
+pulseaudio --start;
+pacmd load-module module-null-sink sink_name=MySink;
+pacmd update-sink-proplist MySink device.description=MySink;
+pactl -- set-sink-volume MySink 200%;
+sudo snap run spotify --no-zygote &"
 
 # spotify --no-zygote &
 sleep 10
