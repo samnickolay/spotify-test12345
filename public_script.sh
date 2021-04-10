@@ -121,7 +121,7 @@ sudo apt-get --purge --reinstall -y install pulseaudio &> /dev/null
 
 # sudo snap install pulseaudio &> /dev/null 
 # sudo snap install spotify --channel=1.1.55.498.gf9a83c60/stable &> /dev/null 
-sudo snap install spotify --devmode &> /dev/null 
+sudo snap install --devmode spotify &> /dev/null 
 
 # curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add -
 
@@ -205,7 +205,7 @@ export DISPLAY=:44
 Xvfb $DISPLAY -screen 0 800x800x24 &   
 sleep 2
 
-sudo mkdir /run/user/1000/
+# sudo mkdir /run/user/1000/
 # sudo chmod a+rw /run/user/1000/
 
 # # /bin/bash -c "spotify --no-zygote &"
@@ -310,15 +310,14 @@ sudo apt-get install -y expect xvfb xinit xdotool x11-apps &> /dev/null
 
 sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
 
-expect -c "
-    su ubuntu
-    spawn sudo nordvpn login
-    expect -exact \"Username: \"
-    send -- \"$VPN_EMAIL\r\"
-    expect -exact \"Password: \"
-    send -- \"$VPN_PASSWORD\r\"
-    expect eof
-"
+# expect -c "
+#     spawn sudo nordvpn login
+#     expect -exact \"Username: \"
+#     send -- \"$VPN_EMAIL\r\"
+#     expect -exact \"Password: \"
+#     send -- \"$VPN_PASSWORD\r\"
+#     expect eof
+# "
 
 # su ubuntu 
 #write out current crontab
@@ -335,6 +334,20 @@ rm mycron
 ####################
 
 echo "$SPOTIFY_EMAIL" > /etc/hostname
+
+su ubuntu
+
+whoami
+
+expect -c "
+    spawn sudo nordvpn login
+    expect -exact \"Username: \"
+    send -- \"$VPN_EMAIL\r\"
+    expect -exact \"Password: \"
+    send -- \"$VPN_PASSWORD\r\"
+    expect eof
+"
+
 
 
 sudo reboot
