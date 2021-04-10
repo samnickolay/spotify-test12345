@@ -209,7 +209,7 @@ sudo mkdir /run/user/1000/
 # sudo chmod a+rw /run/user/1000/
 
 # /bin/bash -c "spotify --no-zygote &"
-/bin/bash -c "snap run spotify --no-zygote &"
+/bin/bash -c "sudo snap run spotify --no-zygote &"
 
 # spotify --no-zygote &
 sleep 10
