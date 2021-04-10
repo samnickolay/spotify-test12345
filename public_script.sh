@@ -137,7 +137,7 @@ echo "Done installing ncspot"
 ####################
 
 sudo echo '
-#!/bin/sh
+#!/bin/bash
 
 echo "running test!!!" 
 cat /etc/hostname
