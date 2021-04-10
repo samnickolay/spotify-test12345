@@ -208,14 +208,22 @@ sleep 2
 sudo mkdir /run/user/1000/
 # sudo chmod a+rw /run/user/1000/
 
-# /bin/bash -c "spotify --no-zygote &"
-/bin/bash -c "
+# # /bin/bash -c "spotify --no-zygote &"
+# /bin/bash -c "
+# export $(dbus-launch);
+# pulseaudio --start;
+# pacmd load-module module-null-sink sink_name=MySink;
+# pacmd update-sink-proplist MySink device.description=MySink;
+# pactl -- set-sink-volume MySink 200%;
+# sudo snap run spotify --no-zygote &"
+
 export $(dbus-launch);
 pulseaudio --start;
 pacmd load-module module-null-sink sink_name=MySink;
 pacmd update-sink-proplist MySink device.description=MySink;
 pactl -- set-sink-volume MySink 200%;
-sudo snap run spotify --no-zygote &"
+sleep 2
+spotify --no-zygote &
 
 # spotify --no-zygote &
 sleep 10
