@@ -236,12 +236,12 @@ sleep 2
 
 export $(dbus-launch);
 # sudo pulseaudio -system &;
-sudo pulseaudio --start;
+pulseaudio --start;
 pacmd load-module module-null-sink sink_name=MySink;
 pacmd update-sink-proplist MySink device.description=MySink;
 pactl -- set-sink-volume MySink 200%;
 sleep 2
-/snap/bin/spotify --no-zygote &
+sudo /snap/bin/spotify --no-zygote &
 
 # spotify --no-zygote &
 sleep 10
