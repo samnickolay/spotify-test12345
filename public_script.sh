@@ -236,7 +236,7 @@ sleep 2
 
 export $(dbus-launch);
 # sudo pulseaudio -system &;
-sudo pulseaudio --system &
+sudo pulseaudio --start;
 pacmd load-module module-null-sink sink_name=MySink;
 pacmd update-sink-proplist MySink device.description=MySink;
 pactl -- set-sink-volume MySink 200%;
