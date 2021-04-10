@@ -139,6 +139,23 @@ echo "Done installing ncspot"
 sudo echo '
 #!/bin/bash
 
+echo "running setup script!"
+
+bash -c "/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6"
+
+sleep 5;
+
+echo "running setup script! - 2x"
+
+bash -c "/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6"
+
+echo "done with setup script!"
+
+'> /home/ubuntu/script1.sh
+
+sudo echo '
+#!/bin/bash
+
 echo "running test!!!" 
 cat /etc/hostname
 whoami
@@ -218,7 +235,7 @@ sleep 2
 # sudo snap run spotify --no-zygote &"
 
 export $(dbus-launch);
-pulseaudio --start;
+sudo pulseaudio -system &;
 pacmd load-module module-null-sink sink_name=MySink;
 pacmd update-sink-proplist MySink device.description=MySink;
 pactl -- set-sink-volume MySink 200%;
@@ -300,6 +317,8 @@ sudo reboot
 
 # ps auxww | grep "Xvfb $DISPLAY" | awk '{print $2}' | xargs kill  
 
+sudo chmod a+x /home/ubuntu/script1.sh
+
 sudo chmod a+x /home/ubuntu/script2.sh
 
 ####################
@@ -323,7 +342,7 @@ sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
 #write out current crontab
 crontab -l > mycron
 #echo new cron into cron file
-echo "@reboot sleep 60 && /home/ubuntu/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST $VPN_NAME $VPN_EMAIL $VPN_PASSWORD >> /home/ubuntu/ncspot.log 2>&1" >> mycron
+echo "@reboot sleep 60 && /home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST $VPN_NAME $VPN_EMAIL $VPN_PASSWORD >> /home/ubuntu/ncspot.log 2>&1" >> mycron
 #install new cron file
 sudo crontab -u ubuntu mycron
 rm mycron
