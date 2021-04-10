@@ -223,7 +223,7 @@ pacmd load-module module-null-sink sink_name=MySink;
 pacmd update-sink-proplist MySink device.description=MySink;
 pactl -- set-sink-volume MySink 200%;
 sleep 2
-spotify --no-zygote &
+/snap/bin/spotify --no-zygote &
 
 # spotify --no-zygote &
 sleep 10
@@ -311,6 +311,7 @@ sudo apt-get install -y expect xvfb xinit xdotool x11-apps &> /dev/null
 sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
 
 expect -c "
+    su ubuntu
     spawn sudo nordvpn login
     expect -exact \"Username: \"
     send -- \"$VPN_EMAIL\r\"
