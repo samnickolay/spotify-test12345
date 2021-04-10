@@ -147,7 +147,7 @@ sleep 5;
 
 echo "running setup script! - 2x"
 
-bash -c "/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6"
+# bash -c "/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6"
 
 echo "done with setup script!"
 
@@ -235,7 +235,8 @@ sleep 2
 # sudo snap run spotify --no-zygote &"
 
 export $(dbus-launch);
-sudo pulseaudio -system &;
+# sudo pulseaudio -system &;
+sudo pulseaudio --system &
 pacmd load-module module-null-sink sink_name=MySink;
 pacmd update-sink-proplist MySink device.description=MySink;
 pactl -- set-sink-volume MySink 200%;
