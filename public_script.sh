@@ -204,17 +204,7 @@ export DISPLAY=:44
 Xvfb $DISPLAY -screen 0 800x800x24 &   
 sleep 2
 
-# sudo mkdir /run/user/1000/
-# sudo chmod a+rw /run/user/1000/
-
-# # /bin/bash -c "spotify --no-zygote &"
-# /bin/bash -c "
-# export $(dbus-launch);
-# pulseaudio --start;
-# pacmd load-module module-null-sink sink_name=MySink;
-# pacmd update-sink-proplist MySink device.description=MySink;
-# pactl -- set-sink-volume MySink 200%;
-# sudo snap run spotify --no-zygote &"
+sudo chown -R $USER:$USER $HOME/
 
 export $(dbus-launch);
 # sudo pulseaudio -system &;
@@ -227,8 +217,6 @@ pactl load-module module-virtual-sink sink_name=VAC_2to1;
 
 sleep 2
 /snap/bin/spotify --no-zygote &
-
-# spotify --no-zygote &
 sleep 10
 
 xdotool mousemove 400 450
@@ -311,14 +299,22 @@ sudo apt-get install -y expect xvfb xinit xdotool x11-apps &> /dev/null
 
 sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
 
-su -c 'expect -c "
+sudo echo '
+#!/bin/bash
+
+expect -c "
     spawn sudo nordvpn login
     expect -exact \"Username: \"
-    send -- \"$VPN_EMAIL\r\"
+    send -- \"$1\r\"
     expect -exact \"Password: \"
-    send -- \"$VPN_PASSWORD\r\"
+    send -- \"$2\r\"
     expect eof
-"' - ubuntu
+"'> /home/ubuntu/vpn_login.sh
+
+sudo chmod a+x /home/ubuntu/vpn_login.sh
+
+
+su -c "/home/ubuntu/vpn_login.sh $VPN_EMAIL $VPN_PASSWORD" - ubuntu
 
 # expect -c "
 #     spawn sudo nordvpn login
