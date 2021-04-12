@@ -112,7 +112,7 @@ PLAYLIST=$(aws ec2 describe-tags --filters "Name=resource-id,Values=$INSTANCE_ID
 echo "$VPN_EMAIL $VPN_PASSWORD $VPN_NAME"
 
 # sudo apt-get install -y pulseaudio pulseaudio-utils dbus-x11 curl &> /dev/null 
-sudo apt-get install -y dbus-x11 curl jack alsa-base pulseaudio alsa-utils alsa-oss &> /dev/null 
+sudo apt-get install -y dbus-x11 curl jack alsa-base pulseaudio alsa-utils alsa-oss alsa-lib alsa-plugins alsa-utils &> /dev/null 
 
 sudo apt-get install -y --reinstall libasound2 libasound2-data libasound2-plugins &> /dev/null 
 # sudo apt-get install -y alsa-utils alsa-oss
@@ -134,16 +134,11 @@ echo "Done installing ncspot"
 
 sudo echo '
 #!/bin/bash
+XDG_RUNTIME_DIR=/run/user/1000
 
-echo "running setup script!"
+echo "running script!"
 bash -c "/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6"
-
-sleep 5;
-
-# echo "running setup script! - 2x"
-# # bash -c "/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6"
-
-# echo "done with setup script!"
+# echo "done running script!"
 
 '> /home/ubuntu/script1.sh
 
@@ -293,7 +288,7 @@ sleep 2
 # sleep $(big_random);
 
 echo "Disconnecting VPN"
-nordvpn disconnect
+sudo nordvpn disconnect
 
 
 echo "\nDONE!!\n"
@@ -347,7 +342,9 @@ sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
 #write out current crontab
 crontab -l > mycron
 #echo new cron into cron file
-echo "@reboot sleep 60 && /home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST $VPN_NAME $VPN_EMAIL $VPN_PASSWORD >> /home/ubuntu/ncspot.log 2>&1" >> mycron
+echo "
+XDG_RUNTIME_DIR=/run/user/1000
+@reboot sleep 60 && /home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST $VPN_NAME $VPN_EMAIL $VPN_PASSWORD >> /home/ubuntu/ncspot.log 2>&1" >> mycron
 #install new cron file
 sudo crontab -u ubuntu mycron
 rm mycron
