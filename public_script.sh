@@ -140,10 +140,10 @@ bash -c "/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6"
 
 sleep 5;
 
-echo "running setup script! - 2x"
-# bash -c "/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6"
+# echo "running setup script! - 2x"
+# # bash -c "/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6"
 
-echo "done with setup script!"
+# echo "done with setup script!"
 
 '> /home/ubuntu/script1.sh
 
@@ -159,7 +159,7 @@ REBOOT_TIMER=$(($(($(tr -dc 0-9 < /dev/urandom | head -c6 | sed "s/^0*//")*57600
 sleep $REBOOT_TIMER && echo "rebooting after timeout! ($REBOOT_TIMER)" &
 
 export TERM=xterm
-
+XDG_RUNTIME_DIR=/run/user/1000
 export NO_AT_BRIDGE=1
 
 echo "$1 $2 $3 $4 $5 $6"
@@ -276,10 +276,6 @@ xdotool click 1
 sleep 2
 
 
-# sleep 2
-# xdotool key ctrl+r
-# sleep 2
-
 sleep 10
 
 xwd -root -out myshot.xwd
@@ -315,6 +311,15 @@ sudo apt-get install -y expect xvfb xinit xdotool x11-apps &> /dev/null
 
 sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
 
+su -c 'expect -c "
+    spawn sudo nordvpn login
+    expect -exact \"Username: \"
+    send -- \"$VPN_EMAIL\r\"
+    expect -exact \"Password: \"
+    send -- \"$VPN_PASSWORD\r\"
+    expect eof
+"' - ubuntu
+
 # expect -c "
 #     spawn sudo nordvpn login
 #     expect -exact \"Username: \"
@@ -340,18 +345,18 @@ rm mycron
 
 echo "$SPOTIFY_EMAIL" > /etc/hostname
 
-su ubuntu
+# su ubuntu
 
-whoami
+# whoami
 
-expect -c "
-    spawn sudo nordvpn login
-    expect -exact \"Username: \"
-    send -- \"$VPN_EMAIL\r\"
-    expect -exact \"Password: \"
-    send -- \"$VPN_PASSWORD\r\"
-    expect eof
-"
+# expect -c "
+#     spawn sudo nordvpn login
+#     expect -exact \"Username: \"
+#     send -- \"$VPN_EMAIL\r\"
+#     expect -exact \"Password: \"
+#     send -- \"$VPN_PASSWORD\r\"
+#     expect eof
+# "
 
 
 
