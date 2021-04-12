@@ -112,14 +112,14 @@ PLAYLIST=$(aws ec2 describe-tags --filters "Name=resource-id,Values=$INSTANCE_ID
 echo "$VPN_EMAIL $VPN_PASSWORD $VPN_NAME"
 
 # sudo apt-get install -y pulseaudio pulseaudio-utils dbus-x11 curl &> /dev/null 
-sudo apt-get install -y dbus-x11 curl jack &> /dev/null 
+sudo apt-get install -y dbus-x11 curl jack alsa-base pulseaudio alsa-utils alsa-oss &> /dev/null 
 
 sudo apt-get install -y --reinstall libasound2 libasound2-data libasound2-plugins &> /dev/null 
-sudo apt-get install -y alsa-utils alsa-oss
+# sudo apt-get install -y alsa-utils alsa-oss
 
 # sudo apt-get --purge --reinstall -y install pulseaudio &> /dev/null 
 
-sudo snap install pulseaudio &> /dev/null 
+# sudo snap install pulseaudio &> /dev/null 
 # sudo snap install spotify --channel=1.1.55.498.gf9a83c60/stable &> /dev/null 
 sudo snap install --devmode spotify &> /dev/null 
 
@@ -198,7 +198,7 @@ expect -c "
 "
 
 echo "VPN Connected! $4"
-nordvpn connect $4
+sudo nordvpn connect $4
 sleep 20;
 dig +short myip.opendns.com @resolver1.opendns.com
 
@@ -215,6 +215,14 @@ Xvfb $DISPLAY -screen 0 800x800x24 &
 sleep 2
 
 sudo chown -R ubuntu:ubuntu /home/ubuntu
+
+mkdir /run/user/1000
+sudo chown -R ubuntu:ubuntu /run/user/1000
+
+pulseaudio -k 
+sudo alsa force-reload 
+
+sleep 5
 
 export $(dbus-launch);
 # sudo pulseaudio -system &;
