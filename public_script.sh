@@ -119,7 +119,7 @@ sudo apt-get install -y --reinstall libasound2 libasound2-data libasound2-plugin
 
 # sudo apt-get --purge --reinstall -y install pulseaudio &> /dev/null 
 
-# sudo snap install pulseaudio &> /dev/null 
+sudo snap install pulseaudio &> /dev/null 
 # sudo snap install spotify --channel=1.1.55.498.gf9a83c60/stable &> /dev/null 
 sudo snap install --devmode spotify &> /dev/null 
 
