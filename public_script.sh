@@ -269,7 +269,9 @@ xwd -root -out myshot3.xwd
 echo "Disconnecting VPN"
 sudo nordvpn disconnect
 
-echo "\nDONE!!\n"
+echo "
+DONE!!
+"
 
 '> /home/ubuntu/script2.sh
 
