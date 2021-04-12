@@ -190,8 +190,8 @@ Xvfb $DISPLAY -screen 0 800x800x24 &
 sleep 2
 
 sudo chown -R ubuntu:ubuntu /home/ubuntu
-mkdir /run/user/1000
-sudo chown -R ubuntu:ubuntu /run/user/1000
+# mkdir /run/user/1000
+# sudo chown -R ubuntu:ubuntu /run/user/1000
 
 pulseaudio -k 
 sudo alsa force-reload 
@@ -296,13 +296,12 @@ XDG_RUNTIME_DIR=/run/user/1000
 sudo crontab -u ubuntu mycron
 rm mycron
 
+mkdir /run/user/1000
+sudo chown -R ubuntu:ubuntu /run/user/1000
+
 ####################
 
 echo "$SPOTIFY_EMAIL" > /etc/hostname
 
 sudo reboot
 echo "rebooting!"
-
-
-
-
