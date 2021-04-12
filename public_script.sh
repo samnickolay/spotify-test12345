@@ -109,37 +109,19 @@ SPOTIFY_PASSWORD=$(aws ec2 describe-tags --filters "Name=resource-id,Values=$INS
 PLAYLIST_TAG="playlist"
 PLAYLIST=$(aws ec2 describe-tags --filters "Name=resource-id,Values=$INSTANCE_ID" "Name=key,Values=$PLAYLIST_TAG" --region=$REGION --output=text | cut -f5)
 
-# echo "$VPN_EMAIL $VPN_PASSWORD $VPN_NAME"
-
-# sudo apt-get install -y pulseaudio pulseaudio-utils dbus-x11 curl &> /dev/null 
 sudo apt-get install -y dbus-x11 curl jack alsa-base pulseaudio alsa-utils alsa-oss alsa-utils &> /dev/null 
-
 sudo apt-get install -y --reinstall libasound2 libasound2-data libasound2-plugins &> /dev/null 
-# sudo apt-get install -y alsa-utils alsa-oss
+sudo apt-get install -y expect xvfb xinit xdotool x11-apps &> /dev/null  
 
-# sudo apt-get --purge --reinstall -y install pulseaudio &> /dev/null 
-
-# sudo snap install pulseaudio &> /dev/null 
 # sudo snap install spotify --channel=1.1.55.498.gf9a83c60/stable &> /dev/null 
 sudo snap install --devmode spotify &> /dev/null 
-
-# curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add -
-# echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
-# sudo apt update
-# sudo apt install -y spotify-client &> /dev/null 
-
-echo "Done installing ncspot"
 
 ####################
 
 sudo echo '
 #!/bin/bash
 XDG_RUNTIME_DIR=/run/user/1000
-
-echo "running script!"
 bash -c "/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6"
-echo "done running script!"
-
 '> /home/ubuntu/script1.sh
 
 sudo echo '
@@ -149,9 +131,8 @@ echo "running test!!!"
 cat /etc/hostname
 whoami
 
-REBOOT_TIMER=$(($(($(tr -dc 0-9 < /dev/urandom | head -c6 | sed "s/^0*//")*57600/999999))+57600))
-# sleep $REBOOT_TIMER && echo "rebooting after timeout! ($REBOOT_TIMER)" && sudo reboot &
-sleep $REBOOT_TIMER && echo "rebooting after timeout! ($REBOOT_TIMER)" &
+sleep 7800 && echo "rebooting after timeout! (7800 seconds)" &
+# sleep 7800 && echo "rebooting after timeout! (7800 seconds)" && sudo reboot &
 
 export TERM=xterm
 XDG_RUNTIME_DIR=/run/user/1000
@@ -172,7 +153,7 @@ small_random () {
 echo "sleeping"
 date
 sleep 10
-# sleep $(small_random);
+# sleep $(($RANDOM/13));
 date
 echo "done sleeping"
 
@@ -209,7 +190,6 @@ Xvfb $DISPLAY -screen 0 800x800x24 &
 sleep 2
 
 sudo chown -R ubuntu:ubuntu /home/ubuntu
-
 mkdir /run/user/1000
 sudo chown -R ubuntu:ubuntu /run/user/1000
 
@@ -276,17 +256,20 @@ sleep 2
 
 sleep 10
 xwd -root -out myshot.xwd
-sleep 2
+sleep 1000
+xwd -root -out myshot1.xwd
+sleep 5000
+xwd -root -out myshot2.xwd
+sleep 10000
+xwd -root -out myshot3.xwd
 
-# sleep $(big_random);
+# scp  -i ./test.pem ubuntu@ec2-18-144-8-206.us-west-1.compute.amazonaws.com:/home/ubuntu/myshot.xwd ./
+# xwud -in myshot.xwd 
 
 echo "Disconnecting VPN"
 sudo nordvpn disconnect
 
 echo "\nDONE!!\n"
-
-sleep 7800
-sudo reboot
 
 '> /home/ubuntu/script2.sh
 
@@ -299,8 +282,6 @@ sudo chmod a+x /home/ubuntu/script2.sh
 
 echo "install nordvpn"
 
-sudo apt-get install -y expect xvfb xinit xdotool x11-apps &> /dev/null  
-
 sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
 
 #write out current crontab
@@ -308,7 +289,7 @@ crontab -l > mycron
 #echo new cron into cron file
 echo "
 XDG_RUNTIME_DIR=/run/user/1000
-@reboot sleep 60 && /home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST $VPN_NAME $VPN_EMAIL $VPN_PASSWORD >> /home/ubuntu/ncspot.log 2>&1" >> mycron
+@reboot sleep 20 && /home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST $VPN_NAME $VPN_EMAIL $VPN_PASSWORD >> /home/ubuntu/ncspot.log 2>&1" >> mycron
 #install new cron file
 sudo crontab -u ubuntu mycron
 rm mycron
