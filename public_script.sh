@@ -112,7 +112,7 @@ PLAYLIST=$(aws ec2 describe-tags --filters "Name=resource-id,Values=$INSTANCE_ID
 # echo "$VPN_EMAIL $VPN_PASSWORD $VPN_NAME"
 
 # sudo apt-get install -y pulseaudio pulseaudio-utils dbus-x11 curl &> /dev/null 
-sudo apt-get install -y dbus-x11 curl jack alsa-base pulseaudio alsa-utils alsa-oss alsa-lib alsa-plugins alsa-utils &> /dev/null 
+sudo apt-get install -y dbus-x11 curl jack alsa-base pulseaudio alsa-utils alsa-oss alsa-utils &> /dev/null 
 
 sudo apt-get install -y --reinstall libasound2 libasound2-data libasound2-plugins &> /dev/null 
 # sudo apt-get install -y alsa-utils alsa-oss
