@@ -109,7 +109,7 @@ SPOTIFY_PASSWORD=$(aws ec2 describe-tags --filters "Name=resource-id,Values=$INS
 PLAYLIST_TAG="playlist"
 PLAYLIST=$(aws ec2 describe-tags --filters "Name=resource-id,Values=$INSTANCE_ID" "Name=key,Values=$PLAYLIST_TAG" --region=$REGION --output=text | cut -f5)
 
-echo "$VPN_EMAIL $VPN_PASSWORD $VPN_NAME"
+# echo "$VPN_EMAIL $VPN_PASSWORD $VPN_NAME"
 
 # sudo apt-get install -y pulseaudio pulseaudio-utils dbus-x11 curl &> /dev/null 
 sudo apt-get install -y dbus-x11 curl jack alsa-base pulseaudio alsa-utils alsa-oss alsa-lib alsa-plugins alsa-utils &> /dev/null 
@@ -119,7 +119,7 @@ sudo apt-get install -y --reinstall libasound2 libasound2-data libasound2-plugin
 
 # sudo apt-get --purge --reinstall -y install pulseaudio &> /dev/null 
 
-sudo snap install pulseaudio &> /dev/null 
+# sudo snap install pulseaudio &> /dev/null 
 # sudo snap install spotify --channel=1.1.55.498.gf9a83c60/stable &> /dev/null 
 sudo snap install --devmode spotify &> /dev/null 
 
@@ -138,7 +138,7 @@ XDG_RUNTIME_DIR=/run/user/1000
 
 echo "running script!"
 bash -c "/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6"
-# echo "done running script!"
+echo "done running script!"
 
 '> /home/ubuntu/script1.sh
 
@@ -202,7 +202,6 @@ echo "
 
 "
 
-
 echo "running spotify"
 save="$DISPLAY"                          
 export DISPLAY=:44                    
@@ -220,7 +219,6 @@ sudo alsa force-reload
 sleep 5
 
 export $(dbus-launch);
-# sudo pulseaudio -system &;
 pulseaudio --start;
 pacmd load-module module-null-sink sink_name=MySink;
 pacmd update-sink-proplist MySink device.description=MySink;
@@ -276,20 +274,14 @@ sleep 2
 xdotool click 1
 sleep 2
 
-
 sleep 10
-
 xwd -root -out myshot.xwd
-
 sleep 2
-
-# cp myshot.xwd /home/ubuntu/
 
 # sleep $(big_random);
 
 echo "Disconnecting VPN"
 sudo nordvpn disconnect
-
 
 echo "\nDONE!!\n"
 
@@ -301,7 +293,6 @@ sudo reboot
 # ps auxww | grep "Xvfb $DISPLAY" | awk '{print $2}' | xargs kill  
 
 sudo chmod a+x /home/ubuntu/script1.sh
-
 sudo chmod a+x /home/ubuntu/script2.sh
 
 ####################
@@ -312,33 +303,6 @@ sudo apt-get install -y expect xvfb xinit xdotool x11-apps &> /dev/null
 
 sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
 
-# sudo echo '
-# #!/bin/bash
-
-# expect -c "
-#     spawn sudo nordvpn login
-#     expect -exact \"Username: \"
-#     send -- \"$1\r\"
-#     expect -exact \"Password: \"
-#     send -- \"$2\r\"
-#     expect eof
-# "'> /home/ubuntu/vpn_login.sh
-
-# sudo chmod a+x /home/ubuntu/vpn_login.sh
-
-
-# su -c "/home/ubuntu/vpn_login.sh $VPN_EMAIL $VPN_PASSWORD" - ubuntu
-
-# expect -c "
-#     spawn sudo nordvpn login
-#     expect -exact \"Username: \"
-#     send -- \"$VPN_EMAIL\r\"
-#     expect -exact \"Password: \"
-#     send -- \"$VPN_PASSWORD\r\"
-#     expect eof
-# "
-
-# su ubuntu 
 #write out current crontab
 crontab -l > mycron
 #echo new cron into cron file
@@ -349,42 +313,9 @@ XDG_RUNTIME_DIR=/run/user/1000
 sudo crontab -u ubuntu mycron
 rm mycron
 
-# sudo crontab -u ubuntu mycron
-
-
 ####################
 
 echo "$SPOTIFY_EMAIL" > /etc/hostname
-
-# su ubuntu
-
-# whoami
-
-# expect -c "
-#     spawn sudo nordvpn login
-#     expect -exact \"Username: \"
-#     send -- \"$VPN_EMAIL\r\"
-#     expect -exact \"Password: \"
-#     send -- \"$VPN_PASSWORD\r\"
-#     expect eof
-# "
-
-
-# su - ubuntu -- -- "$VPN_EMAIL" "$VPN_PASSWORD"
-
-# sleep 2 
-
-# expect -c "
-#     spawn sudo nordvpn login
-#     expect -exact \"Username: \"
-#     send -- \"$1\r\"
-#     expect -exact \"Password: \"
-#     send -- \"$2\r\"
-#     expect eof
-# "'
-
-# sleep 5
-
 
 sudo reboot
 echo "rebooting!"
