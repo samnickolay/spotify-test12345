@@ -117,9 +117,9 @@ sudo apt-get install -y dbus-x11 curl jack &> /dev/null
 sudo apt-get install -y --reinstall libasound2 libasound2-data libasound2-plugins &> /dev/null 
 sudo apt-get install -y alsa-utils alsa-oss
 
-sudo apt-get --purge --reinstall -y install pulseaudio &> /dev/null 
+# sudo apt-get --purge --reinstall -y install pulseaudio &> /dev/null 
 
-# sudo snap install pulseaudio &> /dev/null 
+sudo snap install pulseaudio &> /dev/null 
 # sudo snap install spotify --channel=1.1.55.498.gf9a83c60/stable &> /dev/null 
 sudo snap install --devmode spotify &> /dev/null 
 
@@ -188,6 +188,15 @@ echo "
 ----------
 "
 
+expect -c "
+    spawn sudo nordvpn login
+    expect -exact \"Username: \"
+    send -- \"$5\r\"
+    expect -exact \"Password: \"
+    send -- \"$6\r\"
+    expect eof
+"
+
 echo "VPN Connected! $4"
 nordvpn connect $4
 sleep 20;
@@ -198,13 +207,14 @@ echo "
 
 "
 
+
 echo "running spotify"
 save="$DISPLAY"                          
 export DISPLAY=:44                    
 Xvfb $DISPLAY -screen 0 800x800x24 &   
 sleep 2
 
-sudo chown -R $USER:$USER $HOME/
+sudo chown -R ubuntu:ubuntu /home/ubuntu
 
 export $(dbus-launch);
 # sudo pulseaudio -system &;
@@ -299,22 +309,22 @@ sudo apt-get install -y expect xvfb xinit xdotool x11-apps &> /dev/null
 
 sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
 
-sudo echo '
-#!/bin/bash
+# sudo echo '
+# #!/bin/bash
 
-expect -c "
-    spawn sudo nordvpn login
-    expect -exact \"Username: \"
-    send -- \"$1\r\"
-    expect -exact \"Password: \"
-    send -- \"$2\r\"
-    expect eof
-"'> /home/ubuntu/vpn_login.sh
+# expect -c "
+#     spawn sudo nordvpn login
+#     expect -exact \"Username: \"
+#     send -- \"$1\r\"
+#     expect -exact \"Password: \"
+#     send -- \"$2\r\"
+#     expect eof
+# "'> /home/ubuntu/vpn_login.sh
 
-sudo chmod a+x /home/ubuntu/vpn_login.sh
+# sudo chmod a+x /home/ubuntu/vpn_login.sh
 
 
-su -c "/home/ubuntu/vpn_login.sh $VPN_EMAIL $VPN_PASSWORD" - ubuntu
+# su -c "/home/ubuntu/vpn_login.sh $VPN_EMAIL $VPN_PASSWORD" - ubuntu
 
 # expect -c "
 #     spawn sudo nordvpn login
@@ -354,6 +364,21 @@ echo "$SPOTIFY_EMAIL" > /etc/hostname
 #     expect eof
 # "
 
+
+# su - ubuntu -- -- "$VPN_EMAIL" "$VPN_PASSWORD"
+
+# sleep 2 
+
+# expect -c "
+#     spawn sudo nordvpn login
+#     expect -exact \"Username: \"
+#     send -- \"$1\r\"
+#     expect -exact \"Password: \"
+#     send -- \"$2\r\"
+#     expect eof
+# "'
+
+# sleep 5
 
 
 sudo reboot
