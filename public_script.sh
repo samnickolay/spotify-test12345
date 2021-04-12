@@ -240,6 +240,9 @@ pulseaudio --start;
 pacmd load-module module-null-sink sink_name=MySink;
 pacmd update-sink-proplist MySink device.description=MySink;
 pactl -- set-sink-volume MySink 200%;
+pactl load-module module-virtual-sink sink_name=VAC_1to2
+pactl load-module module-virtual-sink sink_name=VAC_2to1
+
 sleep 2
 sudo /snap/bin/spotify --no-zygote &
 
