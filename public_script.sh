@@ -114,7 +114,7 @@ sudo apt-get install -y --reinstall libasound2 libasound2-data libasound2-plugin
 sudo apt-get install -y expect xvfb xinit xdotool x11-apps &> /dev/null  
 
 # sudo snap install spotify --channel=1.1.55.498.gf9a83c60/stable &> /dev/null 
-sudo snap install --devmode spotify &> /dev/null 
+sudo snap install spotify --devmode &> /dev/null 
 
 ####################
 
@@ -181,7 +181,7 @@ expect -c "
 "
 
 echo "VPN Connected! $4"
-sudo nordvpn connect $4
+# sudo nordvpn connect $4
 sleep 20;
 dig +short myip.opendns.com @resolver1.opendns.com
 
@@ -297,7 +297,9 @@ sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
 crontab -l > mycron
 #echo new cron into cron file
 echo "
-# XDG_RUNTIME_DIR=/run/user/1000
+sudo mkdir /run/user/1000
+sudo chown -R ubuntu:ubuntu /run/user/1000
+XDG_RUNTIME_DIR=/run/user/1000
 @reboot sleep 20 && /home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST $VPN_NAME $VPN_EMAIL $VPN_PASSWORD >> /home/ubuntu/ncspot.log 2>&1" >> mycron
 #install new cron file
 sudo crontab -u ubuntu mycron
