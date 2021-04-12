@@ -120,12 +120,19 @@ sudo snap install --devmode spotify &> /dev/null
 
 sudo echo '
 #!/bin/bash
+
+mkdir /run/user/1000
+sudo chown -R ubuntu:ubuntu /run/user/1000
+
 XDG_RUNTIME_DIR=/run/user/1000
 bash -c "/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6"
 '> /home/ubuntu/script1.sh
 
 sudo echo '
 #!/bin/bash
+
+mkdir /run/user/1000
+sudo chown -R ubuntu:ubuntu /run/user/1000
 
 echo "running test!!!" 
 cat /etc/hostname
@@ -290,7 +297,7 @@ sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
 crontab -l > mycron
 #echo new cron into cron file
 echo "
-XDG_RUNTIME_DIR=/run/user/1000
+# XDG_RUNTIME_DIR=/run/user/1000
 @reboot sleep 20 && /home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST $VPN_NAME $VPN_EMAIL $VPN_PASSWORD >> /home/ubuntu/ncspot.log 2>&1" >> mycron
 #install new cron file
 sudo crontab -u ubuntu mycron
