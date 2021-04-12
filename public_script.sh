@@ -118,21 +118,23 @@ sudo snap install spotify --devmode &> /dev/null
 
 ####################
 
+# sudo echo '
+# #!/bin/bash
+
+# sudo mkdir /run/user/1000
+# sudo chown -R ubuntu:ubuntu /run/user/1000
+
+# export XDG_RUNTIME_DIR="/run/user/1000"
+# bash -c "/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6"
+# '> /home/ubuntu/script1.sh
+
 sudo echo '
 #!/bin/bash
 
 sudo mkdir /run/user/1000
 sudo chown -R ubuntu:ubuntu /run/user/1000
 
-export XDG_RUNTIME_DIR="/run/user/1000"
-bash -c "/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6"
-'> /home/ubuntu/script1.sh
-
-sudo echo '
-#!/bin/bash
-
-sudo mkdir /run/user/1000
-sudo chown -R ubuntu:ubuntu /run/user/1000
+export XDG_RUNTIME_DIR=/run/user/1000
 
 echo "running test!!!" 
 cat /etc/hostname
@@ -142,7 +144,7 @@ sleep 7800 && echo "rebooting after timeout! (7800 seconds)" &
 # sleep 7800 && echo "rebooting after timeout! (7800 seconds)" && sudo reboot &
 
 export TERM=xterm
-export XDG_RUNTIME_DIR="/run/user/1000"
+# export XDG_RUNTIME_DIR="/run/user/1000"
 export NO_AT_BRIDGE=1
 
 echo "$1 $2 $3 $4 $5 $6"
@@ -297,8 +299,7 @@ sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
 crontab -l > mycron
 #echo new cron into cron file
 echo "
-export XDG_RUNTIME_DIR='/run/user/1000'
-@reboot sleep 20 && /home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST $VPN_NAME $VPN_EMAIL $VPN_PASSWORD >> /home/ubuntu/ncspot.log 2>&1" >> mycron
+@reboot sleep 20 && export XDG_RUNTIME_DIR=/run/user/1000 && /bin/bash -c '/home/ubuntu/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST $VPN_NAME $VPN_EMAIL $VPN_PASSWORD' >> /home/ubuntu/ncspot.log 2>&1" >> mycron
 #install new cron file
 sudo crontab -u ubuntu mycron
 rm mycron
