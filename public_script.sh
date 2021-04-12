@@ -121,7 +121,7 @@ sudo snap install --devmode spotify &> /dev/null
 sudo echo '
 #!/bin/bash
 
-mkdir /run/user/1000
+sudo mkdir /run/user/1000
 sudo chown -R ubuntu:ubuntu /run/user/1000
 
 XDG_RUNTIME_DIR=/run/user/1000
@@ -131,7 +131,7 @@ bash -c "/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6"
 sudo echo '
 #!/bin/bash
 
-mkdir /run/user/1000
+sudo mkdir /run/user/1000
 sudo chown -R ubuntu:ubuntu /run/user/1000
 
 echo "running test!!!" 
@@ -303,7 +303,7 @@ echo "
 sudo crontab -u ubuntu mycron
 rm mycron
 
-mkdir /run/user/1000
+sudo mkdir /run/user/1000
 sudo chown -R ubuntu:ubuntu /run/user/1000
 
 ####################
