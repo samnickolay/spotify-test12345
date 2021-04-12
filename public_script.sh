@@ -124,13 +124,9 @@ sudo apt-get --purge --reinstall -y install pulseaudio &> /dev/null
 sudo snap install --devmode spotify &> /dev/null 
 
 # curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add -
-
 # echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
-
 # sudo apt update
-
 # sudo apt install -y spotify-client &> /dev/null 
-
 
 echo "Done installing ncspot"
 
@@ -140,13 +136,11 @@ sudo echo '
 #!/bin/bash
 
 echo "running setup script!"
-
 bash -c "/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6"
 
 sleep 5;
 
 echo "running setup script! - 2x"
-
 # bash -c "/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6"
 
 echo "done with setup script!"
@@ -165,18 +159,6 @@ REBOOT_TIMER=$(($(($(tr -dc 0-9 < /dev/urandom | head -c6 | sed "s/^0*//")*57600
 sleep $REBOOT_TIMER && echo "rebooting after timeout! ($REBOOT_TIMER)" &
 
 export TERM=xterm
-
-# export $(dbus-launch);
-# pulseaudio --start;
-# pacmd load-module module-null-sink sink_name=MySink;
-# pacmd update-sink-proplist MySink device.description=MySink;
-# pactl -- set-sink-volume MySink 200%;
-
-# pactl -- set-sink-volume 0 200%
-# pactl load-module module-virtual-sink sink_name=VAC_1to2
-# pactl load-module module-virtual-sink sink_name=VAC_2to1
-
-sleep 5
 
 export NO_AT_BRIDGE=1
 
@@ -240,11 +222,11 @@ pulseaudio --start;
 pacmd load-module module-null-sink sink_name=MySink;
 pacmd update-sink-proplist MySink device.description=MySink;
 pactl -- set-sink-volume MySink 200%;
-pactl load-module module-virtual-sink sink_name=VAC_1to2
-pactl load-module module-virtual-sink sink_name=VAC_2to1
+pactl load-module module-virtual-sink sink_name=VAC_1to2;
+pactl load-module module-virtual-sink sink_name=VAC_2to1;
 
 sleep 2
-sudo /snap/bin/spotify --no-zygote &
+/snap/bin/spotify --no-zygote &
 
 # spotify --no-zygote &
 sleep 10
