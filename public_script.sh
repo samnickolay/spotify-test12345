@@ -118,23 +118,9 @@ sudo snap install spotify --devmode &> /dev/null
 
 ####################
 
-# sudo echo '
-# #!/bin/bash
-
-# sudo mkdir /run/user/1000
-# sudo chown -R ubuntu:ubuntu /run/user/1000
-
-# export XDG_RUNTIME_DIR="/run/user/1000"
-# bash -c "/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6"
-# '> /home/ubuntu/script1.sh
 
 sudo echo '
 #!/bin/bash
-
-ls -l /run/user/
-
-sudo mkdir /run/user/1000
-sudo chown -R ubuntu:ubuntu /run/user/1000
 
 export XDG_RUNTIME_DIR=/run/user/1000
 
@@ -146,7 +132,6 @@ sleep 7800 && echo "rebooting after timeout! (7800 seconds)" &
 # sleep 7800 && echo "rebooting after timeout! (7800 seconds)" && sudo reboot &
 
 export TERM=xterm
-# export XDG_RUNTIME_DIR="/run/user/1000"
 export NO_AT_BRIDGE=1
 
 echo "$1 $2 $3 $4 $5 $6"
@@ -201,8 +186,6 @@ Xvfb $DISPLAY -screen 0 800x800x24 &
 sleep 2
 
 sudo chown -R ubuntu:ubuntu /home/ubuntu
-# mkdir /run/user/1000
-# sudo chown -R ubuntu:ubuntu /run/user/1000
 
 pulseaudio -k 
 sudo alsa force-reload 
