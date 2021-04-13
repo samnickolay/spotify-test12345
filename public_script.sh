@@ -172,11 +172,11 @@ small_random () {
 }
 # echo $(small_random)
 
-sudo apt install -y --reinstall libasound2 libasound2-data libasound2-plugins &> /dev/null 
-sleep 5
-sudo apt install -y --reinstall dbus-x11 curl jack alsa-base pulseaudio alsa-utils alsa-oss alsa-utils &> /dev/null 
-sleep 5
-
+# sudo apt install -y --reinstall libasound2 libasound2-data libasound2-plugins &> /dev/null 
+# sleep 5
+# sudo apt install -y --reinstall dbus-x11 curl jack alsa-base pulseaudio alsa-utils alsa-oss alsa-utils &> /dev/null 
+# sleep 5
+s
 echo "sleeping"
 date
 sleep 10
