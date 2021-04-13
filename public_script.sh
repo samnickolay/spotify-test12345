@@ -136,17 +136,24 @@ sudo chown -R ubuntu:ubuntu /home/ubuntu
 
 # sudo ssh -i ./test.pem ubuntu@localhost -o StrictHostKeyChecking=no "/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6"
 
+
+sudo ssh -i ./test.pem ubuntu@localhost -o StrictHostKeyChecking=no &
+sleep 10 
+/home/ubuntu/script2.sh genetaylor@vizy.io 5kXcFXPLxWJL!? spotify:playlist:2N5MFM7E8OXrj5JEiRDRL3 us5396 nordvpn1@vizy.io 3cPDMityEM85xhq
+sleep 10
+
+exit
+
+
+
 ' > /home/ubuntu/script1.sh
 
 sudo echo '
 #!/bin/bash
 export XDG_RUNTIME_DIR=/run/user/1000
 
-sudo mkdir /run/user/1000
 sudo chown -R ubuntu:ubuntu /run/user/1000
-sudo mkdir /usr/share/ 
 sudo chown -R ubuntu:ubuntu /usr/share/
-
 sudo chown -R ubuntu:ubuntu /home/ubuntu
 
 
@@ -194,10 +201,20 @@ echo "
 
 "
 
+sudo chown -R ubuntu:ubuntu /run/user/1000
+sudo chown -R ubuntu:ubuntu /usr/share/
+sudo chown -R ubuntu:ubuntu /home/ubuntu
+
 pulseaudio -k 
 sudo alsa force-reload 
 
 sleep 5
+
+sudo chown -R ubuntu:ubuntu /run/user/1000
+sudo chown -R ubuntu:ubuntu /usr/share/
+sudo chown -R ubuntu:ubuntu /home/ubuntu
+
+sleep 2
 
 export $(dbus-launch);
 pulseaudio --start;
@@ -217,11 +234,18 @@ export DISPLAY=:44
 Xvfb $DISPLAY -screen 0 800x800x24 &   
 sleep 2
 
-
+sudo chown -R ubuntu:ubuntu /run/user/1000
+sudo chown -R ubuntu:ubuntu /usr/share/
+sudo chown -R ubuntu:ubuntu /home/ubuntu
 
 sleep 2
 /snap/bin/spotify --no-zygote &
 sleep 10
+
+sudo chown -R ubuntu:ubuntu /run/user/1000
+sudo chown -R ubuntu:ubuntu /usr/share/
+sudo chown -R ubuntu:ubuntu /home/ubuntu
+
 
 xdotool mousemove 400 450
 sleep 2
