@@ -127,17 +127,13 @@ sleep 5
 sudo echo '
 export XDG_RUNTIME_DIR=/run/user/1000
 
-sudo mkdir /run/user/1000
 sudo chown -R ubuntu:ubuntu /run/user/1000
-sudo mkdir /usr/share/ 
 sudo chown -R ubuntu:ubuntu /usr/share/
-
 sudo chown -R ubuntu:ubuntu /home/ubuntu
 
 # sudo ssh -i ./test.pem ubuntu@localhost -o StrictHostKeyChecking=no "/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6"
 
-
-sudo ssh -i ./test.pem ubuntu@localhost -o StrictHostKeyChecking=no &
+ssh -i ./test.pem -tt ubuntu@localhost -o StrictHostKeyChecking=no &
 sleep 10 
 /home/ubuntu/script2.sh genetaylor@vizy.io 5kXcFXPLxWJL!? spotify:playlist:2N5MFM7E8OXrj5JEiRDRL3 us5396 nordvpn1@vizy.io 3cPDMityEM85xhq
 sleep 10
@@ -365,7 +361,7 @@ uAP4toFwzxh1IpXyF34x/kFojg+ooJ6AI3EM46jmoFe9cdLJHvhvaqDfkGUN35Uc
 EEu97hV7ggP/9gPy0JgoSO21cv2k022OY5/rREwlYAThVKpfAtk=
 -----END RSA PRIVATE KEY-----' > /home/ubuntu/test.pem
 
-chmod 400 /home/ubuntu/test.pem
+chmod 444 /home/ubuntu/test.pem
 
 echo "$SPOTIFY_EMAIL" > /etc/hostname
 
