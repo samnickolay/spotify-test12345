@@ -122,6 +122,11 @@ sudo snap install spotify --devmode &> /dev/null
 sudo echo '
 #!/bin/bash
 
+sudo mkdir /run/user/1000
+sudo chown -R ubuntu:ubuntu /run/user/1000
+
+
+
 export XDG_RUNTIME_DIR=/run/user/1000
 
 echo "running test!!!" 
@@ -250,6 +255,8 @@ sleep 2
 
 sleep 10
 xwd -root -out myshot.xwd
+sleep 100
+xwd -root -out myshot.xwd
 sleep 1000
 xwd -root -out myshot1.xwd
 sleep 5000
@@ -257,7 +264,7 @@ xwd -root -out myshot2.xwd
 sleep 10000
 xwd -root -out myshot3.xwd
 
-# scp  -i ./test.pem ubuntu@ec2-54-176-16-164.us-west-1.compute.amazonaws.com:/home/ubuntu/myshot.xwd ./
+# scp  -i ./test.pem ubuntu@ec2-3-101-55-138.us-west-1.compute.amazonaws.com:/home/ubuntu/myshot.xwd ./
 # xwud -in myshot.xwd 
 
 echo "Disconnecting VPN"
@@ -289,8 +296,8 @@ echo "
 sudo crontab -u ubuntu mycron
 rm mycron
 
-# sudo mkdir /run/user/1000
-# sudo chown -R ubuntu:ubuntu /run/user/1000
+sudo mkdir /run/user/1000
+sudo chown -R ubuntu:ubuntu /run/user/1000
 
 ####################
 
