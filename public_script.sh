@@ -129,6 +129,14 @@ sleep 5
 sudo echo '
 #!/bin/bash
 
+sudo mkdir /run/user/1000
+sudo chown -R ubuntu:ubuntu /run/user/1000
+sudo mkdir /usr/share/ 
+sudo chown -R ubuntu:ubuntu /usr/share/
+
+sudo chown -R ubuntu:ubuntu /home/ubuntu
+
+
 echo "running test!!!" 
 
 sleep 7800 && echo "rebooting after timeout! (7800 seconds)" &
