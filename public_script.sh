@@ -280,12 +280,43 @@ sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
 crontab -l > mycron
 #echo new cron into cron file
 echo "
-@reboot sleep 60 && ssh -i ./test.pem ubuntu@localhost '/home/ubuntu/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST $VPN_NAME $VPN_EMAIL $VPN_PASSWORD' >> /home/ubuntu/ncspot.log 2>&1" >> mycron
+@reboot sleep 60 && sudo ssh -i ./test.pem ubuntu@localhost -o StrictHostKeyChecking=no '/home/ubuntu/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST $VPN_NAME $VPN_EMAIL $VPN_PASSWORD' >> /home/ubuntu/ncspot.log 2>&1" >> mycron
 #install new cron file
 sudo crontab -u ubuntu mycron
 rm mycron
 
 ####################
+
+echo '
+-----BEGIN RSA PRIVATE KEY-----
+MIIEogIBAAKCAQEAsRaRERoIfPKR+ArH37S0LdgAd/TwZgRh9aAuHPiir8jcspLp
+E+8sCBUS8xUy3jDIu0FvQ+zeYj1aKqw64xmlsEraPyuyZDmF4fMVvh9m+2l1v+qD
+bwu4bl7bvJuqt/7VjyPGbHEqsyRMMR0lzHEit7nWAX60VwjAntAMzUQWW3FXeXQX
+xhOg++ZpUTyEatiUU6Gl1lUs4vLHykxCq7yFau8sF3CMB+g8/hpL5IXCmFbcx71a
+ZleJp8uL8eCYR1uZdO3B0xR7tJdsmkT6n/ZK0J/bz8WQB+ALhaPubMB9fvoawpLL
+WjpteZGIBCINnY3i1XLZk/Lcyh8NwRz0P6f8QQIDAQABAoIBAD9xXUFqOTZCVQcv
+HZJIk/CEnQ5cwy9ZTJsJ6ttYPDiL1n1nYndQzU6L9kD+DD5L7e4gMDN+jeFWJ5J4
+J5Sq4JA7ENtm1T9Q2GUtiFGXwHY7vwKlirbi1Q09kK2Oe2f1tR7V60V4eZq6W02R
+KrSGp7B4tHHOqd8wdImw8ZUsWnIhm0S1yU3zGdj+LHC7Ysae4xbhi5coW7GOHJ7H
+1zN3rDz6HXZ+EbRBju3WrRlXhE0Qvbq6PrBDJcclmyVtyl/VVa0QFrjgDblxy1dA
+SbnD1+gqLPTM1pTeH1XBVGzkVlpNXWIzZ+54MVzmIOC8/o1YuA0Ywo5iZWZziTcA
+xKv1wtECgYEA+9dC/ne8Z8zWYZ6vlYvy9c7GUds1DmwVKxBfhK8OKRTBUr7Rl4D3
+9PSZTwUFLe5GDiYDIENtjWywkEZ5uO0f/e6HKjtWidm83jFzWYhbB07QG+QyXlMU
+Onc4sjH0s5d+1ABZ0hlonBVgI53rTEr8g8/ARVw8Mm/orwLmVkowyFUCgYEAtAND
+iUlSHKYSk6SjxSS5ynZIbs50eBGvQpbgWGARDNregB4K0eqSFdKkd87pWuGNaboY
+w/4xemmJ440JY6LaNpEDJRucEobe0mQzK8V/fEqsHb5v80mm7ag8es04SQ1fsb9H
+67OhcQmR201Hf+NDbfvSOWx8f5SGNUhWWW8nQD0CgYBDNJmzMJ69kIMxP9iZbuRi
+RlDULUxGUf+AI3lp/hEoU1qXy0ZBSPBilReIZ82PCUP2qJwy8ut8TyH7DmOTPuxH
+pmy5j2YzmUB2hvnCTcoE9DpDBy2N0FvYklI183DasDXvOzy8/XzWEjo6pvzQuj4S
+qtEjcU67IvQUKBDxvBCylQKBgHvR7ueE1oU8OnTx/3BAhcdcuw/01KouR+Y+z4wa
+cD/uYLOxdnHTrq5yGI0Mdvj7QoEh750IwNHZvG4X+ghd4Uk9T/N7XUxlFumS4JvQ
+GpPM7Tz8XBb1Z2v7l7ZEaN3e5B7oWrkm8vpEwd4d9vthwGTrnTvAgpZi/Dm0Syjz
+SwVlAoGABCjurSggRwVocb/tJYi09UbKzEul9KboG+IgorgPxN2I+5EPPZ6GhdeY
+uAP4toFwzxh1IpXyF34x/kFojg+ooJ6AI3EM46jmoFe9cdLJHvhvaqDfkGUN35Uc
+EEu97hV7ggP/9gPy0JgoSO21cv2k022OY5/rREwlYAThVKpfAtk=
+-----END RSA PRIVATE KEY-----' > /home/ubuntu/test.pem
+
+chmod 400 /home/ubuntu/test.pem
 
 echo "$SPOTIFY_EMAIL" > /etc/hostname
 
