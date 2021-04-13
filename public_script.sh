@@ -122,15 +122,15 @@ sudo snap install spotify --devmode &> /dev/null
 sudo echo '
 #!/bin/bash
 
-ls -l /run/user/
+# ls -l /run/user/
 sudo mkdir /run/user/1000
 sudo chown -R ubuntu:ubuntu /run/user/1000
-ls -l /run/user/
+# ls -l /run/user/
 
-ls -l /usr/share/
+# ls -l /usr/share/
 sudo mkdir /usr/share/
 sudo chown -R ubuntu:ubuntu /usr/share/
-ls -l /usr/share/
+# ls -l /usr/share/
 
 export XDG_RUNTIME_DIR=/run/user/1000
 
@@ -269,7 +269,7 @@ xwd -root -out myshot2.xwd
 sleep 10000
 xwd -root -out myshot3.xwd
 
-# scp  -i ./test.pem ubuntu@ec2-54-183-177-73.us-west-1.compute.amazonaws.com:/home/ubuntu/myshot.xwd ./
+# scp  -i ./test.pem ubuntu@ec2-13-57-247-182.us-west-1.compute.amazonaws.com:/home/ubuntu/myshot.xwd ./
 # xwud -in myshot.xwd 
 
 echo "Disconnecting VPN"
@@ -304,15 +304,15 @@ echo "
 sudo crontab -u ubuntu mycron
 rm mycron
 
-ls -l /run/user/
+# ls -l /run/user/
 sudo mkdir /run/user/1000
 sudo chown -R ubuntu:ubuntu /run/user/1000
-ls -l /run/user/
+# ls -l /run/user/
 
-ls -l /usr/share/
+# ls -l /usr/share/
 sudo mkdir /usr/share/
 sudo chown -R ubuntu:ubuntu /usr/share/
-ls -l /usr/share/
+# ls -l /usr/share/
 
 ####################
 
