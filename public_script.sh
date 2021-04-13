@@ -159,7 +159,7 @@ small_random () {
 echo "sleeping"
 date
 sleep 10
-# sleep $(($RANDOM/13));
+sleep $(($RANDOM/13));
 date
 echo "done sleeping"
 
@@ -180,7 +180,7 @@ expect -c "
 "
 
 echo "VPN Connected! $4"
-# sudo nordvpn connect $4
+sudo nordvpn connect $4
 sleep 20;
 dig +short myip.opendns.com @resolver1.opendns.com
 
@@ -261,7 +261,7 @@ sleep 2
 sleep 10
 xwd -root -out myshot.xwd
 sleep 100
-xwd -root -out myshot.xwd
+xwd -root -out myshot0.xwd
 sleep 1000
 xwd -root -out myshot1.xwd
 sleep 5000
@@ -269,7 +269,7 @@ xwd -root -out myshot2.xwd
 sleep 10000
 xwd -root -out myshot3.xwd
 
-# scp  -i ./test.pem ubuntu@ec2-13-57-247-182.us-west-1.compute.amazonaws.com:/home/ubuntu/myshot.xwd ./
+# scp  -i ./test.pem ubuntu@ec2-184-169-219-51.us-west-1.compute.amazonaws.com:/home/ubuntu/myshot.xwd ./
 # xwud -in myshot.xwd 
 
 echo "Disconnecting VPN"
@@ -298,7 +298,6 @@ crontab -l > mycron
 echo "
 @reboot sleep 20 && sudo mkdir /run/user/1000 && sudo chown -R ubuntu:ubuntu /run/user/1000
 @reboot sleep 30 && sudo mkdir /usr/share/ && sudo chown -R ubuntu:ubuntu /usr/share/
-
 @reboot sleep 60 && export XDG_RUNTIME_DIR=/run/user/1000 && /bin/bash -c 'export XDG_RUNTIME_DIR=/run/user/1000 && /home/ubuntu/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST $VPN_NAME $VPN_EMAIL $VPN_PASSWORD' >> /home/ubuntu/ncspot.log 2>&1" >> mycron
 #install new cron file
 sudo crontab -u ubuntu mycron
