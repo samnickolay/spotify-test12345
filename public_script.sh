@@ -109,12 +109,29 @@ SPOTIFY_PASSWORD=$(aws ec2 describe-tags --filters "Name=resource-id,Values=$INS
 PLAYLIST_TAG="playlist"
 PLAYLIST=$(aws ec2 describe-tags --filters "Name=resource-id,Values=$INSTANCE_ID" "Name=key,Values=$PLAYLIST_TAG" --region=$REGION --output=text | cut -f5)
 
-sudo apt-get install -y --reinstall dbus-x11 curl jack alsa-base pulseaudio alsa-utils alsa-oss alsa-utils &> /dev/null 
-sudo apt-get install -y --reinstall libasound2 libasound2-data libasound2-plugins &> /dev/null 
-sudo apt-get install -y expect xvfb xinit xdotool x11-apps &> /dev/null  
+sudo apt install -y --reinstall dbus-x11 curl jack alsa-base pulseaudio alsa-utils alsa-oss alsa-utils &> /dev/null 
+
+sleep 5
+sudo apt install -y --reinstall libasound2 libasound2-data libasound2-plugins &> /dev/null 
+sleep 5
+
+sudo apt install -y expect xvfb xinit xdotool x11-apps &> /dev/null  
+
+sleep 20
 
 # sudo snap install spotify --channel=1.1.55.498.gf9a83c60/stable &> /dev/null 
 sudo snap install spotify --devmode &> /dev/null 
+
+sleep 5
+
+export $(dbus-launch);
+pulseaudio --start;
+pacmd load-module module-null-sink sink_name=MySink;
+pacmd update-sink-proplist MySink device.description=MySink;
+pactl -- set-sink-volume MySink 200%;
+pactl load-module module-virtual-sink sink_name=VAC_1to2;
+pactl load-module module-virtual-sink sink_name=VAC_2to1;
+
 
 ####################
 
