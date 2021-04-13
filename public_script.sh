@@ -125,39 +125,42 @@ sleep 5
 
 ####################
 
-# /home/ubuntu/script2.sh 'alexreid@vizy.io' 'T2x98cGUC3A8!?' 'spotify:playlist:2N5MFM7E8OXrj5JEiRDRL3' 'us5396' 'nordvpn1@vizy.io' '3cPDMityEM85xhq'
+#/bin/bash -i -c /home/ubuntu/script2.sh 'alexreid@vizy.io' 'T2x98cGUC3A8!?' 'spotify:playlist:2N5MFM7E8OXrj5JEiRDRL3' 'us5396' 'nordvpn1@vizy.io' '3cPDMityEM85xhq'
 
 
-sudo echo '
-set -m
+# sudo echo '''
+# set -m
 
-export XDG_RUNTIME_DIR=/run/user/1000
-
-
-sudo mkdir /run/user/1000
-sudo mkdir /usr/share/
-sudo chown -R ubuntu:ubuntu /run/user/1000
-sudo chown -R ubuntu:ubuntu /usr/share/
-sudo chown -R ubuntu:ubuntu /home/ubuntu
-
-whoami
-env|grep -i runt
-
-# sleep 300
-
-echo "running Xvfb"
-save="$DISPLAY"                          
-export DISPLAY=:44                    
-Xvfb $DISPLAY -screen 0 800x800x24 &   
-sleep 2
+# export XDG_RUNTIME_DIR=/run/user/1000
 
 
-su - ubuntu /bin/bash -i -c "/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6"
+# sudo mkdir /run/user/1000
+# sudo mkdir /usr/share/
+# sudo chown -R ubuntu:ubuntu /run/user/1000
+# sudo chown -R ubuntu:ubuntu /usr/share/
+# sudo chown -R ubuntu:ubuntu /home/ubuntu
+
+# whoami
+# env|grep -i runt
+
+# # sleep 300
+
+# echo "running Xvfb"
+# save="$DISPLAY"                          
+# export DISPLAY=:44                    
+# Xvfb $DISPLAY -screen 0 800x800x24 &   
+# sleep 2
 
 
-# bash --init-file <(echo "ls; pwd")
+# chmod 400 test.pem
 
-' > /home/ubuntu/script1.sh
+# # /bin/bash -i -c "/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6"
+# ssh -tt -i .\test.pem ubuntu@localhost "/bin/bash -i -c '/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6\" "
+
+
+# # bash --init-file <(echo "ls; pwd")
+
+# ' > /home/ubuntu/script1.sh
 
 sudo echo '
 #!/bin/bash
@@ -335,8 +338,10 @@ DONE!!
 
 # ps auxww | grep "Xvfb $DISPLAY" | awk '{print $2}' | xargs kill  
 
-sudo chmod a+x /home/ubuntu/script1.sh
+# sudo chmod a+x /home/ubuntu/script1.sh
 sudo chmod a+x /home/ubuntu/script2.sh
+sudo chmod a+x /home/ubuntu/setup_script.sh
+
 
 ####################
 
@@ -348,7 +353,7 @@ sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh) &> /dev/null
 crontab -l > mycron
 #echo new cron into cron file
 echo "
-@reboot sleep 60 && /home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST $VPN_NAME $VPN_EMAIL $VPN_PASSWORD >> /home/ubuntu/ncspot.log 2>&1" >> mycron
+@reboot sleep 60 && /home/ubuntu/setup_script.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST $VPN_NAME $VPN_EMAIL $VPN_PASSWORD >> /home/ubuntu/ncspot.log 2>&1" >> mycron
 #install new cron file
 sudo crontab -u ubuntu mycron
 rm mycron
