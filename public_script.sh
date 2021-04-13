@@ -231,6 +231,10 @@ pactl -- set-sink-volume MySink 200%;
 pactl load-module module-virtual-sink sink_name=VAC_1to2;
 pactl load-module module-virtual-sink sink_name=VAC_2to1;
 
+speaker-test -t wav -l 1
+
+ls -l /usr/share/alsa/
+
 sleep 2
 /snap/bin/spotify --no-zygote &
 sleep 10
