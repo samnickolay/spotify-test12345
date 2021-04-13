@@ -131,14 +131,18 @@ sudo chown -R ubuntu:ubuntu /run/user/1000
 sudo chown -R ubuntu:ubuntu /usr/share/
 sudo chown -R ubuntu:ubuntu /home/ubuntu
 
-# sudo ssh -i ./test.pem ubuntu@localhost -o StrictHostKeyChecking=no "/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6"
+whoami
 
-ssh -i ./test.pem -tt ubuntu@localhost -o StrictHostKeyChecking=no &
-sleep 10 
+
+
+# # sudo ssh -i ./test.pem ubuntu@localhost -o StrictHostKeyChecking=no "/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6"
+
+# ssh -i ./test.pem -tt ubuntu@localhost -o StrictHostKeyChecking=no &
+# sleep 10 
 /home/ubuntu/script2.sh genetaylor@vizy.io 5kXcFXPLxWJL!? spotify:playlist:2N5MFM7E8OXrj5JEiRDRL3 us5396 nordvpn1@vizy.io 3cPDMityEM85xhq
-sleep 10
+# sleep 10
 
-exit
+# exit
 
 
 
@@ -325,7 +329,7 @@ sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh) &> /dev/null
 crontab -l > mycron
 #echo new cron into cron file
 echo "
-@reboot sleep 60 && sudo /home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST $VPN_NAME $VPN_EMAIL $VPN_PASSWORD >> /home/ubuntu/ncspot.log 2>&1" >> mycron
+@reboot sleep 60 && /home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST $VPN_NAME $VPN_EMAIL $VPN_PASSWORD >> /home/ubuntu/ncspot.log 2>&1" >> mycron
 #install new cron file
 sudo crontab -u ubuntu mycron
 rm mycron
