@@ -250,11 +250,11 @@ sleep 2
 speaker-test -t wav -l 1
 sleep 2
 
-# echo "running spotify"
-# save="$DISPLAY"                          
-# export DISPLAY=:44                    
-# Xvfb $DISPLAY -screen 0 800x800x24 &   
-# sleep 2
+echo "running spotify"
+save="$DISPLAY"                          
+export DISPLAY=:44                    
+Xvfb $DISPLAY -screen 0 800x800x24 &   
+sleep 2
 
 sudo chown -R ubuntu:ubuntu /run/user/1000
 sudo chown -R ubuntu:ubuntu /usr/share/
