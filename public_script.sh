@@ -124,10 +124,8 @@ sudo snap install spotify --devmode &> /dev/null
 sleep 5
 
 ####################
-
-
 sudo echo '
-#!/bin/bash
+export XDG_RUNTIME_DIR=/run/user/1000
 
 sudo mkdir /run/user/1000
 sudo chown -R ubuntu:ubuntu /run/user/1000
@@ -135,6 +133,21 @@ sudo mkdir /usr/share/
 sudo chown -R ubuntu:ubuntu /usr/share/
 
 sudo chown -R ubuntu:ubuntu /home/ubuntu
+
+sudo ssh -i ./test.pem ubuntu@localhost -o StrictHostKeyChecking=no "/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6"
+
+' > /home/ubuntu/script1.sh
+
+sudo echo '
+#!/bin/bash
+export XDG_RUNTIME_DIR=/run/user/1000
+
+# sudo mkdir /run/user/1000
+# sudo chown -R ubuntu:ubuntu /run/user/1000
+# sudo mkdir /usr/share/ 
+# sudo chown -R ubuntu:ubuntu /usr/share/
+
+# sudo chown -R ubuntu:ubuntu /home/ubuntu
 
 
 echo "running test!!!" 
@@ -181,12 +194,6 @@ echo "
 
 "
 
-echo "running spotify"
-save="$DISPLAY"                          
-export DISPLAY=:44                    
-Xvfb $DISPLAY -screen 0 800x800x24 &   
-sleep 2
-
 pulseaudio -k 
 sudo alsa force-reload 
 
@@ -200,7 +207,17 @@ pactl -- set-sink-volume MySink 200%;
 pactl load-module module-virtual-sink sink_name=VAC_1to2;
 pactl load-module module-virtual-sink sink_name=VAC_2to1;
 
+sleep 2
 speaker-test -t wav -l 1
+sleep 2
+
+echo "running spotify"
+save="$DISPLAY"                          
+export DISPLAY=:44                    
+Xvfb $DISPLAY -screen 0 800x800x24 &   
+sleep 2
+
+
 
 sleep 2
 /snap/bin/spotify --no-zygote &
@@ -288,7 +305,7 @@ sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh) &> /dev/null
 crontab -l > mycron
 #echo new cron into cron file
 echo "
-@reboot sleep 60 && sudo ssh -i ./test.pem ubuntu@localhost -o StrictHostKeyChecking=no '/home/ubuntu/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST $VPN_NAME $VPN_EMAIL $VPN_PASSWORD' >> /home/ubuntu/ncspot.log 2>&1" >> mycron
+@reboot sleep 60 && sudo /home/ubuntu/script1.sh >> /home/ubuntu/ncspot.log 2>&1" >> mycron
 #install new cron file
 sudo crontab -u ubuntu mycron
 rm mycron
