@@ -125,7 +125,7 @@ sleep 5
 
 ####################
 
-# /home/ubuntu/script2.sh 'genetaylor@vizy.io' '5kXcFXPLxWJL!?' 'spotify:playlist:2N5MFM7E8OXrj5JEiRDRL3' 'us5396' 'nordvpn1@vizy.io' '3cPDMityEM85xhq'
+# /home/ubuntu/script2.sh 'alexreid@vizy.io' 'T2x98cGUC3A8!?' 'spotify:playlist:2N5MFM7E8OXrj5JEiRDRL3' 'us5396' 'nordvpn1@vizy.io' '3cPDMityEM85xhq'
 
 
 sudo echo '
@@ -140,7 +140,7 @@ sudo chown -R ubuntu:ubuntu /home/ubuntu
 whoami
 env|grep -i runt
 
-/bin/bash -c  "/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6"
+# /bin/bash -c  "/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6"
 
 ' > /home/ubuntu/script1.sh
 
@@ -298,7 +298,7 @@ xwd -root -out myshot2.xwd
 sleep 10000
 xwd -root -out myshot3.xwd
 
-# scp  -i ./test.pem ubuntu@ec2-52-8-30-51.us-west-1.compute.amazonaws.com:/home/ubuntu/myshot.xwd ./
+# scp  -i ./test.pem ubuntu@ec2-54-219-28-17.us-west-1.compute.amazonaws.com:/home/ubuntu/myshot.xwd ./
 # xwud -in myshot.xwd 
 
 echo "Disconnecting VPN"
