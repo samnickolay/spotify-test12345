@@ -109,10 +109,9 @@ SPOTIFY_PASSWORD=$(aws ec2 describe-tags --filters "Name=resource-id,Values=$INS
 PLAYLIST_TAG="playlist"
 PLAYLIST=$(aws ec2 describe-tags --filters "Name=resource-id,Values=$INSTANCE_ID" "Name=key,Values=$PLAYLIST_TAG" --region=$REGION --output=text | cut -f5)
 
-sudo apt install -y --reinstall dbus-x11 curl jack alsa-base pulseaudio alsa-utils alsa-oss alsa-utils &> /dev/null 
-
-sleep 5
 sudo apt install -y --reinstall libasound2 libasound2-data libasound2-plugins &> /dev/null 
+sleep 5
+sudo apt install -y --reinstall dbus-x11 curl jack alsa-base pulseaudio alsa-utils alsa-oss alsa-utils &> /dev/null 
 sleep 5
 
 sudo apt install -y expect xvfb xinit xdotool x11-apps &> /dev/null  
@@ -173,9 +172,9 @@ small_random () {
 }
 # echo $(small_random)
 
-sudo apt install -y --reinstall dbus-x11 curl jack alsa-base pulseaudio alsa-utils alsa-oss alsa-utils &> /dev/null 
-sleep 5
 sudo apt install -y --reinstall libasound2 libasound2-data libasound2-plugins &> /dev/null 
+sleep 5
+sudo apt install -y --reinstall dbus-x11 curl jack alsa-base pulseaudio alsa-utils alsa-oss alsa-utils &> /dev/null 
 sleep 5
 
 echo "sleeping"
