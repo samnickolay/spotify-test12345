@@ -134,7 +134,7 @@ sudo chown -R ubuntu:ubuntu /usr/share/
 
 sudo chown -R ubuntu:ubuntu /home/ubuntu
 
-sudo ssh -i ./test.pem ubuntu@localhost -o StrictHostKeyChecking=no "/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6"
+# sudo ssh -i ./test.pem ubuntu@localhost -o StrictHostKeyChecking=no "/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6"
 
 ' > /home/ubuntu/script1.sh
 
@@ -142,12 +142,12 @@ sudo echo '
 #!/bin/bash
 export XDG_RUNTIME_DIR=/run/user/1000
 
-# sudo mkdir /run/user/1000
-# sudo chown -R ubuntu:ubuntu /run/user/1000
-# sudo mkdir /usr/share/ 
-# sudo chown -R ubuntu:ubuntu /usr/share/
+sudo mkdir /run/user/1000
+sudo chown -R ubuntu:ubuntu /run/user/1000
+sudo mkdir /usr/share/ 
+sudo chown -R ubuntu:ubuntu /usr/share/
 
-# sudo chown -R ubuntu:ubuntu /home/ubuntu
+sudo chown -R ubuntu:ubuntu /home/ubuntu
 
 
 echo "running test!!!" 
@@ -278,7 +278,7 @@ xwd -root -out myshot2.xwd
 sleep 10000
 xwd -root -out myshot3.xwd
 
-# scp  -i ./test.pem ubuntu@ec2-184-169-219-51.us-west-1.compute.amazonaws.com:/home/ubuntu/myshot.xwd ./
+# scp  -i ./test.pem ubuntu@ec2-52-8-30-51.us-west-1.compute.amazonaws.com:/home/ubuntu/myshot.xwd ./
 # xwud -in myshot.xwd 
 
 echo "Disconnecting VPN"
