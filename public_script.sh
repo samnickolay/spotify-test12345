@@ -305,7 +305,7 @@ sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh) &> /dev/null
 crontab -l > mycron
 #echo new cron into cron file
 echo "
-@reboot sleep 60 && sudo /home/ubuntu/script1.sh >> /home/ubuntu/ncspot.log 2>&1" >> mycron
+@reboot sleep 60 && sudo /home/ubuntu/script1.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST $VPN_NAME $VPN_EMAIL $VPN_PASSWORD >> /home/ubuntu/ncspot.log 2>&1" >> mycron
 #install new cron file
 sudo crontab -u ubuntu mycron
 rm mycron
