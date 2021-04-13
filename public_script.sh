@@ -140,7 +140,7 @@ sudo chown -R ubuntu:ubuntu /home/ubuntu
 whoami
 env|grep -i runt
 
-/bin/bash/ -c  "/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6"
+/bin/bash -c  "/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6"
 
 ' > /home/ubuntu/script1.sh
 
