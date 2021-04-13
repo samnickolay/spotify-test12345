@@ -123,36 +123,13 @@ sudo snap install spotify --devmode &> /dev/null
 
 sleep 5
 
-export $(dbus-launch);
-pulseaudio --start;
-pacmd load-module module-null-sink sink_name=MySink;
-pacmd update-sink-proplist MySink device.description=MySink;
-pactl -- set-sink-volume MySink 200%;
-pactl load-module module-virtual-sink sink_name=VAC_1to2;
-pactl load-module module-virtual-sink sink_name=VAC_2to1;
-
-
 ####################
 
 
 sudo echo '
 #!/bin/bash
 
-# ls -l /run/user/
-sudo mkdir /run/user/1000
-sudo chown -R ubuntu:ubuntu /run/user/1000
-# ls -l /run/user/
-
-# ls -l /usr/share/
-sudo mkdir /usr/share/
-sudo chown -R ubuntu:ubuntu /usr/share/
-# ls -l /usr/share/
-
-export XDG_RUNTIME_DIR=/run/user/1000
-
 echo "running test!!!" 
-cat /etc/hostname
-whoami
 
 sleep 7800 && echo "rebooting after timeout! (7800 seconds)" &
 # sleep 7800 && echo "rebooting after timeout! (7800 seconds)" && sudo reboot &
@@ -162,21 +139,7 @@ export NO_AT_BRIDGE=1
 
 echo "$1 $2 $3 $4 $5 $6"
 
-big_random () {
-  echo $(($(tr -dc 0-9 < /dev/urandom | head -c6 | sed "s/^0*//")*28800/999999))
-}
-# echo $(big_random)
 
-small_random () {
-  echo $(($(tr -dc 0-9 < /dev/urandom | head -c6 | sed "s/^0*//")*14400/999999))
-}
-# echo $(small_random)
-
-# sudo apt install -y --reinstall libasound2 libasound2-data libasound2-plugins &> /dev/null 
-# sleep 5
-# sudo apt install -y --reinstall dbus-x11 curl jack alsa-base pulseaudio alsa-utils alsa-oss alsa-utils &> /dev/null 
-# sleep 5
-s
 echo "sleeping"
 date
 sleep 10
@@ -216,8 +179,6 @@ export DISPLAY=:44
 Xvfb $DISPLAY -screen 0 800x800x24 &   
 sleep 2
 
-sudo chown -R ubuntu:ubuntu /home/ubuntu
-
 pulseaudio -k 
 sudo alsa force-reload 
 
@@ -232,8 +193,6 @@ pactl load-module module-virtual-sink sink_name=VAC_1to2;
 pactl load-module module-virtual-sink sink_name=VAC_2to1;
 
 speaker-test -t wav -l 1
-
-ls -l /usr/share/alsa/
 
 sleep 2
 /snap/bin/spotify --no-zygote &
@@ -321,23 +280,10 @@ sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
 crontab -l > mycron
 #echo new cron into cron file
 echo "
-@reboot sleep 20 && sudo mkdir /run/user/1000 && sudo chown -R ubuntu:ubuntu /run/user/1000
-@reboot sleep 30 && sudo mkdir /usr/share/ && sudo chown -R ubuntu:ubuntu /usr/share/
-
-@reboot sleep 60 && export XDG_RUNTIME_DIR=/run/user/1000 && /bin/bash -c 'export XDG_RUNTIME_DIR=/run/user/1000 && /home/ubuntu/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST $VPN_NAME $VPN_EMAIL $VPN_PASSWORD' >> /home/ubuntu/ncspot.log 2>&1" >> mycron
+@reboot sleep 60 && ssh -i ./test.pem ubuntu@localhost '/home/ubuntu/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST $VPN_NAME $VPN_EMAIL $VPN_PASSWORD' >> /home/ubuntu/ncspot.log 2>&1" >> mycron
 #install new cron file
 sudo crontab -u ubuntu mycron
 rm mycron
-
-# ls -l /run/user/
-sudo mkdir /run/user/1000
-sudo chown -R ubuntu:ubuntu /run/user/1000
-# ls -l /run/user/
-
-# ls -l /usr/share/
-sudo mkdir /usr/share/
-sudo chown -R ubuntu:ubuntu /usr/share/
-# ls -l /usr/share/
 
 ####################
 
