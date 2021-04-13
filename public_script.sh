@@ -140,7 +140,9 @@ sudo chown -R ubuntu:ubuntu /home/ubuntu
 whoami
 env|grep -i runt
 
-# /bin/bash -c  "/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6"
+sleep 300
+
+/bin/bash -c "/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6"
 
 ' > /home/ubuntu/script1.sh
 
@@ -298,7 +300,7 @@ xwd -root -out myshot2.xwd
 sleep 10000
 xwd -root -out myshot3.xwd
 
-# scp  -i ./test.pem ubuntu@ec2-54-219-28-17.us-west-1.compute.amazonaws.com:/home/ubuntu/myshot.xwd ./
+# scp  -i ./test.pem ubuntu@ec2-54-183-229-132.us-west-1.compute.amazonaws.com:/home/ubuntu/myshot.xwd ./
 # xwud -in myshot.xwd 
 
 echo "Disconnecting VPN"
