@@ -282,7 +282,7 @@ sudo chmod a+x /home/ubuntu/script2.sh
 
 echo "install nordvpn"
 
-sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
+sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh) &> /dev/null 
 
 #write out current crontab
 crontab -l > mycron
@@ -327,6 +327,13 @@ EEu97hV7ggP/9gPy0JgoSO21cv2k022OY5/rREwlYAThVKpfAtk=
 chmod 400 /home/ubuntu/test.pem
 
 echo "$SPOTIFY_EMAIL" > /etc/hostname
+
+sudo mkdir /run/user/1000
+sudo chown -R ubuntu:ubuntu /run/user/1000
+sudo mkdir /usr/share/ 
+sudo chown -R ubuntu:ubuntu /usr/share/
+
+sudo chown -R ubuntu:ubuntu /home/ubuntu
 
 sudo reboot
 echo "rebooting!"
