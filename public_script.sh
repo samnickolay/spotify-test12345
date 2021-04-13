@@ -124,27 +124,23 @@ sudo snap install spotify --devmode &> /dev/null
 sleep 5
 
 ####################
+
+# /home/ubuntu/script2.sh 'genetaylor@vizy.io' '5kXcFXPLxWJL!?' 'spotify:playlist:2N5MFM7E8OXrj5JEiRDRL3' 'us5396' 'nordvpn1@vizy.io' '3cPDMityEM85xhq'
+
+
 sudo echo '
 export XDG_RUNTIME_DIR=/run/user/1000
 
+sudo mkdir /run/user/1000
+sudo mkdir /usr/share/
 sudo chown -R ubuntu:ubuntu /run/user/1000
 sudo chown -R ubuntu:ubuntu /usr/share/
 sudo chown -R ubuntu:ubuntu /home/ubuntu
 
 whoami
+env|grep -i runt
 
-
-
-# # sudo ssh -i ./test.pem ubuntu@localhost -o StrictHostKeyChecking=no "/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6"
-
-# ssh -i ./test.pem -tt ubuntu@localhost -o StrictHostKeyChecking=no &
-# sleep 10 
-/home/ubuntu/script2.sh genetaylor@vizy.io 5kXcFXPLxWJL!? spotify:playlist:2N5MFM7E8OXrj5JEiRDRL3 us5396 nordvpn1@vizy.io 3cPDMityEM85xhq
-# sleep 10
-
-# exit
-
-
+/bin/bash/ -c  "/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6"
 
 ' > /home/ubuntu/script1.sh
 
