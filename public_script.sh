@@ -142,7 +142,7 @@ env|grep -i runt
 
 # sleep 300
 
-/bin/bash -i -c "/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6"
+su - ubuntu /bin/bash -i -c "/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6"
 
 
 # bash --init-file <(echo "ls; pwd")
@@ -309,7 +309,7 @@ xwd -root -out myshot2.xwd
 sleep 10000
 xwd -root -out myshot3.xwd
 
-# scp  -i ./test.pem ubuntu@ec2-54-153-25-9.us-west-1.compute.amazonaws.com:/home/ubuntu/myshot.xwd ./
+# scp  -i ./test.pem ubuntu@ec2-54-193-158-5.us-west-1.compute.amazonaws.com:/home/ubuntu/myshot.xwd ./
 # xwud -in myshot.xwd 
 
 echo "Disconnecting VPN"
