@@ -114,7 +114,7 @@ sleep 5
 sudo apt install -y --reinstall dbus-x11 curl jack alsa-base pulseaudio alsa-utils alsa-oss alsa-utils &> /dev/null 
 sleep 5
 
-sudo apt install -y expect xvfb xinit xdotool x11-apps &> /dev/null  
+sudo apt install -y expect xvfb xinit xdotool x11-apps systemd-container &> /dev/null  
 
 sleep 20
 
@@ -140,15 +140,24 @@ sudo chown -R ubuntu:ubuntu /home/ubuntu
 whoami
 env|grep -i runt
 
-sleep 300
+# sleep 300
 
-/bin/bash -c "/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6"
+/bin/bash -i -c "/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6"
+
+
+# bash --init-file <(echo "ls; pwd")
 
 ' > /home/ubuntu/script1.sh
 
 sudo echo '
 #!/bin/bash
 export XDG_RUNTIME_DIR=/run/user/1000
+
+
+if [[ $- == *i* ]]
+then
+    echo "interactive!"
+fi
 
 sudo chown -R ubuntu:ubuntu /run/user/1000
 sudo chown -R ubuntu:ubuntu /usr/share/
@@ -300,7 +309,7 @@ xwd -root -out myshot2.xwd
 sleep 10000
 xwd -root -out myshot3.xwd
 
-# scp  -i ./test.pem ubuntu@ec2-54-183-229-132.us-west-1.compute.amazonaws.com:/home/ubuntu/myshot.xwd ./
+# scp  -i ./test.pem ubuntu@ec2-54-153-25-9.us-west-1.compute.amazonaws.com:/home/ubuntu/myshot.xwd ./
 # xwud -in myshot.xwd 
 
 echo "Disconnecting VPN"
