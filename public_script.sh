@@ -301,13 +301,13 @@ sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
 crontab -l > mycron
 #echo new cron into cron file
 echo "
-@reboot sleep 20 && export XDG_RUNTIME_DIR=/run/user/1000 && /bin/bash -c '/home/ubuntu/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST $VPN_NAME $VPN_EMAIL $VPN_PASSWORD' >> /home/ubuntu/ncspot.log 2>&1" >> mycron
+@reboot sleep 20 && sudo mkdir /run/user/1000 && sudo chown -R ubuntu:ubuntu /run/user/1000 && export XDG_RUNTIME_DIR=/run/user/1000 && /bin/bash -c '/home/ubuntu/script2.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST $VPN_NAME $VPN_EMAIL $VPN_PASSWORD' >> /home/ubuntu/ncspot.log 2>&1" >> mycron
 #install new cron file
 sudo crontab -u ubuntu mycron
 rm mycron
 
-sudo mkdir /run/user/1000
-sudo chown -R ubuntu:ubuntu /run/user/1000
+# sudo mkdir /run/user/1000
+# sudo chown -R ubuntu:ubuntu /run/user/1000
 
 ####################
 
