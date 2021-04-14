@@ -181,8 +181,8 @@ sudo chown -R ubuntu:ubuntu /home/ubuntu
 
 echo "running test!!!" 
 
-sleep 7800 && echo "rebooting after timeout! (7800 seconds)" &
-# sleep 7800 && echo "rebooting after timeout! (7800 seconds)" && sudo reboot &
+sleep 7800 && echo "rebooting after timeout! (7800 seconds)" && printf  "\nsuccessful - restarting" >> /home/ubuntu/stderr.log  &
+# sleep 7800 && echo "rebooting after timeout! (7800 seconds)" && printf  "\nsuccessful - restarting" >> /home/ubuntu/stderr.log && sudo reboot &
 
 export TERM=xterm
 export NO_AT_BRIDGE=1
@@ -214,7 +214,7 @@ expect -c "
 "
 
 echo "VPN Connected! $4"
-# sudo nordvpn connect $4
+sudo nordvpn connect $4
 sleep 20;
 dig +short myip.opendns.com @resolver1.opendns.com
 
@@ -324,7 +324,7 @@ xwd -root -out myshot2.xwd
 sleep 10000
 xwd -root -out myshot3.xwd
 
-# scp  -i ./test.pem ubuntu@ec2-54-193-158-5.us-west-1.compute.amazonaws.com:/home/ubuntu/myshot.xwd ./
+# scp  -i ./test.pem ubuntu@ec2-18-144-169-142.us-west-1.compute.amazonaws.com:/home/ubuntu/myshot.xwd ./
 # xwud -in myshot.xwd 
 
 echo "Disconnecting VPN"
@@ -333,6 +333,7 @@ sudo nordvpn disconnect
 echo "
 DONE!!
 "
+
 
 '> /home/ubuntu/script2.sh
 

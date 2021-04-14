@@ -374,9 +374,15 @@ user_data = '''#!/bin/bash -xe
 echo "fetching bash script"
 wget -N https://raw.githubusercontent.com/samnickolay/spotify-test12345/main/public_script.sh
 chmod +x ./public_script.sh
+
 wget -N https://raw.githubusercontent.com/samnickolay/spotify-test12345/main/setup_script.sh
 cp ./setup_script.sh /home/ubuntu/setup_script.sh
 chmod a+x /home/ubuntu/setup_script.sh
+
+wget -N https://raw.githubusercontent.com/samnickolay/spotify-test12345/main/checker_script.sh
+cp ./setup_script.sh /home/ubuntu/checker_script.sh
+chmod a+x /home/ubuntu/checker_script.sh
+
 echo "running bash script"
 # ./public_script.sh 2>/home/ubuntu/stderr.log 1>/home/ubuntu/stdout.log
 ./public_script.sh 2>&1 | tee /home/ubuntu/stdout.log
