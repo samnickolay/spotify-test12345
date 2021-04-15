@@ -12,7 +12,7 @@ do
     FILESIZE=$(stat -c%s "$FILENAME")
     
     if (( $FILESIZE > 50 )); then
-        printf  "\nerror - restarting" >> /home/ubuntu/stderr.log
+        printf  "error - restarting" >> /home/ubuntu/stderr.log
         sudo reboot
     fi
     

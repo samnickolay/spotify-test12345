@@ -30,7 +30,7 @@ PLAYLISTS = ['spotify:playlist:5PkrnGrf4RN2UtHCad45Yu', 'spotify:playlist:5PkrnG
 region = 'us-west-1'
 
 accounts = {
-    'samnickolay@gmail.com': 'Tlbsj5116',
+    # 'samnickolay@gmail.com': 'Tlbsj5116',
     # 'harperyoung@vizy.io': '9RSA769PNb56!?',
     # 'genetaylor@vizy.io': '5kXcFXPLxWJL!?',
     # 'phoenixgriffiths@vizy.io': 'wGcbApcfFyKs!?',
@@ -40,11 +40,11 @@ accounts = {
     # 'riverburton@vizy.io': 'zWQEqNEad8uh!?',
     # 'carmenmoran@vizy.io': 'x4S9ZxMR8qqj!?',
     # 'erinboone@vizy.io': 'DncBCZbMzvpF!?',
-    # 'brynnratliff@vizy.io': 'vtVPXG4WVzKt!?',
-    # 'skylercooke@vizy.io': 'mSM7ba9D7zuS!?',
-    # 'judefletcher@vizy.io': 'RgvBZz6pWTvb!?',
-    # 'drewwhite@vizy.io': 'T3PmqY6zpWqx!?',
-    # 'jordanmatthews@vizy.io': 'uWnBcdteMdQH!?',
+    'brynnratliff@vizy.io': 'vtVPXG4WVzKt!?',
+    'skylercooke@vizy.io': 'mSM7ba9D7zuS!?',
+    'judefletcher@vizy.io': 'RgvBZz6pWTvb!?',
+    'drewwhite@vizy.io': 'T3PmqY6zpWqx!?',
+    'jordanmatthews@vizy.io': 'uWnBcdteMdQH!?',
     # 'riverkaur@vizy.io': 'kFMccVuR3FjS!?',
     # 'harpernorris@vizy.io': 'XAycrx4BD2gc!?',
     # 'loganbryan@vizy.io': '9twZW4qBQMPt!?',

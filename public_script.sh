@@ -179,10 +179,37 @@ sudo chown -R ubuntu:ubuntu /usr/share/
 sudo chown -R ubuntu:ubuntu /home/ubuntu
 
 
-echo "running test!!!" 
+SECONDS_UNTIL_SEVEN=$(( $(date +%s -d "today 14:00") - $( date +%s ) ))
+TWO_HOURS=$(($RANDOM/5))
 
-sleep 7800 && echo "rebooting after timeout! (7800 seconds)" && printf  "\nsuccessful - restarting" >> /home/ubuntu/stderr.log  &
-# sleep 7800 && echo "rebooting after timeout! (7800 seconds)" && printf  "\nsuccessful - restarting" >> /home/ubuntu/stderr.log && sudo reboot &
+echo "sleeping"
+date
+sleep 10
+
+if (( $SECONDS_UNTIL_SEVEN > 0 )); then
+    sleep $SECONDS_UNTIL_SEVEN 
+fi
+sleep $TWO_HOURS
+date
+echo "done sleeping"
+
+# echo "sleeping"
+# date
+# sleep 10
+# sleep $(($RANDOM/6));
+# date
+# echo "done sleeping"
+
+# RAND=$RANDOM
+
+FIFTEEN_HOURS=54000
+FOUR_HOURS=$(($RANDOM/2))
+TOTAL=$(( $FIFTEEN_HOURS + $FOUR_HOURS))
+
+echo "running test!!! for ($TOTAL seconds)" 
+
+# sleep $TOTAL && echo "rebooting after timeout! ($TOTAL seconds)" && printf  "successful - restarting" >> /home/ubuntu/stderr.log  &
+sleep $TOTAL && echo "rebooting after timeout! ($TOTAL seconds)" && printf  "successful - restarting" >> /home/ubuntu/stderr.log && sudo reboot &
 
 export TERM=xterm
 export NO_AT_BRIDGE=1
@@ -190,19 +217,10 @@ export NO_AT_BRIDGE=1
 echo "$1 $2 $3 $4 $5 $6"
 
 
-echo "sleeping"
-date
-sleep 10
-# sleep $(($RANDOM/13));
-date
-echo "done sleeping"
-
 dig +short myip.opendns.com @resolver1.opendns.com
 
-echo "
+printf "\n\n----------\n"
 
-----------
-"
 
 expect -c "
     spawn sudo nordvpn login
@@ -218,10 +236,7 @@ sudo nordvpn connect $4
 sleep 20;
 dig +short myip.opendns.com @resolver1.opendns.com
 
-echo "
-----------
-
-"
+printf "\n----------\n\n"
 
 sudo chown -R ubuntu:ubuntu /run/user/1000
 sudo chown -R ubuntu:ubuntu /usr/share/
@@ -268,7 +283,6 @@ sudo chown -R ubuntu:ubuntu /run/user/1000
 sudo chown -R ubuntu:ubuntu /usr/share/
 sudo chown -R ubuntu:ubuntu /home/ubuntu
 
-
 xdotool mousemove 400 450
 sleep 2
 xdotool click 1
@@ -313,6 +327,26 @@ sleep 2
 xdotool click 1
 sleep 2
 
+
+FILE=/home/ubuntu/loop.txt
+if [ -f "$FILE" ]; then
+    echo "$FILE exists."
+else 
+    echo "$FILE does not exist."
+    touch $FILE
+    sleep 5
+
+    xdotool mousemove 350 690
+    sleep 2
+    xdotool click 1
+    sleep 2
+
+    xdotool mousemove 530 690
+    sleep 2
+    xdotool click 1
+    sleep 2
+fi
+
 sleep 10
 xwd -root -out myshot.xwd
 sleep 100
@@ -323,17 +357,23 @@ sleep 5000
 xwd -root -out myshot2.xwd
 sleep 10000
 xwd -root -out myshot3.xwd
+sleep 20000
+xwd -root -out myshot4.xwd
+sleep 20000
+xwd -root -out myshot5.xwd
+sleep 20000
+xwd -root -out myshot5.xwd
+sleep 20000
+xwd -root -out myshot6.xwd
 
-# scp  -i ./test.pem ubuntu@ec2-18-144-169-142.us-west-1.compute.amazonaws.com:/home/ubuntu/myshot.xwd ./
+# scp  -i ./test.pem ubuntu@ec2-54-183-224-74.us-west-1.compute.amazonaws.com:/home/ubuntu/myshot*.xwd ./
 # xwud -in myshot.xwd 
 
-echo "Disconnecting VPN"
-sudo nordvpn disconnect
 
-echo "
-DONE!!
-"
+# echo "Disconnecting VPN"
+# sudo nordvpn disconnect
 
+printf "\nDONE!!\n"
 
 '> /home/ubuntu/script2.sh
 
