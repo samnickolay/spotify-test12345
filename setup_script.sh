@@ -16,8 +16,8 @@ env|grep -i runt
 chmod 400 test.pem
 
 
-echo "running checker script!"
-/bin/bash -i -c './checker_script.sh' &
+# echo "running checker script!"
+# /bin/bash -c './checker_script.sh' &
 
 
 ssh -tt -o 'StrictHostKeyChecking no' -i ./test.pem ubuntu@localhost "/bin/bash -i -c '/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6'"

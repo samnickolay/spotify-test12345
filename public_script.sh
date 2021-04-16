@@ -169,10 +169,10 @@ set -m
 export XDG_RUNTIME_DIR=/run/user/1000
 
 
-if [[ $- == *i* ]]
-then
-    echo "interactive!"
-fi
+# if [[ $- == *i* ]]
+# then
+#     echo "interactive!"
+# fi
 
 sudo chown -R ubuntu:ubuntu /run/user/1000
 sudo chown -R ubuntu:ubuntu /usr/share/
@@ -206,21 +206,19 @@ FIFTEEN_HOURS=54000
 FOUR_HOURS=$(($RANDOM/2))
 TOTAL=$(( $FIFTEEN_HOURS + $FOUR_HOURS))
 
-echo "running test!!! for ($TOTAL seconds)" 
+echo "running test for $TOTAL seconds" 
 
-# sleep $TOTAL && echo "rebooting after timeout! ($TOTAL seconds)" && printf  "successful - restarting" >> /home/ubuntu/stderr.log  &
-sleep $TOTAL && echo "rebooting after timeout! ($TOTAL seconds)" && printf  "successful - restarting" >> /home/ubuntu/stderr.log && sudo reboot &
+# sleep $TOTAL && echo "rebooting after timeout - $TOTAL seconds" && printf "successful - restarting" >> /home/ubuntu/stderr.log  &
+sleep $TOTAL && echo "rebooting after timeout - $TOTAL seconds" && printf "successful - restarting" >> /home/ubuntu/stderr.log && sudo reboot &
 
 export TERM=xterm
 export NO_AT_BRIDGE=1
 
 echo "$1 $2 $3 $4 $5 $6"
 
-
 dig +short myip.opendns.com @resolver1.opendns.com
 
 printf "\n\n----------\n"
-
 
 expect -c "
     spawn sudo nordvpn login
@@ -370,8 +368,8 @@ xwd -root -out myshot6.xwd
 # xwud -in myshot.xwd 
 
 
-# echo "Disconnecting VPN"
-# sudo nordvpn disconnect
+echo "Disconnecting VPN"
+sudo nordvpn disconnect
 
 printf "\nDONE!!\n"
 
