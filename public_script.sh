@@ -230,7 +230,7 @@ expect -c "
 "
 
 echo "VPN Connected! $4"
-sudo nordvpn connect $4
+sudo nordvpn connect $4 || sudo nordvpn connect The_Americas  
 sleep 20;
 dig +short myip.opendns.com @resolver1.opendns.com
 
