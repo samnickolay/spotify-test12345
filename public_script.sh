@@ -128,40 +128,6 @@ sleep 5
 #/bin/bash -i -c /home/ubuntu/script2.sh 'alexreid@vizy.io' 'T2x98cGUC3A8!?' 'spotify:playlist:2N5MFM7E8OXrj5JEiRDRL3' 'us5396' 'nordvpn1@vizy.io' '3cPDMityEM85xhq'
 
 
-# sudo echo '''
-# set -m
-
-# export XDG_RUNTIME_DIR=/run/user/1000
-
-
-# sudo mkdir /run/user/1000
-# sudo mkdir /usr/share/
-# sudo chown -R ubuntu:ubuntu /run/user/1000
-# sudo chown -R ubuntu:ubuntu /usr/share/
-# sudo chown -R ubuntu:ubuntu /home/ubuntu
-
-# whoami
-# env|grep -i runt
-
-# # sleep 300
-
-# echo "running Xvfb"
-# save="$DISPLAY"                          
-# export DISPLAY=:44                    
-# Xvfb $DISPLAY -screen 0 800x800x24 &   
-# sleep 2
-
-
-# chmod 400 test.pem
-
-# # /bin/bash -i -c "/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6"
-# ssh -tt -i .\test.pem ubuntu@localhost "/bin/bash -i -c '/home/ubuntu/script2.sh $1 $2 $3 $4 $5 $6\" "
-
-
-# # bash --init-file <(echo "ls; pwd")
-
-# ' > /home/ubuntu/script1.sh
-
 sudo echo '
 #!/bin/bash
 set -m
@@ -302,13 +268,15 @@ sleep 2
 sleep 2
 xdotool key ctrl+l
 sleep 2
-xdotool type "life contexted"
+xdotool type "$3"
+sleep 2
+xdotool key Return
 sleep 2
 
-xdotool mousemove 400 300
-sleep 2
-xdotool click 1
-sleep 2
+# xdotool mousemove 400 300
+# sleep 2
+# xdotool click 1
+# sleep 2
 
 xdotool mousemove 530 450
 sleep 2
@@ -318,6 +286,10 @@ sleep 2
 xdotool mousemove 450 450
 sleep 2
 xdotool click 1
+sleep 2
+
+sleep 2
+xdotool key "Escape"
 sleep 2
 
 xdotool mousemove 375 450
@@ -351,27 +323,92 @@ sleep 100
 xwd -root -out myshot0.xwd
 sleep 1000
 xwd -root -out myshot1.xwd
-sleep 5000
+
+sleep $RANDOM
+# stop
+xdotool mousemove 375 450
+sleep 2
+xdotool click 1
+sleep 2
 xwd -root -out myshot2.xwd
-sleep 10000
+sleep $(($RANDOM/6))
+# start
+xdotool mousemove 375 450
+sleep 2
+xdotool click 1
+sleep 2
 xwd -root -out myshot3.xwd
-sleep 20000
+
+
+sleep $RANDOM
+# stop
+xdotool mousemove 375 450
+sleep 2
+xdotool click 1
+sleep 2
 xwd -root -out myshot4.xwd
-sleep 20000
+sleep $(($RANDOM/6))
+# start
+xdotool mousemove 375 450
+sleep 2
+xdotool click 1
+sleep 2
 xwd -root -out myshot5.xwd
-sleep 20000
-xwd -root -out myshot5.xwd
-sleep 20000
+
+
+sleep $RANDOM
+# stop
+xdotool mousemove 375 450
+sleep 2
+xdotool click 1
+sleep 2
 xwd -root -out myshot6.xwd
+sleep $(($RANDOM/6))
+# start
+xdotool mousemove 375 450
+sleep 2
+xdotool click 1
+sleep 2
+xwd -root -out myshot7.xwd
+
+
+sleep $RANDOM
+# stop
+xdotool mousemove 375 450
+sleep 2
+xdotool click 1
+sleep 2
+xwd -root -out myshot8.xwd
+sleep $(($RANDOM/6))
+# start
+xdotool mousemove 375 450
+sleep 2
+xdotool click 1
+sleep 2
+xwd -root -out myshot9.xwd
+
+
+# sleep 5000
+# xwd -root -out myshot2.xwd
+# sleep 10000
+# xwd -root -out myshot3.xwd
+# sleep 20000
+# xwd -root -out myshot4.xwd
+# sleep 20000
+# xwd -root -out myshot5.xwd
+# sleep 20000
+# xwd -root -out myshot5.xwd
+# sleep 20000
+# xwd -root -out myshot6.xwd
 
 # scp  -i ./test.pem ubuntu@ec2-54-183-224-74.us-west-1.compute.amazonaws.com:/home/ubuntu/myshot*.xwd ./
 # xwud -in myshot.xwd 
 
 
-echo "Disconnecting VPN"
-sudo nordvpn disconnect
+# echo "Disconnecting VPN"
+# sudo nordvpn disconnect
 
-printf "\nDONE!!\n"
+# printf "\nDONE!!\n"
 
 '> /home/ubuntu/script2.sh
 
