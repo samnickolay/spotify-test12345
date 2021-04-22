@@ -10,9 +10,6 @@ SecurityGroupId = 'sg-02ef6b6c1b6f17c12'
 
 KEY_NAME = 'test'
 
-# VPN_EMAIL = 'samnickolay@gmail.com'
-# VPN_PASSWORD = 'z3NjbYH8stYFZEi'
-
 vpn_accounts = {
     # 'samnickolay@gmail.com': 'z3NjbYH8stYFZEi',
     'nordvpn1@vizy.io': '3cPDMityEM85xhq',
@@ -22,23 +19,18 @@ vpn_accounts = {
     'nordvpn5@vizy.io': '3cPDMityEM85xhq',
 }
 
-# PLAYLISTS = ['life contexted', 'spotify:playlist:5PkrnGrf4RN2UtHCad45Yu',
-#              'spotify:playlist:2N5MFM7E8OXrj5JEiRDRL3', 'spotify:playlist:2N5MFM7E8OXrj5JEiRDRL3',
-#              'spotify:playlist:37i9dQZF1DXcBWIGoYBM5M']
-
 MASTER_PLAYLISTS = ['spotify:artist:1FB5eEgWflHL5FPLGeUAKj']
-
 
 region = 'us-west-1'
 
 accounts = [
-    # ['harperyoung@vizy.io', '9RSA769PNb56!?', 'spotify:playlist:61wJ5w8wIDtlntCtIlTWOY'],
+    # ['harperyoung@vizy.io', 'vtVPXG4WVzKt!?', 'spotify:playlist:61wJ5w8wIDtlntCtIlTWOY'],
     # ['genetaylor@vizy.io', '5kXcFXPLxWJL!?', 'spotify:playlist:61wJ5w8wIDtlntCtIlTWOY'],
     # ['phoenixgriffiths@vizy.io', 'wGcbApcfFyKs!?', 'spotify:playlist:61wJ5w8wIDtlntCtIlTWOY'],
     # ['danniwood@vizy.io', 'ZNDL6FbqVfKV!?', 'spotify:playlist:61wJ5w8wIDtlntCtIlTWOY'],
     # ['alexreid@vizy.io', 'T2x98cGUC3A8!?', 'spotify:playlist:61wJ5w8wIDtlntCtIlTWOY'],
     # ['chrischaney@vizy.io', 'mzhAHDkEG2He!?', 'spotify:playlist:61wJ5w8wIDtlntCtIlTWOY'],
-    # ['riverburton@vizy.io', 'zWQEqNEad8uh!?', 'spotify:playlist:1pKlHYhQo7PQrSS7BXoBus'],
+    # ['riverburton@vizy.io', '8ETUDLWp6nvW!?', 'spotify:playlist:1pKlHYhQo7PQrSS7BXoBus'],
     # ['carmenmoran@vizy.io', 'x4S9ZxMR8qqj!?', 'spotify:playlist:1pKlHYhQo7PQrSS7BXoBus'],
     # ['erinboone@vizy.io', 'DncBCZbMzvpF!?', 'spotify:playlist:1pKlHYhQo7PQrSS7BXoBus'],
     # ['brynnratliff@vizy.io', 'vtVPXG4WVzKt!?', 'spotify:playlist:1pKlHYhQo7PQrSS7BXoBus'],

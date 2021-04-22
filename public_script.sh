@@ -247,6 +247,10 @@ sudo chown -R ubuntu:ubuntu /run/user/1000
 sudo chown -R ubuntu:ubuntu /usr/share/
 sudo chown -R ubuntu:ubuntu /home/ubuntu
 
+sleep 2
+xdotool key "Escape"
+sleep 2
+
 xdotool mousemove 400 450
 sleep 2
 xdotool click 1
