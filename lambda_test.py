@@ -10,50 +10,50 @@ SecurityGroupId = 'sg-02ef6b6c1b6f17c12'
 
 KEY_NAME = 'test'
 
-vpn_accounts = {
-    # 'samnickolay@gmail.com': 'z3NjbYH8stYFZEi',
-    'nordvpn1@vizy.io': '3cPDMityEM85xhq',
-    'nordvpn2@vizy.io': '3cPDMityEM85xhq',
-    'nordvpn3@vizy.io': '3cPDMityEM85xhq',
-    'nordvpn4@vizy.io': '3cPDMityEM85xhq',
-    'nordvpn5@vizy.io': '3cPDMityEM85xhq',
-}
+# vpn_accounts = {
+#     # 'samnickolay@gmail.com': 'z3NjbYH8stYFZEi',
+#     'nordvpn1@vizy.io': '3cPDMityEM85xhq',
+#     'nordvpn2@vizy.io': '3cPDMityEM85xhq',
+#     'nordvpn3@vizy.io': '3cPDMityEM85xhq',
+#     'nordvpn4@vizy.io': '3cPDMityEM85xhq',
+#     'nordvpn5@vizy.io': '3cPDMityEM85xhq',
+# }
 
 MASTER_PLAYLISTS = ['spotify:artist:1FB5eEgWflHL5FPLGeUAKj']
 
 region = 'us-west-1'
 
 accounts = [
-    # ['harperyoung@vizy.io', 'vtVPXG4WVzKt!?', 'spotify:playlist:61wJ5w8wIDtlntCtIlTWOY'],
-    # ['genetaylor@vizy.io', '5kXcFXPLxWJL!?', 'spotify:playlist:61wJ5w8wIDtlntCtIlTWOY'],
-    # ['phoenixgriffiths@vizy.io', 'wGcbApcfFyKs!?', 'spotify:playlist:61wJ5w8wIDtlntCtIlTWOY'],
-    # ['danniwood@vizy.io', 'ZNDL6FbqVfKV!?', 'spotify:playlist:61wJ5w8wIDtlntCtIlTWOY'],
-    # ['alexreid@vizy.io', 'T2x98cGUC3A8!?', 'spotify:playlist:61wJ5w8wIDtlntCtIlTWOY'],
-    # ['chrischaney@vizy.io', 'mzhAHDkEG2He!?', 'spotify:playlist:61wJ5w8wIDtlntCtIlTWOY'],
-    # ['riverburton@vizy.io', '8ETUDLWp6nvW!?', 'spotify:playlist:1pKlHYhQo7PQrSS7BXoBus'],
-    # ['carmenmoran@vizy.io', 'x4S9ZxMR8qqj!?', 'spotify:playlist:1pKlHYhQo7PQrSS7BXoBus'],
-    # ['erinboone@vizy.io', 'DncBCZbMzvpF!?', 'spotify:playlist:1pKlHYhQo7PQrSS7BXoBus'],
-    # ['brynnratliff@vizy.io', 'vtVPXG4WVzKt!?', 'spotify:playlist:1pKlHYhQo7PQrSS7BXoBus'],
-    # ['skylercooke@vizy.io', 'mSM7ba9D7zuS!?', 'spotify:playlist:1pKlHYhQo7PQrSS7BXoBus'],
-    # ['judefletcher@vizy.io', 'RgvBZz6pWTvb!?', 'spotify:playlist:1pKlHYhQo7PQrSS7BXoBus'],
-    # ['drewwhite@vizy.io', 'T3PmqY6zpWqx!?', 'spotify:playlist:4bFGJ700bMXPzibYP8KeTt'],
-    # ['jordanmatthews@vizy.io', 'uWnBcdteMdQH!?', 'spotify:playlist:4bFGJ700bMXPzibYP8KeTt'],
-    # ['riverkaur@vizy.io', 'utGHFFZbNtpS!?', 'spotify:playlist:4bFGJ700bMXPzibYP8KeTt'],
-    # ['harpernorris@vizy.io', 'Zh2fuQLvMh5W!?', 'spotify:playlist:4bFGJ700bMXPzibYP8KeTt'],
-    # ['loganbryan@vizy.io', 'pNkMTaMgpjKu!?', 'spotify:playlist:4bFGJ700bMXPzibYP8KeTt'],
-    # ['alexrose@vizy.io', 'wV3PWU7dy9sa!?', 'spotify:playlist:4bFGJ700bMXPzibYP8KeTt'],
-    # ['rayleereed@vizy.io', '9SgUfJsAgMsZ!?', 'spotify:playlist:4vDGz9viNEI1Q642G4SGKW'],
-    # ['riverallison@vizy.io', 'LYfrF8T2tqNG!?', 'spotify:playlist:4vDGz9viNEI1Q642G4SGKW'],
-    # ['kaiparry@vizy.io', 'Zh2fuQLvMh5W!?', 'spotify:playlist:4vDGz9viNEI1Q642G4SGKW'],
-    # ['aarenburton@vizy.io', '8ETUDLWp6nvW!?', 'spotify:playlist:4vDGz9viNEI1Q642G4SGKW'],
-    # ['frankybradley@vizy.io', 'pNkMTaMgpjKu!?', 'spotify:playlist:4vDGz9viNEI1Q642G4SGKW'],
-    # ['jessknight@vizy.io', 'rRLACcVUmmBc!?', 'spotify:playlist:4vDGz9viNEI1Q642G4SGKW'],
-    ['alexstone@vizy.io', 'QD4puAhj65dA!?', 'spotify:playlist:3dBab05UDJ9Yd0byWU29Xo'],
-    ['geneschwartz@vizy.io', 'yLRPK2dYMhng!?', 'spotify:playlist:3dBab05UDJ9Yd0byWU29Xo'],
-    ['brynncummings@vizy.io', 'pDW9bErDWKN2!?', 'spotify:playlist:3dBab05UDJ9Yd0byWU29Xo'],
-    ['jessiefulton@vizy.io', 'utGHFFZbNtpS!?', 'spotify:playlist:3dBab05UDJ9Yd0byWU29Xo'],
-    ['brettchang@vizy.io', 'HWvaPRnZzYfe!?', 'spotify:playlist:3dBab05UDJ9Yd0byWU29Xo'],
-    ['erinknapp@vizy.io', '6uaBTV93qBN6!?', 'spotify:playlist:3dBab05UDJ9Yd0byWU29Xo'],
+    ['harperyoung@vizy.io', 'vtVPXG4WVzKt!?', 'spotify:playlist:61wJ5w8wIDtlntCtIlTWOY', 'nordvpn1@vizy.io'],
+    ['genetaylor@vizy.io', '5kXcFXPLxWJL!?', 'spotify:playlist:61wJ5w8wIDtlntCtIlTWOY', 'nordvpn1@vizy.io'],
+    ['phoenixgriffiths@vizy.io', 'wGcbApcfFyKs!?', 'spotify:playlist:61wJ5w8wIDtlntCtIlTWOY', 'nordvpn1@vizy.io'],
+    ['danniwood@vizy.io', 'ZNDL6FbqVfKV!?', 'spotify:playlist:61wJ5w8wIDtlntCtIlTWOY', 'nordvpn1@vizy.io'],
+    ['alexreid@vizy.io', 'T2x98cGUC3A8!?', 'spotify:playlist:61wJ5w8wIDtlntCtIlTWOY', 'nordvpn1@vizy.io'],
+    ['chrischaney@vizy.io', 'mzhAHDkEG2He!?', 'spotify:playlist:61wJ5w8wIDtlntCtIlTWOY', 'nordvpn1@vizy.io'],
+    ['riverburton@vizy.io', '8ETUDLWp6nvW!?', 'spotify:playlist:1pKlHYhQo7PQrSS7BXoBus', 'nordvpn2@vizy.io'],
+    ['carmenmoran@vizy.io', 'x4S9ZxMR8qqj!?', 'spotify:playlist:1pKlHYhQo7PQrSS7BXoBus', 'nordvpn2@vizy.io'],
+    ['erinboone@vizy.io', 'DncBCZbMzvpF!?', 'spotify:playlist:1pKlHYhQo7PQrSS7BXoBus', 'nordvpn2@vizy.io'],
+    ['brynnratliff@vizy.io', 'vtVPXG4WVzKt!?', 'spotify:playlist:1pKlHYhQo7PQrSS7BXoBus', 'nordvpn2@vizy.io'],
+    ['skylercooke@vizy.io', 'mSM7ba9D7zuS!?', 'spotify:playlist:1pKlHYhQo7PQrSS7BXoBus', 'nordvpn2@vizy.io'],
+    ['judefletcher@vizy.io', 'RgvBZz6pWTvb!?', 'spotify:playlist:1pKlHYhQo7PQrSS7BXoBus', 'nordvpn2@vizy.io'],
+    # ['drewwhite@vizy.io', 'T3PmqY6zpWqx!?', 'spotify:playlist:4bFGJ700bMXPzibYP8KeTt', 'nordvpn3@vizy.io'],
+    # ['jordanmatthews@vizy.io', 'uWnBcdteMdQH!?', 'spotify:playlist:4bFGJ700bMXPzibYP8KeTt', 'nordvpn3@vizy.io'],
+    # ['riverkaur@vizy.io', 'utGHFFZbNtpS!?', 'spotify:playlist:4bFGJ700bMXPzibYP8KeTt', 'nordvpn3@vizy.io'],
+    # ['harpernorris@vizy.io', 'Zh2fuQLvMh5W!?', 'spotify:playlist:4bFGJ700bMXPzibYP8KeTt', 'nordvpn3@vizy.io'],
+    # ['loganbryan@vizy.io', 'pNkMTaMgpjKu!?', 'spotify:playlist:4bFGJ700bMXPzibYP8KeTt', 'nordvpn3@vizy.io'],
+    # ['alexrose@vizy.io', 'wV3PWU7dy9sa!?', 'spotify:playlist:4bFGJ700bMXPzibYP8KeTt', 'nordvpn3@vizy.io'],
+    # ['rayleereed@vizy.io', '9SgUfJsAgMsZ!?', 'spotify:playlist:4vDGz9viNEI1Q642G4SGKW', 'nordvpn4@vizy.io'],
+    # ['riverallison@vizy.io', 'LYfrF8T2tqNG!?', 'spotify:playlist:4vDGz9viNEI1Q642G4SGKW', 'nordvpn4@vizy.io'],
+    # ['kaiparry@vizy.io', 'Zh2fuQLvMh5W!?', 'spotify:playlist:4vDGz9viNEI1Q642G4SGKW', 'nordvpn4@vizy.io'],
+    # ['aarenburton@vizy.io', '8ETUDLWp6nvW!?', 'spotify:playlist:4vDGz9viNEI1Q642G4SGKW', 'nordvpn4@vizy.io'],
+    # ['frankybradley@vizy.io', 'pNkMTaMgpjKu!?', 'spotify:playlist:4vDGz9viNEI1Q642G4SGKW', 'nordvpn4@vizy.io'],
+    # ['jessknight@vizy.io', 'rRLACcVUmmBc!?', 'spotify:playlist:4vDGz9viNEI1Q642G4SGKW', 'nordvpn4@vizy.io'],
+    # ['alexstone@vizy.io', 'QD4puAhj65dA!?', 'spotify:playlist:3dBab05UDJ9Yd0byWU29Xo', 'nordvpn5@vizy.io'],
+    # ['geneschwartz@vizy.io', 'yLRPK2dYMhng!?', 'spotify:playlist:3dBab05UDJ9Yd0byWU29Xo', 'nordvpn5@vizy.io'],
+    # ['brynncummings@vizy.io', 'pDW9bErDWKN2!?', 'spotify:playlist:3dBab05UDJ9Yd0byWU29Xo', 'nordvpn5@vizy.io'],
+    # ['jessiefulton@vizy.io', 'utGHFFZbNtpS!?', 'spotify:playlist:3dBab05UDJ9Yd0byWU29Xo', 'nordvpn5@vizy.io'],
+    # ['brettchang@vizy.io', 'HWvaPRnZzYfe!?', 'spotify:playlist:3dBab05UDJ9Yd0byWU29Xo', 'nordvpn5@vizy.io'],
+    # ['erinknapp@vizy.io', '6uaBTV93qBN6!?', 'spotify:playlist:3dBab05UDJ9Yd0byWU29Xo', 'nordvpn5@vizy.io'],
 ]
 
 
@@ -88,32 +88,33 @@ iam = boto3.client('iam', region_name=region)
 def lambda_handler(event, context):
     print('lambda_handler starting')
 
-    reservations = ec2.describe_instances(Filters=[{"Name": "instance-state-name", "Values": ["running"]}]).get("Reservations")
+    # reservations = ec2.describe_instances(Filters=[{"Name": "instance-state-name", "Values": ["running"]}]).get("Reservations")
 
-    instance_ids = []
-    for reservation in reservations:
-        for instance in reservation["Instances"]:
-            print(instance['InstanceId'] + ' - ' + instance['ImageId'])
-            if instance['ImageId'] == IMAGE_ID:
-                instance_ids.append(instance['InstanceId'])
-    try:
-        result = ec2.terminate_instances(InstanceIds=instance_ids)
-        print(result)
-    except Exception as _e:
-        print(_e)
+    # instance_ids = []
+    # for reservation in reservations:
+    #     for instance in reservation["Instances"]:
+    #         print(instance['InstanceId'] + ' - ' + instance['ImageId'])
+    #         if instance['ImageId'] == IMAGE_ID:
+    #             instance_ids.append(instance['InstanceId'])
+    # try:
+    #     result = ec2.terminate_instances(InstanceIds=instance_ids)
+    #     print(result)
+    # except Exception as _e:
+    #     print(_e)
 
-    idx = -1
-    vpn_accounts_list = [(k, v) for k, v in vpn_accounts.items()]
+    # idx = -1
+    # vpn_accounts_list = [(k, v) for k, v in vpn_accounts.items()]
     # spotify_accounts_list = [(k, v) for k, v in accounts.items()]
 
-    for (email, password, tmp_playlist) in accounts:
-        idx += 1
-        tmp = int((idx - (idx % 6)) / 6)
+    for (email, password, tmp_playlist, VPN_EMAIL) in accounts:
+        # idx += 1
+        # tmp = int((idx - (idx % 6)) / 6)
 
-        VPN_EMAIL = vpn_accounts_list[tmp][0]
-        VPN_PASSWORD = vpn_accounts_list[tmp][1]
+        # VPN_EMAIL = vpn_accounts_list[tmp][0]
+        # VPN_PASSWORD = vpn_accounts_list[tmp][1]
+        VPN_PASSWORD = '3cPDMityEM85xhq'
 
-        PLAYLISTS = MASTER_PLAYLISTS + [tmp_playlist]
+        PLAYLISTS = MASTER_PLAYLISTS + [tmp_playlist, tmp_playlist]
         PLAYLIST = random.choice(PLAYLISTS)
 
         print(PLAYLIST)
