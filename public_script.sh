@@ -330,6 +330,7 @@ xwd -root -out myshot1.xwd
 
 sleep $RANDOM
 # stop
+echo "pause 1"
 xdotool mousemove 375 450
 sleep 2
 xdotool click 1
@@ -337,6 +338,7 @@ sleep 2
 xwd -root -out myshot2.xwd
 sleep $(($RANDOM/6))
 # start
+echo "play 1"
 xdotool mousemove 375 450
 sleep 2
 xdotool click 1
@@ -346,6 +348,7 @@ xwd -root -out myshot3.xwd
 
 sleep $RANDOM
 # stop
+echo "pause 2"
 xdotool mousemove 375 450
 sleep 2
 xdotool click 1
@@ -353,6 +356,7 @@ sleep 2
 xwd -root -out myshot4.xwd
 sleep $(($RANDOM/6))
 # start
+echo "play 2"
 xdotool mousemove 375 450
 sleep 2
 xdotool click 1
@@ -362,6 +366,7 @@ xwd -root -out myshot5.xwd
 
 sleep $RANDOM
 # stop
+echo "pause 3"
 xdotool mousemove 375 450
 sleep 2
 xdotool click 1
@@ -369,6 +374,7 @@ sleep 2
 xwd -root -out myshot6.xwd
 sleep $(($RANDOM/6))
 # start
+echo "play 3"
 xdotool mousemove 375 450
 sleep 2
 xdotool click 1
@@ -378,6 +384,7 @@ xwd -root -out myshot7.xwd
 
 sleep $RANDOM
 # stop
+echo "pause 4"
 xdotool mousemove 375 450
 sleep 2
 xdotool click 1
@@ -385,6 +392,7 @@ sleep 2
 xwd -root -out myshot8.xwd
 sleep $(($RANDOM/6))
 # start
+echo "play 4"
 xdotool mousemove 375 450
 sleep 2
 xdotool click 1
