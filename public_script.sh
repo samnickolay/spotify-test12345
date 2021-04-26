@@ -399,6 +399,23 @@ xdotool click 1
 sleep 2
 xwd -root -out myshot9.xwd
 
+sleep $RANDOM
+# stop
+echo "pause 4"
+xdotool mousemove 375 450
+sleep 2
+xdotool click 1
+sleep 2
+xwd -root -out myshot10.xwd
+sleep $(($RANDOM/6))
+# start
+echo "play 4"
+xdotool mousemove 375 450
+sleep 2
+xdotool click 1
+sleep 2
+xwd -root -out myshot11.xwd
+
 
 # sleep 5000
 # xwd -root -out myshot2.xwd
