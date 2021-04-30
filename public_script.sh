@@ -226,7 +226,7 @@ sudo chown -R ubuntu:ubuntu /run/user/1000
 sudo chown -R ubuntu:ubuntu /usr/share/
 sudo chown -R ubuntu:ubuntu /home/ubuntu
 
-sleep 2
+sleep 5
 
 export $(dbus-launch);
 pulseaudio --start;
@@ -236,82 +236,82 @@ pactl -- set-sink-volume MySink 200%;
 pactl load-module module-virtual-sink sink_name=VAC_1to2;
 pactl load-module module-virtual-sink sink_name=VAC_2to1;
 
-sleep 2
+sleep 5
 speaker-test -t wav -l 1
-sleep 2
+sleep 5
 
 echo "running spotify"
 date
 save="$DISPLAY"                          
 export DISPLAY=:44                    
 Xvfb $DISPLAY -screen 0 800x800x24 &   
-sleep 2
-
-sudo chown -R ubuntu:ubuntu /run/user/1000
-sudo chown -R ubuntu:ubuntu /usr/share/
-sudo chown -R ubuntu:ubuntu /home/ubuntu
-
-sleep 2
-/snap/bin/spotify --no-zygote &
 sleep 10
 
 sudo chown -R ubuntu:ubuntu /run/user/1000
 sudo chown -R ubuntu:ubuntu /usr/share/
 sudo chown -R ubuntu:ubuntu /home/ubuntu
 
-sleep 2
+sleep 10
+/snap/bin/spotify --no-zygote &
+sleep 20
+
+sudo chown -R ubuntu:ubuntu /run/user/1000
+sudo chown -R ubuntu:ubuntu /usr/share/
+sudo chown -R ubuntu:ubuntu /home/ubuntu
+
+sleep 5
 xdotool key "Escape"
-sleep 2
+sleep 5
 
 xdotool mousemove 400 450
-sleep 2
+sleep 5
 xdotool click 1
 
-sleep 2
+sleep 5
 xdotool type "$1"
-sleep 2
+sleep 5
 xdotool key Tab
-sleep 2
+sleep 5
 xdotool type "$2"
-sleep 2
+sleep 5
 xdotool key Return
-sleep 10
+sleep 20
 
-sleep 2
+sleep 5
 xdotool key "Escape"
-sleep 2
+sleep 5
 
-sleep 2
+sleep 5
 xdotool key ctrl+l
-sleep 2
+sleep 5
 xdotool type "$PLAYLIST"
-sleep 2
+sleep 5
 xdotool key Return
-sleep 2
+sleep 5
 
 # xdotool mousemove 400 300
-# sleep 2
+# sleep 5
 # xdotool click 1
-# sleep 2
+# sleep 5
 
 xdotool mousemove 530 450
-sleep 2
+sleep 5
 xdotool click 1
-sleep 2
+sleep 5
 
 xdotool mousemove 450 450
-sleep 2
+sleep 5
 xdotool click 1
-sleep 2
+sleep 5
 
-sleep 2
+sleep 5
 xdotool key "Escape"
-sleep 2
+sleep 5
 
 xdotool mousemove 375 450
-sleep 2
+sleep 5
 xdotool click 1
-sleep 2
+sleep 5
 
 
 FILE=/home/ubuntu/loop.txt
@@ -320,17 +320,17 @@ if [ -f "$FILE" ]; then
 else 
     echo "$FILE does not exist."
     touch $FILE
-    sleep 5
+    sleep 10
 
     xdotool mousemove 350 690
-    sleep 2
+    sleep 5
     xdotool click 1
-    sleep 2
+    sleep 5
 
     xdotool mousemove 530 690
-    sleep 2
+    sleep 5
     xdotool click 1
-    sleep 2
+    sleep 5
 fi
 
 sleep 10
@@ -346,17 +346,17 @@ sleep $RANDOM
 # stop
 echo "pause 1"
 xdotool mousemove 375 450
-sleep 2
+sleep 5
 xdotool click 1
-sleep 2
+sleep 5
 xwd -root -out myshot2.xwd
 sleep $(($RANDOM/6))
 # start
 echo "play 1"
 xdotool mousemove 375 450
-sleep 2
+sleep 5
 xdotool click 1
-sleep 2
+sleep 5
 xwd -root -out myshot3.xwd
 
 date
@@ -365,17 +365,17 @@ sleep $RANDOM
 # stop
 echo "pause 2"
 xdotool mousemove 375 450
-sleep 2
+sleep 5
 xdotool click 1
-sleep 2
+sleep 5
 xwd -root -out myshot4.xwd
 sleep $(($RANDOM/6))
 # start
 echo "play 2"
 xdotool mousemove 375 450
-sleep 2
+sleep 5
 xdotool click 1
-sleep 2
+sleep 5
 xwd -root -out myshot5.xwd
 
 date
@@ -384,17 +384,17 @@ sleep $RANDOM
 # stop
 echo "pause 3"
 xdotool mousemove 375 450
-sleep 2
+sleep 5
 xdotool click 1
-sleep 2
+sleep 5
 xwd -root -out myshot6.xwd
 sleep $(($RANDOM/6))
 # start
 echo "play 3"
 xdotool mousemove 375 450
-sleep 2
+sleep 5
 xdotool click 1
-sleep 2
+sleep 5
 xwd -root -out myshot7.xwd
 
 date
@@ -403,17 +403,17 @@ sleep $RANDOM
 # stop
 echo "pause 4"
 xdotool mousemove 375 450
-sleep 2
+sleep 5
 xdotool click 1
-sleep 2
+sleep 5
 xwd -root -out myshot8.xwd
 sleep $(($RANDOM/6))
 # start
 echo "play 4"
 xdotool mousemove 375 450
-sleep 2
+sleep 5
 xdotool click 1
-sleep 2
+sleep 5
 xwd -root -out myshot9.xwd
 
 date
@@ -422,17 +422,17 @@ sleep $RANDOM
 # stop
 echo "pause 5"
 xdotool mousemove 375 450
-sleep 2
+sleep 5
 xdotool click 1
-sleep 2
+sleep 5
 xwd -root -out myshot10.xwd
 sleep $(($RANDOM/6))
 # start
 echo "play 5"
 xdotool mousemove 375 450
-sleep 2
+sleep 5
 xdotool click 1
-sleep 2
+sleep 5
 xwd -root -out myshot11.xwd
 
 date
