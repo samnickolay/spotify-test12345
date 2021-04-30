@@ -109,6 +109,9 @@ SPOTIFY_PASSWORD=$(aws ec2 describe-tags --filters "Name=resource-id,Values=$INS
 PLAYLIST_TAG="playlist"
 PLAYLIST=$(aws ec2 describe-tags --filters "Name=resource-id,Values=$INSTANCE_ID" "Name=key,Values=$PLAYLIST_TAG" --region=$REGION --output=text | cut -f5)
 
+PLAYLIST2_TAG="playlist2"
+PLAYLIST2=$(aws ec2 describe-tags --filters "Name=resource-id,Values=$INSTANCE_ID" "Name=key,Values=$PLAYLIST2_TAG" --region=$REGION --output=text | cut -f5)
+
 sudo apt install -y --reinstall libasound2 libasound2-data libasound2-plugins &> /dev/null 
 sleep 5
 sudo apt install -y --reinstall dbus-x11 curl jack alsa-base pulseaudio alsa-utils alsa-oss alsa-utils &> /dev/null 
@@ -175,12 +178,20 @@ TOTAL=$(( $FIFTEEN_HOURS + $FOUR_HOURS))
 echo "running test for $TOTAL seconds" 
 
 # sleep $TOTAL && echo "rebooting after timeout - $TOTAL seconds" && printf "successful - restarting" >> /home/ubuntu/stderr.log  &
-sleep $TOTAL && echo "rebooting after timeout - $TOTAL seconds" && printf "successful - restarting" >> /home/ubuntu/stderr.log && sudo reboot &
+sleep $TOTAL && echo "rebooting after timeout - $TOTAL seconds" && date && sudo reboot &
 
 export TERM=xterm
 export NO_AT_BRIDGE=1
 
-echo "$1 $2 $3 $4 $5 $6"
+echo "$1 $2 $3 $4 $5 $6 $7"
+
+if [ $(($RANDOM % 3)) = 1 ] ; then
+    PLAYLIST=$3
+else
+    PLAYLIST=$7
+fi
+
+echo $PLAYLIST
 
 dig +short myip.opendns.com @resolver1.opendns.com
 
@@ -230,6 +241,7 @@ speaker-test -t wav -l 1
 sleep 2
 
 echo "running spotify"
+date
 save="$DISPLAY"                          
 export DISPLAY=:44                    
 Xvfb $DISPLAY -screen 0 800x800x24 &   
@@ -272,7 +284,7 @@ sleep 2
 sleep 2
 xdotool key ctrl+l
 sleep 2
-xdotool type "$3"
+xdotool type "$PLAYLIST"
 sleep 2
 xdotool key Return
 sleep 2
@@ -328,6 +340,8 @@ xwd -root -out myshot0.xwd
 sleep 1000
 xwd -root -out myshot1.xwd
 
+date
+
 sleep $RANDOM
 # stop
 echo "pause 1"
@@ -345,6 +359,7 @@ xdotool click 1
 sleep 2
 xwd -root -out myshot3.xwd
 
+date
 
 sleep $RANDOM
 # stop
@@ -363,6 +378,7 @@ xdotool click 1
 sleep 2
 xwd -root -out myshot5.xwd
 
+date
 
 sleep $RANDOM
 # stop
@@ -381,6 +397,7 @@ xdotool click 1
 sleep 2
 xwd -root -out myshot7.xwd
 
+date
 
 sleep $RANDOM
 # stop
@@ -399,6 +416,8 @@ xdotool click 1
 sleep 2
 xwd -root -out myshot9.xwd
 
+date
+
 sleep $RANDOM
 # stop
 echo "pause 5"
@@ -416,6 +435,7 @@ xdotool click 1
 sleep 2
 xwd -root -out myshot11.xwd
 
+date
 
 # sleep 5000
 # xwd -root -out myshot2.xwd
@@ -458,7 +478,7 @@ sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh) &> /dev/null
 crontab -l > mycron
 #echo new cron into cron file
 echo "
-@reboot sleep 60 && /home/ubuntu/setup_script.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST $VPN_NAME $VPN_EMAIL $VPN_PASSWORD >> /home/ubuntu/ncspot.log 2>&1" >> mycron
+@reboot sleep 60 && /home/ubuntu/setup_script.sh $SPOTIFY_EMAIL $SPOTIFY_PASSWORD $PLAYLIST $VPN_NAME $VPN_EMAIL $VPN_PASSWORD $PLAYLIST2 >> /home/ubuntu/ncspot.log 2>&1" >> mycron
 #install new cron file
 sudo crontab -u ubuntu mycron
 rm mycron

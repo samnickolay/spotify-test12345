@@ -19,7 +19,7 @@ KEY_NAME = 'test'
 #     'nordvpn5@vizy.io': '3cPDMityEM85xhq',
 # }
 
-MASTER_PLAYLISTS = ['spotify:artist:1FB5eEgWflHL5FPLGeUAKj']
+MASTER_PLAYLIST = 'spotify:artist:1FB5eEgWflHL5FPLGeUAKj'
 
 region = 'us-west-1'
 
@@ -29,18 +29,18 @@ accounts = [
     # ['phoenixgriffiths@vizy.io', 'wGcbApcfFyKs!?', 'spotify:playlist:61wJ5w8wIDtlntCtIlTWOY', 'nordvpn1@vizy.io'],
     # ['danniwood@vizy.io', 'ZNDL6FbqVfKV!?', 'spotify:playlist:61wJ5w8wIDtlntCtIlTWOY', 'nordvpn1@vizy.io'],
     # ['alexreid@vizy.io', 'T2x98cGUC3A8!?', 'spotify:playlist:61wJ5w8wIDtlntCtIlTWOY', 'nordvpn1@vizy.io'],
-    ['chrischaney@vizy.io', 'mzhAHDkEG2He!?', 'spotify:playlist:61wJ5w8wIDtlntCtIlTWOY', 'nordvpn1@vizy.io'],
+    # ['chrischaney@vizy.io', 'mzhAHDkEG2He!?', 'spotify:playlist:61wJ5w8wIDtlntCtIlTWOY', 'nordvpn1@vizy.io'],
     # ['riverburton@vizy.io', '8ETUDLWp6nvW!?', 'spotify:playlist:1pKlHYhQo7PQrSS7BXoBus', 'nordvpn2@vizy.io'],
     # ['carmenmoran@vizy.io', 'x4S9ZxMR8qqj!?', 'spotify:playlist:1pKlHYhQo7PQrSS7BXoBus', 'nordvpn2@vizy.io'],
     # ['erinboone@vizy.io', 'DncBCZbMzvpF!?', 'spotify:playlist:1pKlHYhQo7PQrSS7BXoBus', 'nordvpn2@vizy.io'],
     # ['brynnratliff@vizy.io', 'vtVPXG4WVzKt!?', 'spotify:playlist:1pKlHYhQo7PQrSS7BXoBus', 'nordvpn2@vizy.io'],
     # ['skylercooke@vizy.io', 'mSM7ba9D7zuS!?', 'spotify:playlist:1pKlHYhQo7PQrSS7BXoBus', 'nordvpn2@vizy.io'],
-    ['judefletcher@vizy.io', 'utGHFFZbNtpS!?', 'spotify:playlist:1pKlHYhQo7PQrSS7BXoBus', 'nordvpn2@vizy.io'],
+    # ['judefletcher@vizy.io', 'utGHFFZbNtpS!?', 'spotify:playlist:1pKlHYhQo7PQrSS7BXoBus', 'nordvpn2@vizy.io'],
     # ['drewwhite@vizy.io', 'T3PmqY6zpWqx!?', 'spotify:playlist:4bFGJ700bMXPzibYP8KeTt', 'nordvpn3@vizy.io'],
-    ['jordanmatthews@vizy.io', '8ETUDLWp6nvW!?', 'spotify:playlist:4bFGJ700bMXPzibYP8KeTt', 'nordvpn3@vizy.io'],
-    # ['riverkaur@vizy.io', 'utGHFFZbNtpS!?', 'spotify:playlist:4bFGJ700bMXPzibYP8KeTt', 'nordvpn3@vizy.io'],
-    # ['harpernorris@vizy.io', 'Zh2fuQLvMh5W!?', 'spotify:playlist:4bFGJ700bMXPzibYP8KeTt', 'nordvpn3@vizy.io'],
-    # ['loganbryan@vizy.io', 'pNkMTaMgpjKu!?', 'spotify:playlist:4bFGJ700bMXPzibYP8KeTt', 'nordvpn3@vizy.io'],
+    # ['jordanmatthews@vizy.io', '8ETUDLWp6nvW!?', 'spotify:playlist:4bFGJ700bMXPzibYP8KeTt', 'nordvpn3@vizy.io'],
+    # ['riverkaur@vizy.io', 'x4S9ZxMR8qqj!?', 'spotify:playlist:4bFGJ700bMXPzibYP8KeTt', 'nordvpn3@vizy.io'],
+    # ['harpernorris@vizy.io', 'mSM7ba9D7zuS!?', 'spotify:playlist:4bFGJ700bMXPzibYP8KeTt', 'nordvpn3@vizy.io'],
+    # ['loganbryan@vizy.io', 'wV3PWU7dy9sa!?', 'spotify:playlist:4bFGJ700bMXPzibYP8KeTt', 'nordvpn3@vizy.io'],
     # ['alexrose@vizy.io', '9SgUfJsAgMsZ!?', 'spotify:playlist:4bFGJ700bMXPzibYP8KeTt', 'nordvpn3@vizy.io'],
     # ['rayleereed@vizy.io', '9SgUfJsAgMsZ!?', 'spotify:playlist:4vDGz9viNEI1Q642G4SGKW', 'nordvpn4@vizy.io'],
     # ['riverallison@vizy.io', 'LYfrF8T2tqNG!?', 'spotify:playlist:4vDGz9viNEI1Q642G4SGKW', 'nordvpn4@vizy.io'],
@@ -114,8 +114,10 @@ def lambda_handler(event, context):
         # VPN_PASSWORD = vpn_accounts_list[tmp][1]
         VPN_PASSWORD = '3cPDMityEM85xhq'
 
-        PLAYLISTS = MASTER_PLAYLISTS + [tmp_playlist, tmp_playlist]
-        PLAYLIST = random.choice(PLAYLISTS)
+        # PLAYLISTS = MASTER_PLAYLISTS + [tmp_playlist, tmp_playlist]
+        # PLAYLIST = random.choice(PLAYLISTS)
+        PLAYLIST = MASTER_PLAYLIST
+        PLAYLIST2 = tmp_playlist
 
         print(PLAYLIST)
 
@@ -139,6 +141,10 @@ def lambda_handler(event, context):
                     {
                         "Key": "playlist",
                         "Value": PLAYLIST,
+                    },
+                    {
+                        "Key": "playlist2",
+                        "Value": PLAYLIST2,
                     },
                     {
                         "Key": "spotify_email",
