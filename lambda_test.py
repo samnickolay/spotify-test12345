@@ -23,37 +23,69 @@ MASTER_PLAYLIST = 'spotify:artist:1FB5eEgWflHL5FPLGeUAKj'
 
 region = 'us-west-1'
 
+# accounts = [
+#     ['harperyoung@vizy.io', 'vtVPXG4WVzKt!?', 'spotify:playlist:61wJ5w8wIDtlntCtIlTWOY', 'nordvpn1@vizy.io'],
+#     ['genetaylor@vizy.io', '5kXcFXPLxWJL!?', 'spotify:playlist:61wJ5w8wIDtlntCtIlTWOY', 'nordvpn1@vizy.io'],
+#     ['phoenixgriffiths@vizy.io', 'wGcbApcfFyKs!?', 'spotify:playlist:61wJ5w8wIDtlntCtIlTWOY', 'nordvpn1@vizy.io'],
+#     ['danniwood@vizy.io', 'ZNDL6FbqVfKV!?', 'spotify:playlist:61wJ5w8wIDtlntCtIlTWOY', 'nordvpn1@vizy.io'],
+#     ['alexreid@vizy.io', 'T2x98cGUC3A8!?', 'spotify:playlist:61wJ5w8wIDtlntCtIlTWOY', 'nordvpn1@vizy.io'],
+#     ['chrischaney@vizy.io', 'mzhAHDkEG2He!?', 'spotify:playlist:61wJ5w8wIDtlntCtIlTWOY', 'nordvpn1@vizy.io'],
+#     ['riverburton@vizy.io', '8ETUDLWp6nvW!?', 'spotify:playlist:1pKlHYhQo7PQrSS7BXoBus', 'nordvpn2@vizy.io'],
+#     ['carmenmoran@vizy.io', 'x4S9ZxMR8qqj!?', 'spotify:playlist:1pKlHYhQo7PQrSS7BXoBus', 'nordvpn2@vizy.io'],
+#     ['erinboone@vizy.io', 'DncBCZbMzvpF!?', 'spotify:playlist:1pKlHYhQo7PQrSS7BXoBus', 'nordvpn2@vizy.io'],
+#     ['brynnratliff@vizy.io', 'vtVPXG4WVzKt!?', 'spotify:playlist:1pKlHYhQo7PQrSS7BXoBus', 'nordvpn2@vizy.io'],
+#     ['skylercooke@vizy.io', 'mSM7ba9D7zuS!?', 'spotify:playlist:1pKlHYhQo7PQrSS7BXoBus', 'nordvpn2@vizy.io'],
+#     ['judefletcher@vizy.io', 'utGHFFZbNtpS!?', 'spotify:playlist:1pKlHYhQo7PQrSS7BXoBus', 'nordvpn2@vizy.io'],
+#     ['drewwhite@vizy.io', 'T3PmqY6zpWqx!?', 'spotify:playlist:4bFGJ700bMXPzibYP8KeTt', 'nordvpn3@vizy.io'],
+#     ['jordanmatthews@vizy.io', 'T3PmqY6zpWqx!?', 'spotify:playlist:4bFGJ700bMXPzibYP8KeTt', 'nordvpn3@vizy.io'],
+#     ['riverkaur@vizy.io', 'x4S9ZxMR8qqj!?', 'spotify:playlist:4bFGJ700bMXPzibYP8KeTt', 'nordvpn3@vizy.io'],
+#     ['harpernorris@vizy.io', 'mSM7ba9D7zuS!?', 'spotify:playlist:4bFGJ700bMXPzibYP8KeTt', 'nordvpn3@vizy.io'],
+#     ['loganbryan@vizy.io', 'wV3PWU7dy9sa!?', 'spotify:playlist:4bFGJ700bMXPzibYP8KeTt', 'nordvpn3@vizy.io'],
+#     ['alexrose@vizy.io', 'Zh2fuQLvMh5W!?', 'spotify:playlist:4bFGJ700bMXPzibYP8KeTt', 'nordvpn3@vizy.io'],
+#     ['rayleereed@vizy.io', '9SgUfJsAgMsZ!?', 'spotify:playlist:4vDGz9viNEI1Q642G4SGKW', 'nordvpn4@vizy.io'],
+#     ['riverallison@vizy.io', 'LYfrF8T2tqNG!?', 'spotify:playlist:4vDGz9viNEI1Q642G4SGKW', 'nordvpn4@vizy.io'],
+#     ['kaiparry@vizy.io', 'Zh2fuQLvMh5W!?', 'spotify:playlist:4vDGz9viNEI1Q642G4SGKW', 'nordvpn4@vizy.io'],
+#     ['aarenburton@vizy.io', '8ETUDLWp6nvW!?', 'spotify:playlist:4vDGz9viNEI1Q642G4SGKW', 'nordvpn4@vizy.io'],
+#     ['frankybradley@vizy.io', 'pNkMTaMgpjKu!?', 'spotify:playlist:4vDGz9viNEI1Q642G4SGKW', 'nordvpn4@vizy.io'],
+#     ['jessknight@vizy.io', 'rRLACcVUmmBc!?', 'spotify:playlist:4vDGz9viNEI1Q642G4SGKW', 'nordvpn4@vizy.io'],
+#     ['alexstone@vizy.io', 'QD4puAhj65dA!?', 'spotify:playlist:3dBab05UDJ9Yd0byWU29Xo', 'nordvpn5@vizy.io'],
+#     ['geneschwartz@vizy.io', 'yLRPK2dYMhng!?', 'spotify:playlist:3dBab05UDJ9Yd0byWU29Xo', 'nordvpn5@vizy.io'],
+#     ['brynncummings@vizy.io', 'pDW9bErDWKN2!?', 'spotify:playlist:3dBab05UDJ9Yd0byWU29Xo', 'nordvpn5@vizy.io'],
+#     ['jessiefulton@vizy.io', 'utGHFFZbNtpS!?', 'spotify:playlist:3dBab05UDJ9Yd0byWU29Xo', 'nordvpn5@vizy.io'],
+#     ['brettchang@vizy.io', 'HWvaPRnZzYfe!?', 'spotify:playlist:3dBab05UDJ9Yd0byWU29Xo', 'nordvpn5@vizy.io'],
+#     ['erinknapp@vizy.io', '6uaBTV93qBN6!?', 'spotify:playlist:3dBab05UDJ9Yd0byWU29Xo', 'nordvpn5@vizy.io'],
+# ]
 accounts = [
-    ['harperyoung@vizy.io', 'vtVPXG4WVzKt!?', 'spotify:playlist:61wJ5w8wIDtlntCtIlTWOY', 'nordvpn1@vizy.io'],
-    ['genetaylor@vizy.io', '5kXcFXPLxWJL!?', 'spotify:playlist:61wJ5w8wIDtlntCtIlTWOY', 'nordvpn1@vizy.io'],
-    ['phoenixgriffiths@vizy.io', 'wGcbApcfFyKs!?', 'spotify:playlist:61wJ5w8wIDtlntCtIlTWOY', 'nordvpn1@vizy.io'],
-    ['danniwood@vizy.io', 'ZNDL6FbqVfKV!?', 'spotify:playlist:61wJ5w8wIDtlntCtIlTWOY', 'nordvpn1@vizy.io'],
-    ['alexreid@vizy.io', 'T2x98cGUC3A8!?', 'spotify:playlist:61wJ5w8wIDtlntCtIlTWOY', 'nordvpn1@vizy.io'],
-    ['chrischaney@vizy.io', 'mzhAHDkEG2He!?', 'spotify:playlist:61wJ5w8wIDtlntCtIlTWOY', 'nordvpn1@vizy.io'],
-    ['riverburton@vizy.io', '8ETUDLWp6nvW!?', 'spotify:playlist:1pKlHYhQo7PQrSS7BXoBus', 'nordvpn2@vizy.io'],
-    ['carmenmoran@vizy.io', 'x4S9ZxMR8qqj!?', 'spotify:playlist:1pKlHYhQo7PQrSS7BXoBus', 'nordvpn2@vizy.io'],
-    ['erinboone@vizy.io', 'DncBCZbMzvpF!?', 'spotify:playlist:1pKlHYhQo7PQrSS7BXoBus', 'nordvpn2@vizy.io'],
-    ['brynnratliff@vizy.io', 'vtVPXG4WVzKt!?', 'spotify:playlist:1pKlHYhQo7PQrSS7BXoBus', 'nordvpn2@vizy.io'],
-    ['skylercooke@vizy.io', 'mSM7ba9D7zuS!?', 'spotify:playlist:1pKlHYhQo7PQrSS7BXoBus', 'nordvpn2@vizy.io'],
-    ['judefletcher@vizy.io', 'utGHFFZbNtpS!?', 'spotify:playlist:1pKlHYhQo7PQrSS7BXoBus', 'nordvpn2@vizy.io'],
-    ['drewwhite@vizy.io', 'T3PmqY6zpWqx!?', 'spotify:playlist:4bFGJ700bMXPzibYP8KeTt', 'nordvpn3@vizy.io'],
-    ['jordanmatthews@vizy.io', '8ETUDLWp6nvW!?', 'spotify:playlist:4bFGJ700bMXPzibYP8KeTt', 'nordvpn3@vizy.io'],
-    ['riverkaur@vizy.io', 'x4S9ZxMR8qqj!?', 'spotify:playlist:4bFGJ700bMXPzibYP8KeTt', 'nordvpn3@vizy.io'],
-    ['harpernorris@vizy.io', 'mSM7ba9D7zuS!?', 'spotify:playlist:4bFGJ700bMXPzibYP8KeTt', 'nordvpn3@vizy.io'],
-    ['loganbryan@vizy.io', 'wV3PWU7dy9sa!?', 'spotify:playlist:4bFGJ700bMXPzibYP8KeTt', 'nordvpn3@vizy.io'],
-    ['alexrose@vizy.io', '9SgUfJsAgMsZ!?', 'spotify:playlist:4bFGJ700bMXPzibYP8KeTt', 'nordvpn3@vizy.io'],
-    ['rayleereed@vizy.io', '9SgUfJsAgMsZ!?', 'spotify:playlist:4vDGz9viNEI1Q642G4SGKW', 'nordvpn4@vizy.io'],
-    ['riverallison@vizy.io', 'LYfrF8T2tqNG!?', 'spotify:playlist:4vDGz9viNEI1Q642G4SGKW', 'nordvpn4@vizy.io'],
-    ['kaiparry@vizy.io', 'Zh2fuQLvMh5W!?', 'spotify:playlist:4vDGz9viNEI1Q642G4SGKW', 'nordvpn4@vizy.io'],
-    ['aarenburton@vizy.io', '8ETUDLWp6nvW!?', 'spotify:playlist:4vDGz9viNEI1Q642G4SGKW', 'nordvpn4@vizy.io'],
-    ['frankybradley@vizy.io', 'pNkMTaMgpjKu!?', 'spotify:playlist:4vDGz9viNEI1Q642G4SGKW', 'nordvpn4@vizy.io'],
-    ['jessknight@vizy.io', 'rRLACcVUmmBc!?', 'spotify:playlist:4vDGz9viNEI1Q642G4SGKW', 'nordvpn4@vizy.io'],
-    ['alexstone@vizy.io', 'QD4puAhj65dA!?', 'spotify:playlist:3dBab05UDJ9Yd0byWU29Xo', 'nordvpn5@vizy.io'],
-    ['geneschwartz@vizy.io', 'yLRPK2dYMhng!?', 'spotify:playlist:3dBab05UDJ9Yd0byWU29Xo', 'nordvpn5@vizy.io'],
-    ['brynncummings@vizy.io', 'pDW9bErDWKN2!?', 'spotify:playlist:3dBab05UDJ9Yd0byWU29Xo', 'nordvpn5@vizy.io'],
-    ['jessiefulton@vizy.io', 'utGHFFZbNtpS!?', 'spotify:playlist:3dBab05UDJ9Yd0byWU29Xo', 'nordvpn5@vizy.io'],
-    ['brettchang@vizy.io', 'HWvaPRnZzYfe!?', 'spotify:playlist:3dBab05UDJ9Yd0byWU29Xo', 'nordvpn5@vizy.io'],
-    ['erinknapp@vizy.io', '6uaBTV93qBN6!?', 'spotify:playlist:3dBab05UDJ9Yd0byWU29Xo', 'nordvpn5@vizy.io'],
+    ['aarenhall@vizy.io', 'RWDtuXLaSfAh!?', 'spotify:playlist:33zgKikKRCP8oX6ivm8DOf', 'nordvpn6@vizy.io'],
+    ['renemason@vizy.io', 'bCRH8MDzQkwQ!?', 'spotify:playlist:33zgKikKRCP8oX6ivm8DOf', 'nordvpn6@vizy.io'],
+    ['riversaunders@vizy.io', '8LpbraZr2LKQ!?', 'spotify:playlist:33zgKikKRCP8oX6ivm8DOf', 'nordvpn6@vizy.io'],
+    ['dennyrichards@vizy.io', 'j8KpTcCU8S9p!?', 'spotify:playlist:33zgKikKRCP8oX6ivm8DOf', 'nordvpn6@vizy.io'],
+    ['viccooke@vizy.io', '7jW233dAYsJY!?', 'spotify:playlist:33zgKikKRCP8oX6ivm8DOf', 'nordvpn6@vizy.io'],
+    ['terrymcintosh@vizy.io', 'veLqZzbHhRA8!?', 'spotify:playlist:33zgKikKRCP8oX6ivm8DOf', 'nordvpn6@vizy.io'],
+    # ['baileyelliott@vizy.io', 'ywTN6KZdjary!?', 'spotify:playlist:4oLWKvzXhL3zZwtTalF82Z', 'nordvpn7@vizy.io'],
+    # ['maddoxnixon@vizy.io', '6xHaFfUsdKc8!?', 'spotify:playlist:4oLWKvzXhL3zZwtTalF82Z', 'nordvpn7@vizy.io'],
+    # ['leighcarey@vizy.io', '36t9An3aPRTH!?', 'spotify:playlist:4oLWKvzXhL3zZwtTalF82Z', 'nordvpn7@vizy.io'],
+    # ['caseymacias@vizy.io', 'DU7gEgxQQQ8G!?', 'spotify:playlist:4oLWKvzXhL3zZwtTalF82Z', 'nordvpn7@vizy.io'],
+    # ['judegreen@vizy.io', 'NNtxdGLRHFJu!?', 'spotify:playlist:4oLWKvzXhL3zZwtTalF82Z', 'nordvpn7@vizy.io'],
+    # ['jordanbrooks@vizy.io', 'bma2Mw4JNdSD!?', 'spotify:playlist:4oLWKvzXhL3zZwtTalF82Z', 'nordvpn7@vizy.io'],
+    # ['quinnwoods@vizy.io', 'CEAV4qjuRBKx!?', 'spotify:playlist:2LgK1ZFPNBJrpsoYmxshPY', 'nordvpn8@vizy.io'],
+    # ['angelhunt@vizy.io', 'eeARBFr8rc4B!?', 'spotify:playlist:2LgK1ZFPNBJrpsoYmxshPY', 'nordvpn8@vizy.io'],
+    # ['lanelee@vizy.io', 'mARRPbT4wJDM!?', 'spotify:playlist:2LgK1ZFPNBJrpsoYmxshPY', 'nordvpn8@vizy.io'],
+    # ['corycarney@vizy.io', 'd9SbeAYa6y2n!?', 'spotify:playlist:2LgK1ZFPNBJrpsoYmxshPY', 'nordvpn8@vizy.io'],
+    # ['loganbean@vizy.io', 'jr2kpHCSPEtA!?', 'spotify:playlist:2LgK1ZFPNBJrpsoYmxshPY', 'nordvpn8@vizy.io'],
+    # ['gabbyandrews@vizy.io', '3MDGum5H469A!?', 'spotify:playlist:2LgK1ZFPNBJrpsoYmxshPY', 'nordvpn8@vizy.io'],
+    # ['kaiwest@vizy.io', 'LMm4HCszV54c!?', 'spotify:playlist:3TjQleajozDHTfiLXq5Ssy', 'nordvpn9@vizy.io'],
+    # ['dannyhamilton@vizy.io', 'dBKzqKnGLsrm!?', 'spotify:playlist:3TjQleajozDHTfiLXq5Ssy', 'nordvpn9@vizy.io'],
+    # ['gabbymarshall@vizy.io', 'G2ydmPBfCT7v!?', 'spotify:playlist:3TjQleajozDHTfiLXq5Ssy', 'nordvpn9@vizy.io'],
+    # ['generichardson@vizy.io', 'jxFsQWmUWZWX!?', 'spotify:playlist:3TjQleajozDHTfiLXq5Ssy', 'nordvpn9@vizy.io'],
+    # ['reedaustin@vizy.io', '4n9HtmPwz4XJ!?', 'spotify:playlist:3TjQleajozDHTfiLXq5Ssy', 'nordvpn9@vizy.io'],
+    # ['briceharper@vizy.io', 'HJLxSA8Z9fcj!?', 'spotify:playlist:3TjQleajozDHTfiLXq5Ssy', 'nordvpn9@vizy.io'],
+    # ['cameronwalsh@vizy.io', 'R5kL9DFrTjBx!?', 'spotify:playlist:51AIU7amGLRUUZwBdiWdYx', 'nordvpn10@vizy.io'],
+    # ['jofigueroa@vizy.io', 'VF7RPWCQKPNv!?', 'spotify:playlist:51AIU7amGLRUUZwBdiWdYx', 'nordvpn10@vizy.io'],
+    # ['gabegilmore@vizy.io', 'EERWcR7K4ahG!?', 'spotify:playlist:51AIU7amGLRUUZwBdiWdYx', 'nordvpn10@vizy.io'],
+    # ['sidneybradford@vizy.io', 'GjYpNMyBKxcv!?', 'spotify:playlist:51AIU7amGLRUUZwBdiWdYx', 'nordvpn10@vizy.io'],
+    # ['jackieleblanc@vizy.io', 'bppDJ23kGsWa!?', 'spotify:playlist:51AIU7amGLRUUZwBdiWdYx', 'nordvpn10@vizy.io'],
+    # ['charliechurch@vizy.io', 'AfegHc4Lr6Rr!?', 'spotify:playlist:51AIU7amGLRUUZwBdiWdYx', 'nordvpn10@vizy.io'],
 ]
 
 
@@ -116,8 +148,10 @@ def lambda_handler(event, context):
 
         # PLAYLISTS = MASTER_PLAYLISTS + [tmp_playlist, tmp_playlist]
         # PLAYLIST = random.choice(PLAYLISTS)
-        PLAYLIST = MASTER_PLAYLIST
-        PLAYLIST2 = tmp_playlist
+        # PLAYLIST = MASTER_PLAYLIST
+        # PLAYLIST2 = tmp_playlist
+
+        PLAYLIST = MASTER_PLAYLIST + ' ' + tmp_playlist + ' ' + tmp_playlist
 
         print(PLAYLIST)
 
@@ -142,10 +176,10 @@ def lambda_handler(event, context):
                         "Key": "playlist",
                         "Value": PLAYLIST,
                     },
-                    {
-                        "Key": "playlist2",
-                        "Value": PLAYLIST2,
-                    },
+                    # {
+                    #     "Key": "playlist2",
+                    #     "Value": PLAYLIST2,
+                    # },
                     {
                         "Key": "spotify_email",
                         "Value": email,
