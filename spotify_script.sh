@@ -312,7 +312,7 @@ date
 # sleep 20000
 # xwd -root -out myshot6.xwd
 
-# scp  -i ./test.pem ubuntu@ec2-54-183-224-74.us-west-1.compute.amazonaws.com:/home/ubuntu/myshot*.xwd ./
+# scp  -i ./spotify_key.pem ubuntu@ec2-54-183-224-74.us-west-1.compute.amazonaws.com:/home/ubuntu/myshot*.xwd ./
 # xwud -in myshot.xwd 
 
 

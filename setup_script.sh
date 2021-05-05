@@ -13,7 +13,7 @@ whoami
 env|grep -i runt
 
 
-chmod 400 test.pem
+chmod 400 spotify_key.pem
 
 echo "$@"
 
@@ -22,7 +22,7 @@ echo "$@"
 
 # sleep 79200 && echo "rebooting after SETUP timeout - 22 hours" && date && sudo reboot &
 
-ssh -tt -o 'StrictHostKeyChecking no' -i ./test.pem ubuntu@localhost "/bin/bash -i -c '/home/ubuntu/spotify_script.sh $@'"
+ssh -tt -o 'StrictHostKeyChecking no' -i ./spotify_key.pem ubuntu@localhost "/bin/bash -i -c '/home/ubuntu/spotify_script.sh $@'"
 
 echo "Connection to localhost closed. Restarting!" 
 date

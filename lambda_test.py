@@ -3,25 +3,16 @@ import boto3
 import json
 import random
 
-IMAGE_ID = 'ami-0121ef35996ede438'
-InstanceType = 't2.micro'
+IMAGE_ID = 'ami-0327006c87b23e535'
+InstanceType = 't4g.nano'
 IamInstanceProfile = 'arn:aws:iam::590100935479:role/lambdaControlEC2'
-SecurityGroupId = 'sg-02ef6b6c1b6f17c12'
+SecurityGroupId = 'sg-0810d99a51b0c0485'
 
-KEY_NAME = 'test'
-
-# vpn_accounts = {
-#     # 'samnickolay@gmail.com': 'z3NjbYH8stYFZEi',
-#     'nordvpn1@vizy.io': '3cPDMityEM85xhq',
-#     'nordvpn2@vizy.io': '3cPDMityEM85xhq',
-#     'nordvpn3@vizy.io': '3cPDMityEM85xhq',
-#     'nordvpn4@vizy.io': '3cPDMityEM85xhq',
-#     'nordvpn5@vizy.io': '3cPDMityEM85xhq',
-# }
+KEY_NAME = 'spotify_key'
 
 MASTER_PLAYLIST = 'spotify:artist:1FB5eEgWflHL5FPLGeUAKj'
 
-region = 'us-west-1'
+region = 'us-west-2'
 
 # accounts = [
 #     ['harperyoung@vizy.io', 'vtVPXG4WVzKt!?', 'spotify:playlist:61wJ5w8wIDtlntCtIlTWOY', 'nordvpn1@vizy.io'],
@@ -134,22 +125,8 @@ def lambda_handler(event, context):
     # except Exception as _e:
     #     print(_e)
 
-    # idx = -1
-    # vpn_accounts_list = [(k, v) for k, v in vpn_accounts.items()]
-    # spotify_accounts_list = [(k, v) for k, v in accounts.items()]
-
     for (email, password, tmp_playlist, VPN_EMAIL) in accounts:
-        # idx += 1
-        # tmp = int((idx - (idx % 6)) / 6)
-
-        # VPN_EMAIL = vpn_accounts_list[tmp][0]
-        # VPN_PASSWORD = vpn_accounts_list[tmp][1]
         VPN_PASSWORD = '3cPDMityEM85xhq'
-
-        # PLAYLISTS = MASTER_PLAYLISTS + [tmp_playlist, tmp_playlist]
-        # PLAYLIST = random.choice(PLAYLISTS)
-        # PLAYLIST = MASTER_PLAYLIST
-        # PLAYLIST2 = tmp_playlist
 
         PLAYLIST = MASTER_PLAYLIST + ' ' + tmp_playlist + ' ' + tmp_playlist
 
@@ -176,10 +153,6 @@ def lambda_handler(event, context):
                         "Key": "playlist",
                         "Value": PLAYLIST,
                     },
-                    # {
-                    #     "Key": "playlist2",
-                    #     "Value": PLAYLIST2,
-                    # },
                     {
                         "Key": "spotify_email",
                         "Value": email,
