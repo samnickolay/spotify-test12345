@@ -4,7 +4,7 @@ import json
 import random
 
 IMAGE_ID = 'ami-0327006c87b23e535'
-InstanceType = 't4g.micro'
+InstanceType = 't4g.nano'
 IamInstanceProfile = 'arn:aws:iam::590100935479:role/lambdaControlEC2'
 SecurityGroupId = 'sg-0810d99a51b0c0485'
 
@@ -95,7 +95,7 @@ cp ./setup_script.sh /home/ubuntu/setup_script.sh
 chmod a+x /home/ubuntu/setup_script.sh
 
 wget -N https://raw.githubusercontent.com/samnickolay/spotify-test12345/main/spotify_script.sh
-cp ./setup_script.sh /home/ubuntu/spotify_script.sh
+cp ./spotify_script.sh /home/ubuntu/spotify_script.sh
 chmod a+x /home/ubuntu/spotify_script.sh
 
 echo "running bash script"
