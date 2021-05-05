@@ -4,7 +4,7 @@ import json
 import random
 
 IMAGE_ID = 'ami-0327006c87b23e535'
-InstanceType = 't4g.nano'
+InstanceType = 't4g.micro'
 IamInstanceProfile = 'arn:aws:iam::590100935479:role/lambdaControlEC2'
 SecurityGroupId = 'sg-0810d99a51b0c0485'
 
