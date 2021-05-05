@@ -94,9 +94,9 @@ wget -N https://raw.githubusercontent.com/samnickolay/spotify-test12345/main/set
 cp ./setup_script.sh /home/ubuntu/setup_script.sh
 chmod a+x /home/ubuntu/setup_script.sh
 
-wget -N https://raw.githubusercontent.com/samnickolay/spotify-test12345/main/checker_script.sh
-cp ./setup_script.sh /home/ubuntu/checker_script.sh
-chmod a+x /home/ubuntu/checker_script.sh
+wget -N https://raw.githubusercontent.com/samnickolay/spotify-test12345/main/spotify_script.sh
+cp ./setup_script.sh /home/ubuntu/spotify_script.sh
+chmod a+x /home/ubuntu/spotify_script.sh
 
 echo "running bash script"
 # ./public_script.sh 2>/home/ubuntu/stderr.log 1>/home/ubuntu/stdout.log
