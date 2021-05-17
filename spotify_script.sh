@@ -135,6 +135,9 @@ sleep 5
 xdotool mousemove 400 450
 sleep 5
 xdotool click 1
+sleep 20
+
+xwd -root -out myshot99.xwd
 
 sleep 5
 xdotool type "$1"
@@ -143,12 +146,17 @@ xdotool key Tab
 sleep 5
 xdotool type "$2"
 sleep 5
+
+xwd -root -out myshot98.xwd
+
 xdotool key Return
 sleep 20
 
 sleep 5
 xdotool key "Escape"
 sleep 5
+
+xwd -root -out myshot97.xwd
 
 sleep 5
 xdotool key ctrl+l
