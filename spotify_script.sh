@@ -47,7 +47,7 @@ export NO_AT_BRIDGE=1
 echo "$@"
 
 artists=('spotify:artist:1FB5eEgWflHL5FPLGeUAKj' 'spotify:artist:65D3pXVviGny9ATzKlPeeF' 'spotify:artist:1FB5eEgWflHL5FPLGeUAKj' 'spotify:artist:1FB5eEgWflHL5FPLGeUAKj' 'spotify:artist:1FB5eEgWflHL5FPLGeUAKj');
-playlists=("$5" "$5" "$5" "$5" "$5" "$5" "$5" "$5" "$5" "$5");
+playlists=("$6" "$6" "$6" "$6" "$6" "$6" "$6" "$6" "$6" "$6");
 
 echo ${artists[*]}
 echo ${playlists[*]}
