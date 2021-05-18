@@ -122,13 +122,11 @@ sudo chown -R ubuntu:ubuntu /home/ubuntu
 
 sleep 10
 /snap/bin/spotify --no-zygote &
-sleep 60
+sleep 120
 
-sudo chown -R ubuntu:ubuntu /run/user/1000
-sudo chown -R ubuntu:ubuntu /usr/share/
-sudo chown -R ubuntu:ubuntu /home/ubuntu
-
-sleep 30
+# sudo chown -R ubuntu:ubuntu /run/user/1000
+# sudo chown -R ubuntu:ubuntu /usr/share/
+# sudo chown -R ubuntu:ubuntu /home/ubuntu
 
 sleep 5
 xdotool key "Escape"
