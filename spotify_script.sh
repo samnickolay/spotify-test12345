@@ -46,13 +46,14 @@ export NO_AT_BRIDGE=1
 
 echo "$@"
 
-artists=('spotify:artist:1FB5eEgWflHL5FPLGeUAKj' 'spotify:artist:65D3pXVviGny9ATzKlPeeF' 'spotify:artist:1FB5eEgWflHL5FPLGeUAKj' 'spotify:artist:1FB5eEgWflHL5FPLGeUAKj' 'spotify:artist:1FB5eEgWflHL5FPLGeUAKj');
-playlists=("$6" "$6" "$6" "$6" "$6" "$6" "$6" "$6" "$6" "$6");
+artists=('spotify:artist:1FB5eEgWflHL5FPLGeUAKj' 'spotify:artist:65D3pXVviGny9ATzKlPeeF' 'spotify:artist:3eHWSVXnTmRuEebZbPpb9x' 'spotify:artist:0SOWqU3A9j1p0NBVL7I5AA' 'spotify:artist:1FB5eEgWflHL5FPLGeUAKj');
+playlists=("$6" "$6" "$6" "$6" "$6" "$6" "$6" "$6" "$6" "spotify:playlist:37i9dQZF1DXdbXrPNafg9d" "spotify:playlist:37i9dQZF1DX4JAvHpjipBk", "spotify:playlist:37i9dQZF1DXbpmT3HUTsZm" "spotify:playlist:1sJqZLpvNeR9fSlpj1PHwp");
 
 echo ${artists[*]}
 echo ${playlists[*]}
 
-array=("${artists[@]}" "${playlists[@]}")
+# array=("${artists[@]}" "${playlists[@]}")
+array=("spotify:playlist:37i9dQZF1DXdbXrPNafg9d" "spotify:playlist:37i9dQZF1DX4JAvHpjipBk", "spotify:playlist:37i9dQZF1DXbpmT3HUTsZm" "spotify:playlist:1sJqZLpvNeR9fSlpj1PHwp");
 
 echo ${array[*]}
 
