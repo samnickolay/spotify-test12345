@@ -134,9 +134,11 @@ sudo ./aws/install
 
 sleep 5
 
-aws configure set aws_access_key_id AKIAYSZGBWM3RLWPHGTL
-aws configure set aws_secret_access_key 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
 aws configure set default.region us-west-2
+sleep 5
+aws configure set aws_access_key_id AKIAYSZGBWM3RLWPHGTL
+sleep 5
+aws configure set aws_secret_access_key 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
 
 ####################
 

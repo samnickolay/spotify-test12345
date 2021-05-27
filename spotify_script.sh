@@ -38,6 +38,8 @@ TOTAL=$(( $FIFTEEN_HOURS + $FOUR_HOURS))
 
 echo "running test for $TOTAL seconds" 
 
+INSTANCE_ID=$(ec2metadata --instance-id)
+
 # sleep $TOTAL && echo "rebooting after timeout - $TOTAL seconds" && printf "successful - restarting" >> /home/ubuntu/stderr.log  &
 sleep $TOTAL && echo "rebooting after timeout - $TOTAL seconds" && date && sudo reboot &
 
@@ -220,7 +222,7 @@ xwd -root -out myshot1.xwd
 
 sleep 5
 
-INSTANCE_ID=$(ec2metadata --instance-id)
+# INSTANCE_ID=$(ec2metadata --instance-id)
 echo "s3://spotify-test12345/$INSTANCE_ID.xwd"
 aws s3 cp ./myshot1.xwd "s3://spotify-test12345/$INSTANCE_ID.xwd"
 

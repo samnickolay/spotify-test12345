@@ -76,8 +76,8 @@ accounts2 = [
     # ['jofigueroa@vizy.io', 'VF7RPWCQKPNv!?', 'spotify:playlist:51AIU7amGLRUUZwBdiWdYx', 'nordvpn10@vizy.io'],
     # ['gabegilmore@vizy.io', 'EERWcR7K4ahG!?', 'spotify:playlist:51AIU7amGLRUUZwBdiWdYx', 'nordvpn10@vizy.io'],
     # ['sidneybradford@vizy.io', 'GjYpNMyBKxcv!?', 'spotify:playlist:51AIU7amGLRUUZwBdiWdYx', 'nordvpn10@vizy.io'],
-    # ['jackieleblanc@vizy.io', 'bppDJ23kGsWa!?', 'spotify:playlist:51AIU7amGLRUUZwBdiWdYx', 'nordvpn10@vizy.io'],
-    ['charliechurch@vizy.io', 'AfegHc4Lr6Rr!?', 'spotify:playlist:51AIU7amGLRUUZwBdiWdYx', 'nordvpn10@vizy.io'],
+    ['jackieleblanc@vizy.io', 'bppDJ23kGsWa!?', 'spotify:playlist:51AIU7amGLRUUZwBdiWdYx', 'nordvpn10@vizy.io'],
+    # ['charliechurch@vizy.io', 'AfegHc4Lr6Rr!?', 'spotify:playlist:51AIU7amGLRUUZwBdiWdYx', 'nordvpn10@vizy.io'],
 ]
 
 accounts = accounts1 + accounts2
