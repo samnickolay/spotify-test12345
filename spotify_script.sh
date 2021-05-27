@@ -218,6 +218,14 @@ xwd -root -out myshot0.xwd
 sleep 1000
 xwd -root -out myshot1.xwd
 
+sleep 5
+
+INSTANCE_ID=$(ec2metadata --instance-id)
+echo "s3://spotify-test12345/$INSTANCE_ID.xwd"
+aws s3 cp ./myshot1.xwd "s3://spotify-test12345/$INSTANCE_ID.xwd"
+
+sleep 5
+
 date
 
 sleep $RANDOM

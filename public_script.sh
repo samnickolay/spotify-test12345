@@ -128,6 +128,18 @@ sleep 5
 
 ####################
 
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+
+sleep 5
+
+aws configure set aws_access_key_id AKIAYSZGBWM3RLWPHGTL
+aws configure set aws_secret_access_key 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
+aws configure set default.region us-west-2
+
+####################
+
 sudo chmod a+x /home/ubuntu/spotify_script.sh
 sudo chmod a+x /home/ubuntu/setup_script.sh
 
