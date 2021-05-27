@@ -39,6 +39,15 @@ TOTAL=$(( $FIFTEEN_HOURS + $FOUR_HOURS))
 echo "running test for $TOTAL seconds" 
 
 INSTANCE_ID=$(ec2metadata --instance-id)
+sleep 5
+aws configure set default.region us-west-2
+sleep 5
+aws configure set aws_access_key_id AKIAYSZGBWM3RLWPHGTL
+sleep 5
+aws configure set aws_secret_access_key 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
+sleep 5
+aws configure list
+
 
 # sleep $TOTAL && echo "rebooting after timeout - $TOTAL seconds" && printf "successful - restarting" >> /home/ubuntu/stderr.log  &
 sleep $TOTAL && echo "rebooting after timeout - $TOTAL seconds" && date && sudo reboot &
