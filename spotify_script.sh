@@ -13,15 +13,23 @@ ONE_HOUR=$(($RANDOM/8))
 echo "sleeping"
 date
 
-if (( $SECONDS_UNTIL_SEVEN > 0 ) && ( $SECONDS_UNTIL_SEVEN < 28800 )); then
+currenttime=$(date +%H:%M)
+if [[ "$currenttime" > "5:00" ]] && [[ "$currenttime" < "13:00" ]]; then
     echo "sleeping until 7am"
     sleep $SECONDS_UNTIL_SEVEN 
+else
+    echo "ACTIVE HOURS!"
 fi
+
+# if (( $SECONDS_UNTIL_SEVEN > 0 ) && ( $SECONDS_UNTIL_SEVEN < 28800 )); then
+#     echo "sleeping until 7am"
+#     sleep $SECONDS_UNTIL_SEVEN 
+# fi
 sleep $ONE_HOUR
 date
 echo "done sleeping"
 
-TOTAL=$((7200 + $(($RANDOM/2))))
+TOTAL=$((7200 + $(($RANDOM/3))))
 echo "running test for $TOTAL seconds" 
 
 INSTANCE_ID=$(ec2metadata --instance-id)
