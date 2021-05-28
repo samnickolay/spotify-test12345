@@ -56,7 +56,7 @@ echo ${artists[*]}
 echo ${playlists[*]}
 
 # array=("${artists[@]}" "${playlists[@]}")
-array=("spotify:playlist:37i9dQZF1DXdbXrPNafg9d" "spotify:playlist:37i9dQZF1DX4JAvHpjipBk", "spotify:playlist:37i9dQZF1DXbpmT3HUTsZm" "spotify:playlist:1sJqZLpvNeR9fSlpj1PHwp");
+array=("spotify:playlist:37i9dQZF1DXdbXrPNafg9d" "spotify:playlist:37i9dQZF1DX4JAvHpjipBk" "spotify:playlist:37i9dQZF1DXbpmT3HUTsZm" "spotify:playlist:1sJqZLpvNeR9fSlpj1PHwp");
 
 echo ${array[*]}
 
