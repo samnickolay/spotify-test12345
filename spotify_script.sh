@@ -29,11 +29,7 @@ sleep $ONE_HOUR
 date
 echo "done sleeping"
 
-TWO_HOURS=7200
-RANDOM_HOURS=$(($RANDOM/3))
-TOTAL=$(( $TWO_HOURS + $RANDOM_HOURS))
-
-# TOTAL=$((7200 + $(($RANDOM/3))))
+TOTAL=$((7200 + $(($RANDOM/3))))
 echo "running test for $TOTAL seconds" 
 
 INSTANCE_ID=$(ec2metadata --instance-id)
